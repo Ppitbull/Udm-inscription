@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DAcceptComponent } from './d-accept.component';
+import { DRefusComponent } from './d-refus.component';
 
-describe('DAcceptComponent', () => {
-  let component: DAcceptComponent;
-  let fixture: ComponentFixture<DAcceptComponent>;
+describe('DRefusComponent', () => {
+  let component: DRefusComponent;
+  let fixture: ComponentFixture<DRefusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DAcceptComponent ]
+      declarations: [ DRefusComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DAcceptComponent);
+    fixture = TestBed.createComponent(DRefusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
