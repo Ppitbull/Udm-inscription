@@ -8,6 +8,9 @@ import { FormGroup } from '@angular/forms';
 })
 export class FormAdminssionFinalComponent implements OnInit {
   @Input() form:FormGroup;
+  @Input() nom:string="Cedric"
+  @Input() prenom:string="Nguendap"
+  submitedForm:boolean=false;
   constructor() { }
 
   ngOnInit(): void {
