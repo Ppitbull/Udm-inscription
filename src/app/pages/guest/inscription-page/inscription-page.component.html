@@ -1,0 +1,71 @@
+  <div class="container mb-4 text-bold">
+    <div class="row justify-content-center">
+        <div class=" col-12 col-lg-6 col-md-10">
+            <span class="center-text">FICHE DE CANDIDATURE A L’ADMISSION
+                ANNEE ACADEMIQUE 2021/2022 <br>
+                </span>
+        </div>
+      </div>
+      <div class="row justify-content-center" >
+          <div class="col-12 col-lg-5 col-md-8">
+            (Les admissions internes se font sur étude de dossiers)
+          </div>
+      </div>
+  </div>
+ <div class="row">
+     <div class="col-12">
+        <mat-horizontal-stepper   #stepper>
+            <mat-step #stepInformationPersonnel [stepControl]="personnalDataFormGroup" editable>
+                <ng-template matStepLabel>Etat civil</ng-template>
+                <div class="content">
+                  <app-infos-perso-inscription [form]="personnalDataFormGroup"></app-infos-perso-inscription>
+                </div>
+                <div class="float-end mt-3">
+                    <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                  <!-- <button mat-button >Next</button> -->
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="qualificationFormGroup" label="Qualifications">
+                <div class="content">
+                  <app-qualifications-inscription #qualificationInscriptionComponent [form]="qualificationFormGroup"></app-qualifications-inscription>
+                </div>
+                <div class="mt-3">
+                  <div class="float-end">
+                    <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                  </div>
+                  <div class="float-start">
+                    <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>
+                  </div>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="qualificationFormGroup" label="Filières de formations">
+              <div class="content">
+                <app-filiere-formation-inscription #filiereFormationComponent></app-filiere-formation-inscription>
+              </div>
+              <div class="mt-3">
+                <div class="float-end">
+                  <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                </div>
+                <div class="float-start">
+                  <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>
+                </div>
+              </div>
+          </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Terminé</ng-template>
+              <div class="content">
+                <app-form-adminssion-final [form]="finalFormGroup"></app-form-adminssion-final>
+              </div>
+              <div class="mt-3">
+                <div class="float-end">
+                  <button (click)="submit()" class="btn btn-lg btn-success">Valider <i class="bi bi-arrow-right"></i></button>
+                </div>
+                <div class="float-start">
+                  <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>
+                </div>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+     </div>
+ </div>
+  

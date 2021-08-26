@@ -1,0 +1,72 @@
+<div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+        <!-- choix Column -->
+		<ng-container matColumnDef="choix">
+			<mat-header-cell *matHeaderCellDef> Choix </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.choix}} </mat-cell>
+		</ng-container>
+
+        <!-- cycle Column -->
+		<ng-container matColumnDef="cycle">
+			<mat-header-cell *matHeaderCellDef> Cycle </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+                <mat-select [(value)]="element.cycle" #cycleSelected [id]="element.choix" (selectionChange)="changeFaculteData($event)" class="form-control custom-form-length" name="nom" >
+                    <mat-option value="">---Selectionner le cycle---</mat-option>
+                    <mat-option *ngFor="let formation of listFormation" [value]="formation" >{{formation.nom}}</mat-option>
+                </mat-select>
+			</mat-cell>
+		</ng-container>
+
+        <!-- faculte Column -->
+		<ng-container matColumnDef="faculte">
+			<mat-header-cell *matHeaderCellDef> Faculte </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<mat-select [(value)]="element.faculte" [id]="element.choix" (selectionChange)="changeFiliereData($event)" class="form-control custom-form-length" name="nom" >
+                    <mat-option value="">---Selectionner la faculté---</mat-option>
+                    <ng-container *ngIf="element.choix=='1er'">
+						<mat-option *ngFor="let faculte of afaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+					</ng-container>
+					<ng-container *ngIf="element.choix=='2e'">
+						<mat-option *ngFor="let faculte of bfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+					</ng-container>
+					<ng-container *ngIf="element.choix=='3e'">
+						<mat-option *ngFor="let faculte of cfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+					</ng-container>
+                </mat-select>
+			</mat-cell>
+		</ng-container>
+
+        <!-- filier Column -->
+		<ng-container matColumnDef="filiere">
+			<mat-header-cell *matHeaderCellDef> Filière </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<mat-select [(value)]="element.filiere" class="form-control custom-form-length" type="text" name="nom" >
+                    <mat-option value="" >---Selectionner la filière---</mat-option>                    
+					<ng-container *ngIf="element.choix=='1er'">
+						<mat-option *ngFor="let filiere of afiliereList" [value]="filiere">{{filiere}}</mat-option>
+					</ng-container>
+					<ng-container *ngIf="element.choix=='2e'">
+						<mat-option *ngFor="let filiere of bfiliereList" [value]="filiere">{{filiere}}</mat-option>
+					</ng-container>
+					<ng-container *ngIf="element.choix=='3e'">
+						<mat-option *ngFor="let filiere of cfiliereList" [value]="filiere">{{filiere}}</mat-option>
+					</ng-container>
+                </mat-select>
+			</mat-cell>
+		</ng-container>
+
+		<!-- niveau Column -->
+		<ng-container matColumnDef="niveau">
+			<mat-header-cell *matHeaderCellDef> Niveau </mat-header-cell>
+			<mat-cell *matCellDef="let element">
+				<mat-select [(value)]="element.niveau" class="form-control custom-form-length" type="text" name="nom" >
+                    <mat-option value="" >---Selectionner le niveau---</mat-option>                    
+					<mat-option *ngFor="let niveau of listNiveau" [value]="niveau">{{niveau}}</mat-option>
+                </mat-select>
+			</mat-cell>
+		</ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColums"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayColums;"></mat-row>
+    </mat-table>
+</div>

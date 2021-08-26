@@ -1,0 +1,42 @@
+	<div class="mat-elevation-z8">
+		<mat-table #table [dataSource]="dataSource">
+			<!-- diplome Column -->
+			<ng-container matColumnDef="diplome">
+				<mat-header-cell *matHeaderCellDef> Diplôme obtenus </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{element.diplome}} </mat-cell>
+			</ng-container>
+	
+			<!-- annee Column -->
+			<ng-container matColumnDef="annee">
+				<mat-header-cell *matHeaderCellDef> Année </mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<mat-select [(value)]="element.annee" class="form-control custom-form-length" type="text" name="nom" >
+						<mat-option value="">---Selectionner l'année</mat-option>
+						<mat-option *ngFor="let annee of listAnnee" [value]="annee" >{{annee}}</mat-option>
+					</mat-select>
+				</mat-cell>
+			</ng-container>
+	
+			<!-- serie Column -->
+			<ng-container matColumnDef="filiere">
+				<mat-header-cell *matHeaderCellDef> Série/Filière </mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<input type="text" matInput [value]="element.filiere" [(ngModel)]="element.filiere" class="form-control custom-form-length" placeholder="Entrez votre série/filière">
+				</mat-cell>
+			</ng-container>
+	
+			<!-- Mention Column -->
+			<ng-container matColumnDef="mention">
+				<mat-header-cell *matHeaderCellDef> Mention </mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<mat-select [(value)]="element.mention" class="form-control custom-form-length" type="text" name="nom" >
+						<mat-option value="" selected>---Selectionner la mention</mat-option>
+						<mat-option *ngFor="let mention of listMension" [value]="mention.ab" >{{mention.mention}} ( {{mention.ab}} )</mat-option>
+					</mat-select>
+				</mat-cell>
+			</ng-container>
+	
+			<mat-header-row *matHeaderRowDef="displayColums"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayColums;"></mat-row>
+		</mat-table>
+	</div>
