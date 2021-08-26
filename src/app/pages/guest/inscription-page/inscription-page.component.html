@@ -54,11 +54,11 @@
             <mat-step>
               <ng-template matStepLabel>Terminé</ng-template>
               <div class="content">
-                <app-form-adminssion-final [form]="finalFormGroup"></app-form-adminssion-final>
+                <app-form-adminssion-final #formadmissionfinal [submitedForm]="submitedForm" [etudiant]="candidat" [dossier]="dossier" [form]="finalFormGroup"></app-form-adminssion-final>
               </div>
               <div class="mt-3">
                 <div class="float-end">
-                  <button (click)="submit()" class="btn btn-lg btn-success">Valider <i class="bi bi-arrow-right"></i></button>
+                  <button (click)="submit()" [disabled]="canSubmitedForm==false" class="btn btn-lg btn-success">Valider <i class="bi bi-arrow-right"></i></button>
                 </div>
                 <div class="float-start">
                   <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>

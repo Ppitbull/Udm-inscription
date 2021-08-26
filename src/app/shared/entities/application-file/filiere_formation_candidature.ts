@@ -14,7 +14,7 @@ export class FilliereFormationCandidature extends Entity
         filiere:"",
         niveau:""
     }
-    TroisiemeChoix={
+    troisiemeChoix={
         cycle:"",
         faculte:"",
         filiere:"",

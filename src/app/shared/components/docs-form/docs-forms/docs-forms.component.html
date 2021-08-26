@@ -1,0 +1,7 @@
+<div class="container">
+    <div *ngFor="let rowForm of formValue" class="row mt-3">
+        <div *ngFor="let colForm of rowForm"  [class]="colForm.col">
+            <app-docs-form-item [submitedForm]="submitedForm" [dataForm]="colForm"></app-docs-form-item>
+        </div>
+    </div>
+</div>

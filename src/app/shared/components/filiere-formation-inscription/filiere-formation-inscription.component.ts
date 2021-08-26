@@ -28,22 +28,22 @@ export class FiliereFormationInscriptionComponent implements OnInit {
   dataSource = new MatTableDataSource([
     {
       choix:"1er",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     },
     {
       choix:"2e",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     },
     {
       choix:"3e",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     }
