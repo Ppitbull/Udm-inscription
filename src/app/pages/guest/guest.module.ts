@@ -10,7 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 
 @NgModule({
-  declarations: [  
+  declarations: [
     InscriptionPageComponent,
   ],
   imports: [

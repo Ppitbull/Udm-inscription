@@ -1,0 +1,103 @@
+<nav id="sidebar" class="sidebar">
+  <div class="sidebar-content js-simplebar" style="background-color: #33691e !important;">
+    <a class="sidebar-brand" href="index.html">
+      <img src="../../../../assets/img/udm_logo.jpg" class="img-fluid rounded me-1" alt="logo"/> <span
+        class="text-dark"></span>
+    </a>
+
+    <ul class="sidebar-nav">
+      <!-- <li class="sidebar-header">
+        Pages
+      </li> -->
+      <hr style="color: white;">
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/user/profil">
+          <i class="fa fa-user"></i>  <span class="align-middle">Profile</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item active">
+        <a class="sidebar-link" routerLink="/user/dashboard">
+          <i class="fa fa-dashboard"></i><span class="align-middle">Tableau de bord</span>
+        </a>
+      </li>
+
+
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/user/notes">
+          <i class="fa fa-align-left" data-feather="settings"></i> <span class="align-middle">Notes</span>
+        </a>
+      </li>
+<!-- 
+      <li class="sidebar-item">
+        <a data-bs-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="users"></i> <span class="align-middle">Etablissements</span>
+        </a>
+        <ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Faculté des Sciences de la Santé</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
+        </ul>
+      </li> -->
+
+      <li class="sidebar-header">
+        Administration
+      </li>
+      <li class="sidebar-item">
+        <a data-bs-target="#lc" data-bs-toggle="collapse" class="sidebar-link collapsed">
+          <i class="fa fa-list" data-feather="briefcase"></i> <span class="align-middle">Liste des candidats</span>
+        </a>
+        <ul id="lc" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
+          <li class="sidebar-item" routerLink="/user/d-list"><a class="sidebar-link" >Tous les dossiers</a></li>
+          <li class="sidebar-item" routerLink="/user/d-accept"><a class="sidebar-link" >Dossiers acceptés</a></li>
+          <li class="sidebar-item" routerLink="/user/d-refus"><a class="sidebar-link" >Dossiers regétés</a></li>
+          <li class="sidebar-item" routerLink="/user/d-admis"><a class="sidebar-link" >Candidats admis</a></li>
+        </ul>
+      </li>
+
+
+      <li class="sidebar-header">
+        Découvrez
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/user/actualite">
+          <i class="fa fa-info-circle" data-feather="settings"></i> <span class="align-middle">Actualité</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
+          <i class="fa fa-columns" data-feather="briefcase"></i> <span class="align-middle">Etablissements</span>
+        </a>
+        <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
+          <li class="sidebar-item"><a class="sidebar-link" >Faculté des Sciences de la Santé</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" >Faculté des Sciences et de Technologies</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" >Institut d’Etudes Africaines, des Sciences Sociales et de Management</a></li>
+        </ul>
+      </li>
+      <li class="sidebar-item">
+        <a data-bs-target="#ad" data-bs-toggle="collapse" class="sidebar-link collapsed">
+          <i class="fa fa-wpforms" data-feather="briefcase"></i> <span class="align-middle">Admission</span>
+        </a>
+        <ul id="ad" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
+          <li class="sidebar-item"><a class="sidebar-link" >Concours national</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" >Etude de dossier</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" >Je suis admis, que faire ?</a></li>
+        </ul>
+      </li>
+
+
+    </ul>
+
+    <div class="sidebar-cta">
+      <div class="sidebar-cta-content">
+        <i class="fa fa-comment"></i> <br><strong class="d-inline-block mb-2">Nous contacter </strong> 
+        <div class="mb-3 text-sm">
+          Souhaitez vous prendre plus de renseignements ?
+        </div>
+        <div class="d-grid">
+          <a href="#" target="_blank" class="btn btn-primary">Contacter</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
