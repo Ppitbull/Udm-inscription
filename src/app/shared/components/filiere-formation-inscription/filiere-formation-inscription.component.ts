@@ -1,4 +1,5 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 import { MatTableDataSource } from '@angular/material/table';
 import { formations as formationsList, niveau as niveauList} from '../../utils/formation.const';
@@ -9,6 +10,8 @@ import { formations as formationsList, niveau as niveauList} from '../../utils/f
   styleUrls: ['./filiere-formation-inscription.component.scss']
 })
 export class FiliereFormationInscriptionComponent implements OnInit {
+  @Input() form:FormGroup;
+  @Input() submitedForm:boolean=false;
   @ViewChildren("cycleSelected") listSelectCycle:QueryList<MatSelect>;
   listFormation=formationsList;
   listNiveau=niveauList;

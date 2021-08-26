@@ -12,6 +12,7 @@ export class QualificationsInscriptionComponent implements OnInit {
   @Input() form:FormGroup;
   listAnnee=anneesList;
   listMension=mentionsList;
+  submitedForm:boolean=false;
   displayColums =["diplome","annee","filiere","mention"];
   dataSource = new MatTableDataSource([
     {

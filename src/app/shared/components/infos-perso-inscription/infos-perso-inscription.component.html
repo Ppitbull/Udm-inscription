@@ -81,7 +81,8 @@
             <div class="col-10 col-md-6">
                 <label class="form-label">Tél</label>
                 <!-- <input class="" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel_admin.errors }"/> -->
-                <input matInput type="tel" placeholder="Votre numéro de téléphone" formControlName="tel" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}" />                                    
+                <app-input-type-number formControlName="tel" [cssClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}"></app-input-type-number>
+                <!-- <input matInput type="tel" placeholder="Votre numéro de téléphone" formControlName="tel" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}" />                                     -->
                 <div *ngIf="submitedForm && form.controls.tel.errors"
                     class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.tel.errors.required">Votre numéro de téléphone est obligatoire</div>
@@ -115,7 +116,8 @@
             <div class="col-10 col-md-6">
                 <label class="form-label">Tél du contact</label>
                 <!-- <input class="" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel_admin.errors }"/> -->
-                <input matInput type="tel" placeholder="Téléphone" formControlName="telContact" [ngClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}" />                                    
+                <app-input-type-number formControlName="telContact" [cssClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}"></app-input-type-number>
+                <!-- <input matInput type="tel" placeholder="Téléphone" formControlName="telContact" [ngClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}" />                                     -->
                 <div *ngIf="submitedForm && form.controls.telContact.errors"
                     class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.telContact.errors.required">Le numéro de téléphone de votre contact est obligatoire</div>

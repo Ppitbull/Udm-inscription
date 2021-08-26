@@ -10,6 +10,7 @@ import { QualificationsInscriptionComponent } from './components/qualifications-
 import {MatTableModule} from '@angular/material/table';
 import { FiliereFormationInscriptionComponent } from './components/filiere-formation-inscription/filiere-formation-inscription.component';
 import { FormAdminssionFinalComponent } from './components/form-adminssion-final/form-adminssion-final.component';
+import { InputTypeNumberModule } from './components/input-type-number/input-type-number.module';
 
 
 @NgModule({
@@ -28,14 +29,16 @@ import { FormAdminssionFinalComponent } from './components/form-adminssion-final
     MatFormFieldModule,
     MatProgressBarModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    InputTypeNumberModule
   ],
   exports:[
     FormationInscriptionComponent,
     InfosPersoInscriptionComponent,
     QualificationsInscriptionComponent,
     FiliereFormationInscriptionComponent,
-    FormAdminssionFinalComponent
+    FormAdminssionFinalComponent,
+    InputTypeNumberModule
   ]
 })
 export class SharedModule { }

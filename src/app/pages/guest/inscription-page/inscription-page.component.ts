@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  MatStep, MatStepper } from '@angular/material/stepper';
 import { FiliereFormationInscriptionComponent } from 'src/app/shared/components/filiere-formation-inscription/filiere-formation-inscription.component';
+import { InfosPersoInscriptionComponent } from 'src/app/shared/components/infos-perso-inscription/infos-perso-inscription.component';
 import { QualificationsInscriptionComponent } from 'src/app/shared/components/qualifications-inscription/qualifications-inscription.component';
 
 @Component({
@@ -12,9 +13,11 @@ import { QualificationsInscriptionComponent } from 'src/app/shared/components/qu
 export class InscriptionPageComponent implements OnInit,AfterViewInit {
   personnalDataFormGroup: FormGroup;
   qualificationFormGroup: FormGroup;
+  filiereFormationFormGroup:FormGroup;
   finalFormGroup:FormGroup;
 
   @ViewChild("stepper") stepper:MatStepper;
+  @ViewChild("informationPersonnelInscriptionComponent") informationPersonnelInscriptionComponent:InfosPersoInscriptionComponent;
   @ViewChild("qualificationInscriptionComponent") qualificationInscriptionComponent:QualificationsInscriptionComponent;
   @ViewChild("filiereFormationComponent") filiereFormationComponent:FiliereFormationInscriptionComponent;
   constructor(private _formBuilder: FormBuilder) {}
@@ -52,6 +55,13 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     this.finalFormGroup=this._formBuilder.group({
       
     })
+
+    this.filiereFormationFormGroup= this._formBuilder.group({
+      cycle:['',Validators.required],
+      premierFaculte:['',Validators.required],
+      premierFilere:['',Validators.required],
+      premierNiveau:['',Validators.required]
+    })
   }
 
   ngAfterViewInit(): void {
@@ -59,8 +69,18 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   }
   submit()
   {
-    // console.log(this.personnalDataFormGroup.value);
+    console.log(this.personnalDataFormGroup.value);
+    console.log(this.qualificationInscriptionComponent.getData())
     console.log(this.filiereFormationComponent.getData())
   }
-
+  changeSteppe(event)
+  {
+    console.log(event);
+  }
+  validChangeSteppe(index)
+  {
+    if(index==0) this.informationPersonnelInscriptionComponent.submitedForm=true;
+    if(index==1) this.qualificationInscriptionComponent.submitedForm=true;
+    if(index==2) this.filiereFormationComponent.submitedForm=true;
+  }
 }
