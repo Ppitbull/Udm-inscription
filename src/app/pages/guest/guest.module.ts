@@ -8,10 +8,11 @@ import { GuestRoutingModule } from './guest-routing.module';
 import {MatStepperModule} from '@angular/material/stepper'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 
 @NgModule({
   declarations: [  
-    InscriptionPageComponent,
+    InscriptionPageComponent, AcceuilComponent,
   ],
   imports: [
     CommonModule,
