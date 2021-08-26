@@ -1,3 +1,4 @@
+<form action="" [formGroup]="form">
 	<div class="mat-elevation-z8">
 		<mat-table #table [dataSource]="dataSource">
 			<!-- diplome Column -->
@@ -10,10 +11,18 @@
 			<ng-container matColumnDef="annee">
 				<mat-header-cell *matHeaderCellDef> Année </mat-header-cell>
 				<mat-cell *matCellDef="let element">
-					<mat-select [(value)]="element.annee" class="form-control custom-form-length" type="text" name="nom" >
-						<mat-option value="">---Selectionner l'année</mat-option>
-						<mat-option *ngFor="let annee of listAnnee" [value]="annee" >{{annee}}</mat-option>
-					</mat-select>
+					<ng-container *ngIf="element.diplome=='Baccalauréat/GCE Al'">
+						<mat-select [ngClass]="{ 'is-invalid': submitedForm && form.controls.anneBac.errors }" formControlName="anneBac" [(value)]="element.annee" [ngModelOptions]="{standalone: true}" class="form-control custom-form-length" type="text" name="nom" >
+							<mat-option value="">---Selectionner l'année</mat-option>
+							<mat-option *ngFor="let annee of listAnnee" [value]="annee" >{{annee}}</mat-option>
+						</mat-select>
+					</ng-container>
+					<ng-container *ngIf="element.diplome!='Baccalauréat/GCE Al'">
+						<mat-select [(value)]="element.annee" [ngModelOptions]="{standalone: true}" class="form-control custom-form-length" type="text" name="nom" >
+							<mat-option value="">---Selectionner l'année</mat-option>
+							<mat-option *ngFor="let annee of listAnnee" [value]="annee" >{{annee}}</mat-option>
+						</mat-select>
+					</ng-container>
 				</mat-cell>
 			</ng-container>
 	
@@ -21,7 +30,12 @@
 			<ng-container matColumnDef="filiere">
 				<mat-header-cell *matHeaderCellDef> Série/Filière </mat-header-cell>
 				<mat-cell *matCellDef="let element">
-					<input type="text" matInput [value]="element.filiere" [(ngModel)]="element.filiere" class="form-control custom-form-length" placeholder="Entrez votre série/filière">
+					<ng-container *ngIf="element.diplome=='Baccalauréat/GCE Al'">
+						<input type="text" [ngClass]="{ 'is-invalid': submitedForm && form.controls.serieBac.errors }" formControlName="serieBac" matInput [value]="element.filiere" [ngModelOptions]="{standalone: true}" [(ngModel)]="element.filiere" class="form-control custom-form-length" placeholder="Entrez votre série/filière">
+					</ng-container>
+					<ng-container *ngIf="element.diplome!='Baccalauréat/GCE Al'">
+						<input type="text" matInput [value]="element.filiere" [ngModelOptions]="{standalone: true}" [(ngModel)]="element.filiere" class="form-control custom-form-length" placeholder="Entrez votre série/filière">
+					</ng-container>
 				</mat-cell>
 			</ng-container>
 	
@@ -29,10 +43,18 @@
 			<ng-container matColumnDef="mention">
 				<mat-header-cell *matHeaderCellDef> Mention </mat-header-cell>
 				<mat-cell *matCellDef="let element">
-					<mat-select [(value)]="element.mention" class="form-control custom-form-length" type="text" name="nom" >
-						<mat-option value="" selected>---Selectionner la mention</mat-option>
-						<mat-option *ngFor="let mention of listMension" [value]="mention.ab" >{{mention.mention}} ( {{mention.ab}} )</mat-option>
-					</mat-select>
+					<ng-container *ngIf="element.diplome=='Baccalauréat/GCE Al'">
+						<mat-select [ngClass]="{ 'is-invalid': submitedForm && form.controls.mentionBac.errors }" formControlName="mentionBac" [(value)]="element.mention" [ngModelOptions]="{standalone: true}" class="form-control custom-form-length" type="text" name="nom" >
+							<mat-option value="" selected>---Selectionner la mention</mat-option>
+							<mat-option *ngFor="let mention of listMension" [value]="mention.ab" >{{mention.mention}} ( {{mention.ab}} )</mat-option>
+						</mat-select>
+					</ng-container>
+					<ng-container *ngIf="element.diplome!='Baccalauréat/GCE Al'">
+						<mat-select [(value)]="element.mention" [ngModelOptions]="{standalone: true}" class="form-control custom-form-length" type="text" name="nom" >
+							<mat-option value="" selected>---Selectionner la mention</mat-option>
+							<mat-option *ngFor="let mention of listMension" [value]="mention.ab" >{{mention.mention}} ( {{mention.ab}} )</mat-option>
+						</mat-select>
+					</ng-container>
 				</mat-cell>
 			</ng-container>
 	
@@ -40,3 +62,4 @@
 			<mat-row *matRowDef="let row; columns: displayColums;"></mat-row>
 		</mat-table>
 	</div>
+</form>

@@ -14,14 +14,14 @@
   </div>
  <div class="row">
      <div class="col-12">
-        <mat-horizontal-stepper   #stepper>
+        <mat-horizontal-stepper (selectionChange)="changeSteppe($event)"   #stepper>
             <mat-step #stepInformationPersonnel [stepControl]="personnalDataFormGroup" editable>
                 <ng-template matStepLabel>Etat civil</ng-template>
                 <div class="content">
-                  <app-infos-perso-inscription [form]="personnalDataFormGroup"></app-infos-perso-inscription>
+                  <app-infos-perso-inscription #informationPersonnelInscriptionComponent [form]="personnalDataFormGroup"></app-infos-perso-inscription>
                 </div>
                 <div class="float-end mt-3">
-                    <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                    <button matStepperNext class="btn btn-lg btn-primary" (click)="validChangeSteppe(0)">Suivant <i class="bi bi-arrow-right"></i></button>
                   <!-- <button mat-button >Next</button> -->
                 </div>
             </mat-step>
@@ -31,20 +31,20 @@
                 </div>
                 <div class="mt-3">
                   <div class="float-end">
-                    <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                    <button matStepperNext (click)="validChangeSteppe(1)" class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
                   </div>
                   <div class="float-start">
                     <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>
                   </div>
                 </div>
             </mat-step>
-            <mat-step [stepControl]="qualificationFormGroup" label="Filières de formations">
+            <mat-step [stepControl]="filiereFormationFormGroup" label="Filières de formations">
               <div class="content">
-                <app-filiere-formation-inscription #filiereFormationComponent></app-filiere-formation-inscription>
+                <app-filiere-formation-inscription [form]="filiereFormationFormGroup" #filiereFormationComponent></app-filiere-formation-inscription>
               </div>
               <div class="mt-3">
                 <div class="float-end">
-                  <button matStepperNext class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
+                  <button matStepperNext (click)="validChangeSteppe(2)" class="btn btn-lg btn-primary">Suivant <i class="bi bi-arrow-right"></i></button>
                 </div>
                 <div class="float-start">
                   <button matStepperPrevious class="btn btn-lg btn-secondary">Précédent <i class="bi bi-arrow-right"></i></button>
