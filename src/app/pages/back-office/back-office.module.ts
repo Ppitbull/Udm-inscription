@@ -19,6 +19,8 @@ import { DListComponent } from 'src/app/layout/page-content/dossiers/d-list/d-li
 import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-refus.component';
 import { ActualiteComponent } from 'src/app/layout/page-content/actualite/actualite.component';
 import { DossierComponent } from 'src/app/layout/page-content/dossiers/dossier.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { DossierComponent } from 'src/app/layout/page-content/dossiers/dossier.c
     LayoutModule,
     MatStepperModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ]
 })
 export class BackOfficeModule { }

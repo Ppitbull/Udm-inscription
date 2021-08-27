@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-d-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./d-list.component.scss']
 })
 export class DListComponent implements OnInit {
+  
+  @ViewChild('largeModal') public largeModal: ModalDirective;
 
   constructor() { }
 
