@@ -1,13 +1,18 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  MatStep, MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FiliereFormationInscriptionComponent } from 'src/app/shared/components/filiere-formation-inscription/filiere-formation-inscription.component';
 import { FormAdminssionFinalComponent } from 'src/app/shared/components/form-adminssion-final/form-adminssion-final.component';
 import { InfosPersoInscriptionComponent } from 'src/app/shared/components/infos-perso-inscription/infos-perso-inscription.component';
+import { SimpleLoaderComponent } from 'src/app/shared/components/loader/simple-loader/simple-loader.component';
 import { QualificationsInscriptionComponent } from 'src/app/shared/components/qualifications-inscription/qualifications-inscription.component';
 import { Etudiant } from 'src/app/shared/entities/accounts/etudiant';
 import { DossierCandidature } from 'src/app/shared/entities/application-file';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
+import { InscriptionEtudiantService } from 'src/app/shared/services/inscription-etudiant/inscription-etudiant.service';
+import { ActionStatus } from 'src/app/shared/utils/services/firebase';
 
 @Component({
   selector: 'app-inscription-page',
@@ -30,10 +35,14 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   @ViewChild("qualificationInscriptionComponent") qualificationInscriptionComponent:QualificationsInscriptionComponent;
   @ViewChild("filiereFormationComponent") filiereFormationComponent:FiliereFormationInscriptionComponent;
   @ViewChild("formadmissionfinal") formadmissionfinalComponent:FormAdminssionFinalComponent;
-  @ViewChild("modalTemplate") modalRef: TemplateRef<any>;
+  @ViewChild("modalTemplate") modalTemplateRef: TemplateRef<any>;
+  modalRef:BsModalRef;
   
-  constructor(private _formBuilder: FormBuilder
-    // private dialog:BsModalService,
+  constructor(
+    private _formBuilder: FormBuilder,
+    private inscriptionEtudiantService:InscriptionEtudiantService,
+    private dialog:BsModalService,
+    private router:Router
     ) {}
   
 
@@ -68,8 +77,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       mentionAutre:[""]
     });
     this.finalFormGroup=this._formBuilder.group({
-      acceptVerificationDossier:["",Validators.required],
-      accceptPriceInscription:["",Validators.required]
+      acceptVerificationDossier:[false,Validators.required],
+      accceptPriceInscription:[false,Validators.required]
     })
 
     this.filiereFormationFormGroup= this._formBuilder.group({
@@ -79,12 +88,17 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       premierNiveau:['',Validators.required]
     })
     this.finalFormGroup.controls.acceptVerificationDossier.valueChanges.subscribe((change)=>{
-      if(change && this.finalFormGroup.value.accceptPriceInscription) this.canSubmitedForm=true;
-      else this.canSubmitedForm=false;
+      this.submitedForm=true;
+      setTimeout(()=>{
+        if(change && this.finalFormGroup.value.accceptPriceInscription && this.finalFormGroup.valid)this.canSubmitedForm=true
+        else this.canSubmitedForm=false;
+      })      
     })
     this.finalFormGroup.controls.accceptPriceInscription.valueChanges.subscribe((change)=>{
-      if(change && this.finalFormGroup.value.acceptVerificationDossier) this.canSubmitedForm=true;
-      else this.canSubmitedForm=false;
+      setTimeout(()=>{
+        if(change && this.finalFormGroup.value.acceptVerificationDossier && this.finalFormGroup.valid) this.canSubmitedForm=true;
+        else this.canSubmitedForm=false;
+      })
     })
   }
 
@@ -101,7 +115,30 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     })));
 
     this.dossier.documents.listDocument=this.formadmissionfinalComponent.getData();
+
+    this.candidat.mdp=`${this.dossier.numeroDossier}`;
+    this.openModal()
+    this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
+    .then((result:ActionStatus)=>this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat))
+    .then((result:ActionStatus)=>{
+      this.popup_message="Creation du dossier de candidature..."
+      return this.inscriptionEtudiantService.saveEtudiantCandidature(this.dossier)
+    })
+    .then((result:ActionStatus)=>{
+      this.popup_message="Enregistrement des fichiers de candidatures..."
+      return this.inscriptionEtudiantService.uploadFile(docs.map((doc)=>doc.file))
+    })
+    .then((result:ActionStatus)=>{
+      this.popup_message="Opération réussite. Rédirection vers l'espace étudiant...";
+      this.router.navigateByUrl('/etudiant')
+    })
+    
   }
+  openModal() {
+    const dialogRef = this.dialog.show(this.modalTemplateRef);
+    this.popup_message="Creation du compte Etudiant....";
+  }
+
   changeSteppe(event)
   {
   }

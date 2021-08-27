@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
 import { DocsFormItemComponent } from '../docs-form-item/docs-form-item.component';
 
@@ -14,7 +15,8 @@ export class DocsFormsComponent implements OnInit {
     type:string,
     required:boolean,
     errorMessage:string,
-    col:string
+    col:string,
+    form:FormGroup
   }[][]=[];
   @Input() submitedForm:boolean=false;
 

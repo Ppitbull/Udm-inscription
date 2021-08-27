@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
 
 @Component({
@@ -7,21 +7,27 @@ import { CustomFile } from 'src/app/shared/entities/custom-file';
   templateUrl: './docs-form-item.component.html',
   styleUrls: ['./docs-form-item.component.scss']
 })
-export class DocsFormItemComponent implements OnInit {
+export class DocsFormItemComponent implements OnInit,OnDestroy {
   @Input() dataForm:{
     id:string,
     label:string,
     type:string,
     required:boolean,
-    errorMessage:string
-  }={id:"",label:"",type:"",required:true,errorMessage:"Champ requis"}
+    errorMessage:string,
+    form:FormGroup
+  }={
+    id:"text",label:"",type:"",required:true,errorMessage:"Champ requis",
+    form:new FormGroup({})
+  }
   @Input() submitedForm:boolean=false;
-  formControl:FormControl;
+  @Input() formControl:FormControl;
   files:CustomFile[]=[];
   constructor() { }
+  
 
   ngOnInit(): void {
     this.formControl=new FormControl('',[this.dataForm.required?Validators.required:Validators.nullValidator])
+    this.dataForm.form.addControl(this.dataForm.id,this.formControl);
   }
   fileUpload(e)
   {
@@ -47,6 +53,10 @@ export class DocsFormItemComponent implements OnInit {
       label:this.dataForm.label,
       files:this.files
     }
+  }
+
+  ngOnDestroy(): void {
+    this.dataForm.form.removeControl(this.dataForm.id)
   }
 
 }

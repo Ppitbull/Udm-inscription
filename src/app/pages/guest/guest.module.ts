@@ -8,6 +8,7 @@ import { GuestRoutingModule } from './guest-routing.module';
 import {MatStepperModule} from '@angular/material/stepper'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SharedModule } from 'src/app/shared/shared-module.module';
     LayoutModule,
     MatStepperModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    ModalModule.forRoot()
   ]
 })
 export class GuestModule { }

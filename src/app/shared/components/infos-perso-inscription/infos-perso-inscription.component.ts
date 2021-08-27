@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { pays as paysList, ville as villeList } from '../../utils/location.const';
+import { pays as paysList, ville as villeList } from '../../utils/constante/location.const';
 
 @Component({
   selector: 'app-infos-perso-inscription',

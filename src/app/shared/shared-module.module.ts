@@ -13,6 +13,7 @@ import { FormAdminssionFinalComponent } from './components/form-adminssion-final
 import { InputTypeNumberModule } from './components/input-type-number/input-type-number.module';
 import { DocsFormModule } from './components/docs-form/docs-form.module';
 import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-loader.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-
     MatTableModule,
     InputTypeNumberModule,
     DocsFormModule,
+    ModalModule.forRoot()
   ],
   exports:[
     FormationInscriptionComponent,
@@ -42,7 +44,8 @@ import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-
     QualificationsInscriptionComponent,
     FiliereFormationInscriptionComponent,
     FormAdminssionFinalComponent,
-    InputTypeNumberModule
+    InputTypeNumberModule,
+    SimpleLoaderComponent
   ]
 })
 export class SharedModule { }

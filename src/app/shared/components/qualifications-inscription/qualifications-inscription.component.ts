@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { annees as anneesList, mentions as mentionsList } from '../../utils/diplome.const';
+import { annees as anneesList, mentions as mentionsList } from '../../utils/constante/diplome.const';
 
 @Component({
   selector: 'app-qualifications-inscription',

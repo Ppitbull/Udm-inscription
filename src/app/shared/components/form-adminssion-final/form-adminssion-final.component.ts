@@ -20,7 +20,8 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
     label:string,
     required:boolean,
     errorMessage:string,
-    col:string
+    col:string,
+    form:FormGroup
   }[][]=[];
 
   @ViewChild(DocsFormsComponent) docsFormComponent:DocsFormsComponent;
@@ -50,6 +51,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"premierAnneeBulletin",
               label:"Photocopies des bulletins de notes des classes de Terminale et de Première",
               required:true,
+              form:this.form,
               errorMessage:"Les photocopies de bulletins de notes sont requis",
               col:"col-10 col-md-6"
             },
@@ -57,6 +59,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"premierAnneeRecusFraisEtudeDossier",
               label:"Reçu du versement de 15 000 FCFA de frais d’étude de dossier",
               required:true,
+              form:this.form,
               errorMessage:"Le reçu du versement de 15 000 FCFA est requis",
               col:"col-10 col-md-6"
             }
@@ -66,6 +69,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"premierAnneeRecuChoixAdditionnel",
               label:"Le Reçu du versement de 5 000 FCFA pour un choix additionnel à l’intérieur du même Etablissement que le premier choix",
               required:false,
+              form:this.form,
               errorMessage:"",
               col:"col-10 col-md-6"
             },
@@ -80,6 +84,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"relectevNoteLicence",
               label:"Relevés de notes du cycle de Licence",
               required:true,
+              form:this.form,
               errorMessage:"Les relevés de notes du cycle de Licence sont requis",
               col:"col-10 col-md-6"
             },
@@ -87,6 +92,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"photocopiDiplomeLicence",
               label:"Photocopie du diplôme Bac +3 (Licence)",
               required:false,
+              form:this.form,
               errorMessage:"La photocopie du diplôme Bac +3 est requise",
               col:"col-10 col-md-6"
             }
@@ -96,6 +102,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"premierAnneeRecusFraisEtudeDossier",
               label:"Reçu du versement de 15 000 FCFA de frais d’étude de dossier",
               required:true,
+              form:this.form,
               errorMessage:"Le reçu du versement de 15 000 FCFA est requis",
               col:"col-10 col-md-6"
             },
@@ -103,6 +110,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
               id:"premierAnneeRecuChoixAdditionnel",
               label:"Le Reçu du versement de 5 000 FCFA pour un choix additionnel à l’intérieur du même Etablissement que le premier choix",
               required:false,
+              form:this.form,
               errorMessage:"",
               col:"col-10 col-md-6"
             },
@@ -118,6 +126,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"releveBack",
             label:"Relevé(s) de notes du baccalauréat ou du GCE/AL",
             required:true,
+            form:this.form,
             errorMessage:"Le relevé de note du baccalauréat ou du GCE/AL est requis",
             col:"col-10 col-md-6"
           },
@@ -125,6 +134,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"releveNote",
             label:"Relevé(s) de notes de toutes les années d’études post-baccalauréat",
             required:false,
+            form:this.form,
             errorMessage:"Les relevés de notes de toutes les années d'études post-baccalauréat sont requis",
             col:"col-10 col-md-6"
           }
@@ -134,6 +144,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"photocopieDiplomeBac",
             label:"Photocopie du diplôme Bac +2 ou Bac +3",
             required:true,
+            form:this.form,
             errorMessage:"La Photocopie du diplôme Bac +2 ou Bac +3 est requise",
             col:"col-10 col-md-6"
           },
@@ -141,6 +152,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"programmeDetaille",
             label:"Programme détaillé des enseignements post-baccalauréat validé par l’Institution d’origine",
             required:true,
+            form:this.form,
             errorMessage:"Le programme détaillé des enseignements est requis",
             col:"col-10 col-md-6"
           }
@@ -150,6 +162,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"premierAnneeRecusFraisEtudeDossier",
             label:"Reçu du versement de 15 000 FCFA de frais d’étude de dossier",
             required:true,
+            form:this.form,
             errorMessage:"Le reçu du versement de 15 000 FCFA est requis",
             col:"col-10 col-md-6"
           },
@@ -157,6 +170,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"premierAnneeRecuChoixAdditionnel",
             label:"Le Reçu du versement de 5 000 FCFA pour un choix additionnel à l’intérieur du même Etablissement que le premier choix",
             required:false,
+            form:this.form,
             errorMessage:"",
             col:"col-10 col-md-6"
           },
@@ -171,6 +185,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"releveNote",
             label:"Relevé(s) de notes de toutes les années d’études post-baccalauréat",
             required:false,
+            form:this.form,
             errorMessage:"Les relevés de notes de toutes les années d'études post-baccalauréat sont requis",
             col:"col-10 col-md-6"
           },
@@ -178,6 +193,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"photocopieDiplomeBac",
             label:"Photocopie du diplôme Bac +2 ou Bac +3",
             required:true,
+            form:this.form,
             errorMessage:"La Photocopie du diplôme Bac +2 ou Bac +3 est requise",
             col:"col-10 col-md-6"
           }          
@@ -187,6 +203,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"programmeDetaille",
             label:"Programme détaillé des enseignements post-baccalauréat validé par l’Institution d’origine",
             required:true,
+            form:this.form,
             errorMessage:"Le programme détaillé des enseignements est requis",
             col:"col-10 col-md-6"
           },
@@ -194,6 +211,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"premierAnneeRecusFraisEtudeDossier",
             label:"Reçu du versement de 15 000 FCFA de frais d’étude de dossier",
             required:true,
+            form:this.form,
             errorMessage:"Le reçu du versement de 15 000 FCFA est requis",
             col:"col-10 col-md-6"
           },
@@ -203,6 +221,7 @@ export class FormAdminssionFinalComponent implements OnInit, OnChanges {
             id:"premierAnneeRecuChoixAdditionnel",
             label:"Le Reçu du versement de 5 000 FCFA pour un choix additionnel à l’intérieur du même Etablissement que le premier choix",
             required:false,
+            form:this.form,
             errorMessage:"",
             col:"col-10 col-md-8"
           },
