@@ -12,6 +12,7 @@ import { FiliereFormationInscriptionComponent } from './components/filiere-forma
 import { FormAdminssionFinalComponent } from './components/form-adminssion-final/form-adminssion-final.component';
 import { InputTypeNumberModule } from './components/input-type-number/input-type-number.module';
 import { DocsFormModule } from './components/docs-form/docs-form.module';
+import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-loader.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DocsFormModule } from './components/docs-form/docs-form.module';
     InfosPersoInscriptionComponent, 
     QualificationsInscriptionComponent, 
     FiliereFormationInscriptionComponent,
-    FormAdminssionFinalComponent
+    FormAdminssionFinalComponent,
+    SimpleLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,7 @@ import { DocsFormModule } from './components/docs-form/docs-form.module';
     MatSelectModule,
     MatTableModule,
     InputTypeNumberModule,
-    DocsFormModule
+    DocsFormModule,
   ],
   exports:[
     FormationInscriptionComponent,

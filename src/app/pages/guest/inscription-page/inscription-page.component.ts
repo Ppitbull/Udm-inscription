@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  MatStep, MatStepper } from '@angular/material/stepper';
 import { FiliereFormationInscriptionComponent } from 'src/app/shared/components/filiere-formation-inscription/filiere-formation-inscription.component';
@@ -23,13 +23,18 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   dossier:DossierCandidature=new DossierCandidature();
   submitedForm:boolean=false;
   canSubmitedForm:boolean=false;
+  popup_message:string="";
 
   @ViewChild("stepper") stepper:MatStepper;
   @ViewChild("informationPersonnelInscriptionComponent") informationPersonnelInscriptionComponent:InfosPersoInscriptionComponent;
   @ViewChild("qualificationInscriptionComponent") qualificationInscriptionComponent:QualificationsInscriptionComponent;
   @ViewChild("filiereFormationComponent") filiereFormationComponent:FiliereFormationInscriptionComponent;
   @ViewChild("formadmissionfinal") formadmissionfinalComponent:FormAdminssionFinalComponent;
-  constructor(private _formBuilder: FormBuilder) {}
+  @ViewChild("modalTemplate") modalRef: TemplateRef<any>;
+  
+  constructor(private _formBuilder: FormBuilder
+    // private dialog:BsModalService,
+    ) {}
   
 
   ngOnInit() {
@@ -45,6 +50,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       nomContact:new FormControl("",[Validators.required,Validators.minLength(6)]),
       emailContact: new FormControl("",[Validators.required,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,6}')]),
       telContact: new FormControl("",[Validators.required, Validators.minLength(5)]),
+      imgProfil:new FormControl("",[Validators.required])
     });
 
     this.qualificationFormGroup = this._formBuilder.group({
