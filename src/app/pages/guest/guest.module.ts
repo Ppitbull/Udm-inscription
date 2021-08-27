@@ -12,7 +12,8 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 
 @NgModule({
   declarations: [  
-    InscriptionPageComponent, AcceuilComponent,
+    InscriptionPageComponent, 
+    AcceuilComponent,
   ],
   imports: [
     CommonModule,
