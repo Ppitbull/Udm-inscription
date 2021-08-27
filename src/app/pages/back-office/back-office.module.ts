@@ -13,6 +13,10 @@ import { BNavbarComponent } from 'src/app/layout/back-office/b-navbar/b-navbar.c
 import { BSidebarComponent } from 'src/app/layout/back-office/b-sidebar/b-sidebar.component';
 import { DashboardComponent } from 'src/app/layout/page-content/dashboard/dashboard.component';
 import { ProfilComponent } from 'src/app/layout/page-content/profil/profil.component';
+import { DAcceptComponent } from 'src/app/layout/page-content/dossiers/d-accept/d-accept.component';
+import { DAdmisComponent } from 'src/app/layout/page-content/dossiers/d-admis/d-admis.component';
+import { DListComponent } from 'src/app/layout/page-content/dossiers/d-list/d-list.component';
+import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-refus.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { ProfilComponent } from 'src/app/layout/page-content/profil/profil.compo
     BSidebarComponent,
     DashboardComponent,
     ProfilComponent,
+    DAcceptComponent,
+    DAdmisComponent,
+    DListComponent,
+    DRefusComponent
   ],
   imports: [
     CommonModule,
