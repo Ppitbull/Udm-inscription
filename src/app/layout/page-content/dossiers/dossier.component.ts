@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.scss']
+  selector: 'app-dossier',
+  templateUrl: './dossier.component.html',
+  styleUrls: ['./dossier.component.scss']
 })
-export class ProfilComponent implements OnInit {
+export class DossierComponent implements OnInit {
   nom: string = 'Nom';
   prenom: string = 'Utilisateur';
   nomComplet: string = this.nom + ' ' + this.prenom;
@@ -35,7 +35,6 @@ export class ProfilComponent implements OnInit {
   niveau1: number;
   niveau2: number;
   niveau3: number;
-
 
   constructor() { }
 

@@ -1,18 +1,193 @@
-<div class="row mb-2 mb-xl-3">
-    <div class="col-auto d-none d-sm-block">
-        <h3><strong>Tableau de bord</strong></h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 col-md-12 col-xxl-12 d-flex order-1 order-xxl-1">
-        <div class="card flex-fill w-100">
-            <div class="card-header">
+<main class="content">
+    <div class="container-fluid p-0">
 
-                <h5 class="card-title mb-0"></h5>
-            </div>
-            <div class="card-body px-4">
-                <div id="world_map" style="height:350px;"></div>
+        <h1 class="h3 mb-3"><strong>Tableau de bord</strong></h1>
+        <hr style="color: green;">
+        <div class="row">
+            <div class="col-12 col-md-12 col-xxl-12 d-flex order-1 order-xxl-1">
+                <div class="card flex-fill w-100">
+                    <div class="card-body" *ngIf="!isAdmin">
+                        <div class="row">
+                            <div class="col-md-4" *ngIf="attente">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Etat de votre dossier</h2>
+                                    </div>
+                                    <div class="card-head text-center" style="color: rgb(14, 80, 161);">
+                                        <i class="fa fa-file fa-3x ml-2"></i><h3 style="color: rgb(14, 80, 161) !important;"><b> En attente </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Votre est actuellement en attente de traitement. Vous serez notifié en cas de changement.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="invalid">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Etat de votre dossier</h2>
+                                    </div>
+                                    <div class="card-head text-center" style="color: orange;">
+                                        <i class="fa fa-file fa-3x ml-2"></i><h3 style="color: orange !important;"><b> Invalide </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Votre est Invalide. Veuillez Prendre connaissance des remarques et soumettre à nouveau.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="recal">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Etat de votre dossier</h2>
+                                    </div>
+                                    <div class="card-head text-center" style="color: red;">
+                                        <i class="fa fa-file fa-3x ml-2"></i><h3 style="color: red !important;"><b> Recalé </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Désolé! Vous avez été recalé. Veuillez attendre la prochaine session.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="admis">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Etat de votre dossier</h2>
+                                    </div>
+                                    <div class="card-head text-center" style="color: green;">
+                                        <i class="fa fa-file fa-3x ml-2"></i><h3 style="color: green !important;"><b> Admis </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Bravo ! Vous avez été admis. Veuillez vous rapprocher de l'administration pour compléter votre inscription.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="correct">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Etat de votre dossier</h2>
+                                    </div>
+                                    <div class="card-head text-center" style="color: black;">
+                                        <i class="fa fa-file fa-3x ml-2"></i><h3 style="color: black !important;"><b> Correct </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Votre dossier est correct. Après la dernière phase vous serez en attente des résultats d'admission. 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Résultats</h2>
+                                    </div>
+                                    <div class="card-head text-center">
+                                        <h3><b> Vendredi, 08 Octobre 2021 </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Date de publication des résultats d'admission de la première session.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-header bg-light">
+                                        <h2 class="card-title mb-0">
+                                            Infos</h2>
+                                    </div>
+                                    <div class="card-head text-center">
+                                        <h3><b> {{comment}} </b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        Les informations relative à votre admission s'affichent ici.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-body">
+                                        Carte 6
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="card-body" *ngIf="isAdmin">
+                        <div class="row">
+                            <div class="col-md-4" routerLink="/user/d-list">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-head text-center" style="color: rgb(14, 80, 161);">
+                                        <h3 style="color: rgb(16, 72, 140) !important;"><b> Dossiers en attente </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <b style="color: rgb(14, 80, 161) !important;"> {{allAttente}} </b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" routerLink="/user/d-accept">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-head text-center" style="color: black;">
+                                        <h3 style="color: black !important;"><b> Dossiers correct </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <b style="color: black !important;">{{allCorrect}} </b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-head text-center" style="color: rgb(179, 123, 19);">
+                                        <h3 style="color: orange !important;"><b> Dossiers Invalide </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <b style="color: orange !important;">{{allInvalid}} </b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" routerLink="/user/d-admis">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-head text-center" style="color: green;">
+                                        <h3 style="color: green !important;"><b> Candidats admis </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <b style="color: green !important;">{{allAdmis}} </b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" routerLink="/user/d-refus">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-head text-center" style="color: rgb(160, 42, 42);">
+                                        <h3 style="color: red !important;"><b> Candidats recalés </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <b style="color: red !important;">{{allRecal}} </b>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="card bg-light py-2 py-md-3 border">
+                                    <div class="card-body">
+                                        Carte 6
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
