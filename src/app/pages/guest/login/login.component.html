@@ -1,46 +1,57 @@
+
 <div class="row flex-column">
     <div class="col-4 align-self-center">
-        <h1 class="logo" class="text-center"><a href="https://www.heroku.com" title="Inscription au concours d'entrée à l' UdM">Inscription au concours d'entrée à l' UdM</a></h1>
-<div style="height: 50vh;width:450px;border: 2px solid rgb(16, 20, 18);" class="row login">
-    <div class="m-auto">
-        <div class="content">
-            <div class="panel" id="login"><h2 class="h3">Connectez-vous à votre compte</h2><form action="/login" 
-            method="post" role="form"><input 
-            name="_csrf" type="hidden" value="6_PWxu4L9EoRpbhT5qmTncVczmwQAFVL74RzUiby2AI">
-            <div class="form-group"><label for="email">Adresse e-mail</label>
-
-                <div class="input-icon icon-username">
-                </div>
-                <input autofocus="true" class="form-control" id="email" name="email" 
-            placeholder="Email address" type="email">
-        </div>
-        <div>
-            <label></label>
-        </div>
-        <div class="form-group"><label for="password">Mot de passe</label>
-
-            <div class="input-icon icon-password">
-            </div><input autocomplete="off" class="form-control password" id="password" 
-            name="password" placeholder="Password" type="password">
-        </div>
-        <div>
-            <label></label>
-        </div>
-            <button class="btn btn-primary btn-lg btn-block" name="commit" type="submit" 
-            value="Log In">Connexion</button>
-            <div>
-                <label></label>
+        <h1 class="logo" class="text-center">
+            <a href="https://www.heroku.com" title="Inscription au concours d'entrée à l' UdM">Inscription au concours d'entrée à l' UdM</a>
+        </h1>
+        <div style="height: 50vh;width:450px;border: 2px solid rgb(16, 20, 18);" class="row login">
+            <div class="m-auto">
+                <div class="content">
+                    <div class="panel" id="login">
+                        <h2 class="h3">Connectez-vous à votre compte</h2>
+                        <form action="/login" method="post" role="form" [formGroup]="form" (ngSubmit)="login()">
+                            <input name="_csrf" type="hidden" value="6_PWxu4L9EoRpbhT5qmTncVczmwQAFVL74RzUiby2AI">
+                            <div class="form-group">
+                                <ng-container *ngIf="waitResponse==true">
+                                    <div class="row mt-2">
+                                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                                    </div>
+                                </ng-container>
+                                <div class="row justify-content-center">
+                                    <div class="col-8" style="color: {{color}};">{{responseText}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Adresse e-mail</label>
+                                <input autofocus="true" [ngClass]="{ 'is-invalid': submitedForm && form.controls.email.errors }" class="form-control" id="email" name="email" formControlName="email"  placeholder="Email address" type="email">
+                                <div *ngIf="submitedForm && form.controls.email.invalid" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.email.errors.required">Votre email est obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe</label>
+                                <input matInput [ngClass]="{ 'is-invalid': submitedForm && form.controls.password.errors }" autocomplete="off" formControlName="password" class="form-control password" id="password" name="password" placeholder="Password" type="password">
+                                <div *ngIf="submitedForm && form.controls.password.invalid" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.password.errors.required">Votre mot de passe est obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <ng-container *ngIf="waitResponse==false">
+                                    <button class="btn btn-primary btn-lg btn-block" name="commit" type="submit" 
+                                value="Log In" >Connexion</button>
+                                </ng-container>                                
+                            </div>
+                            
+                        </form><a class="panel-footer" 
+                href="/signup/login">Nouveau à l'UDM ? &nbsp;<span>S'inscrire</span></a></div><a 
+                href="/account/password/reset" 
+                style="margin-left: 0px">Mot de passe oublié ?</a></div>
+                        
             </div>
-        </form><a class="panel-footer" 
-        href="/signup/login">Nouveau à l'UDM ? &nbsp;<span>S'inscrire</span></a></div><a 
-        href="/account/password/reset" 
-        style="margin-left: 0px">Mot de passe oublié ?</a></div>
-                
-    </div>
-  </div>
+            </div>
     </div>    
-  </div>
-  <div>
-    <label></label>
+    </div>
+    <div>
 </div>
+
 
