@@ -13,3 +13,4 @@ export class AcceuilComponent implements OnInit {
   }
 
 }
+export class CardFancyExample {}

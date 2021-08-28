@@ -9,6 +9,7 @@ import {MatStepperModule} from '@angular/material/stepper'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [  
@@ -23,7 +24,8 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
     LayoutModule,
     MatStepperModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    MatCardModule
   ]
 })
 export class GuestModule { }
