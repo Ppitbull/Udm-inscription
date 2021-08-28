@@ -53,6 +53,8 @@ export class DashboardComponent implements OnInit {
       {
         this.user=user;
         this.isAdmin=user.isAdminAccount();
+        this.email=user.email.toString();
+        this.pass=user.mdp.toString();
         this.dossierCandidatureService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>{
           if(!result.result) return;
           this.dossierCandidature=result.result;

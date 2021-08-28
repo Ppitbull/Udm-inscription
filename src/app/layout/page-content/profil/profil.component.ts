@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/entities/accounts';
+import { Etudiant } from 'src/app/shared/entities/accounts/etudiant';
 import { DossierCandidature } from 'src/app/shared/entities/application-file';
 import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
+import { DossierCandidatureState } from 'src/app/shared/utils/enum/dossier-candidature.enum';
 import { ActionStatus } from 'src/app/shared/utils/services/firebase';
 
 @Component({
@@ -41,8 +43,10 @@ export class ProfilComponent implements OnInit {
   niveau2: number;
   niveau3: number;
 
-  user:User=new User();
+  user:any=new User();
   candidatureEtudiant:DossierCandidature=new DossierCandidature();
+  textStatuDossier="Dossier en attente de traitement";
+  color="orange"
 
   constructor(
     private userProfileService:UserProfilService,
@@ -50,12 +54,34 @@ export class ProfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userProfileService.currentUser.subscribe((user:User)=>{
+    this.userProfileService.currentUser.subscribe((user)=>{
       if(user) this.user=user;
       this.candidatureEtudiantService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>
       {
-        console.log("Result ",result.result)
         this.candidatureEtudiant=result.result
+        console.log(this.candidatureEtudiant)
+        switch(this.candidatureEtudiant.state)
+          {
+            case DossierCandidatureState.WAITING:
+              this.textStatuDossier="Dossier en attente de traitement";
+              this.color="rgb(14, 80, 161) !important";
+              break;
+            case DossierCandidatureState.INVALID:
+              this.textStatuDossier="Dossier invalide";
+              this.color="orange";
+              break;
+            case DossierCandidatureState.FAILD:
+              this.textStatuDossier="Dossier rejecté";
+              this.color="red";
+              break
+            case DossierCandidatureState.ACCEPTED:
+              this.textStatuDossier="Dossier accepté";
+              this.color="orange";
+              break;
+            case DossierCandidatureState.ADMITTED:
+              this.textStatuDossier="Etudiant admis"
+              this.color="green";
+          }
       });
     })
   }
