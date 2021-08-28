@@ -16,15 +16,13 @@ export function getBranchOfUserData():string
     return `${DbBranch.general_users_data}`
 }
 
-export function getBanchOfCandidatureOfUser(userID:EntityID):string
+export function getBanchOfCandidature(candidatureID:EntityID):string
 {
-    return `${getBranchOfCandidatures()}/${userID.toString()}`
+    return `${getBranchOfCandidatures()}/${candidatureID.toString()}/${DbBranch.candidatures_data}`
 }
+
 export function getBranchOfCandidatures():string
 {
     return `${getBranchOfUserData()}/${DbBranch.candidatures}`
-}
-{
-
 }
 
