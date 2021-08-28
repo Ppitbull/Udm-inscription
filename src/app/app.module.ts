@@ -17,6 +17,8 @@ import { LocalStorageService } from './shared/services/localstorage/localstorage
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [

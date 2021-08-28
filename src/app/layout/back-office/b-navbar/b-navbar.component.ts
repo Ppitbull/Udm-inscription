@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/entities/accounts';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { UserProfilService } from 'src/app/shared/services/user-profil/user-prof
 export class BNavbarComponent implements OnInit {
   user:User=new User();
   constructor(
+    private authService: AuthService,
     private userProfil:UserProfilService
   ) { }
 
@@ -17,6 +19,10 @@ export class BNavbarComponent implements OnInit {
     this.userProfil.currentUser.subscribe((user:User)=>{
       if(user) this.user=user
     });
+  }
+
+  logOut(){
+    this.authService.logOut();
   }
 
 }
