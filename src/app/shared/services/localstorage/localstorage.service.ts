@@ -2,15 +2,11 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { EventService } from '../../utils/services/events/event.service';
-import { UserLocalStorageData } from './userlocalstorage.service';
 import { User } from '../../entities/accounts';
 
-@Injectable({
-  providedIn:"root"
-})
+@Injectable()
 export class LocalStorageService {
   data: Map < String, BehaviorSubject<any> >= new Map < String, BehaviorSubject<any> >();
-  dataUser: BehaviorSubject< UserLocalStorageData > = new BehaviorSubject<UserLocalStorageData>({isLoggedIn: false, user: new User()});
 
   constructor(
     private router: Router,
@@ -21,7 +17,7 @@ export class LocalStorageService {
   getUserDataWhenNavStart()
   {
     this.router.events.subscribe((evt)=> {     
-      if(evt instanceof NavigationEnd)
+      if(evt instanceof NavigationStart)
       {
         if(localStorage.getItem("data_udm_inscription"))
         {
@@ -35,7 +31,8 @@ export class LocalStorageService {
             }
           }
         }
-        // this.eventService.loadedDataFromLocalStorage.next(true);
+        
+        this.eventService.loadedDataFromLocalStorage.next(true);
       }
     })
   }

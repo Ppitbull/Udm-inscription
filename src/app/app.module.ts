@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './shared/services/guard';
 import { AdminerGuard } from './shared/services/guard/adminer.guard';
+import { EventService } from './shared/utils/services/events/event.service';
+import { LocalStorageService } from './shared/services/localstorage/localstorage.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AdminerGuard } from './shared/services/guard/adminer.guard';
   providers: [
     AuthGuard,
     AdminerGuard,
+    EventService,
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })
