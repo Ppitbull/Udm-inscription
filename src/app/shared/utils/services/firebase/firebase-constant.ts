@@ -4,6 +4,10 @@ export enum FireBaseConstant {
   AUTH_WEAK_PASSWORD = 'auth/weak-password',
   NET_NETWORK_FAIL = 'auth/network-request-failed',
   STORAGE_OBJECT_NOT_FOUND = 'storage/object-not-found',
+  STORAGE_UNAUTHORIZED="storage/unauthorized",
+  STORAGE_CANCELED="storage/canceled",
+  STORAGE_UNKNOWN="storage/unknown",
+
   DATABASE_DISCONNECTED = -4,
   DATABASE_NETWORK_ERROR = -24,
   DATABASE_OPERATION_FAILED = -2,

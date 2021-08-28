@@ -44,6 +44,6 @@ export class DossierCandidature extends Entity
 
     static generateNumberDossier()
     {
-        return 0;
+        return Date.now();
     }
 }

@@ -49,7 +49,7 @@ export class FiliereFormationInscriptionComponent implements OnInit {
     }
   ])
   constructor() { }
-
+  
   ngOnInit(): void {
   }
   changeFaculteData(event)

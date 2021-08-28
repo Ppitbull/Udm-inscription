@@ -12,15 +12,15 @@ import { FireBaseConstant } from './firebase-constant'
 export class FirebaseDataBaseApi {
 
   static firebaseConfig: any = {
-    apiKey: "AIzaSyAU-jW0bLBnEo0qxc8sIh7Td8LuG5QoGPs",
-    authDomain: "projet-autoecole.firebaseapp.com",
-    projectId: "projet-autoecole",
-    storageBucket: "projet-autoecole.appspot.com",
-    messagingSenderId: "868491853776",
-    appId: "1:868491853776:web:3f3c85f94856e3054603d5",
-    measurementId: "G-LJEZHJW211"
-
+    apiKey: "AIzaSyCewAAAU1DwfZdoz44iLHwbHj7wlL2FSM0",
+    authDomain: "udm-inscription.firebaseapp.com",
+    projectId: "udm-inscription",
+    storageBucket: "udm-inscription.appspot.com",
+    messagingSenderId: "858214994197",
+    appId: "1:858214994197:web:ef0ddb7cba242eaa86591c",
+    measurementId: "G-JELPVPNT34"
   };
+
   debug: boolean = false;
   offlineMode: boolean = false;
   db: any;
@@ -40,6 +40,10 @@ export class FirebaseDataBaseApi {
   }
   setModeApp() {
     // if(this.offlineMode) firebase.firestore().enablePersistence();
+  }
+  getFirebaseFile()
+  {
+    return firebase.storage()
   }
   getFirebaseDatabase() {
     return this.db;

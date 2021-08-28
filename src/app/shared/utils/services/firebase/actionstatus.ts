@@ -10,6 +10,9 @@ export class ActionStatus {
   static UNKNOW_ERROR = -10;
   static INVALID_ARGUMENT_ERROR = -3;
   static SUCCESS = 0;
+  static UPLOAD_PAUSED=10;
+  static UPLOAD_RUNNING=11;
+
   constructor(code = ActionStatus.SUCCESS, message = 'success', description = '', result = null) {
     this.code = code;
     this.message = message;

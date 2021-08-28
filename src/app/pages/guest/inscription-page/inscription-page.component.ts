@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  MatStep, MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -42,7 +42,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     private _formBuilder: FormBuilder,
     private inscriptionEtudiantService:InscriptionEtudiantService,
     private dialog:BsModalService,
-    private router:Router
+    private router:Router,
+    private cd:ChangeDetectorRef
     ) {}
   
 
@@ -113,21 +114,29 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       label:doc.label,
       file
     })));
+    
 
-    this.dossier.documents.listDocument=this.formadmissionfinalComponent.getData();
+    this.getAllData();
 
-    this.candidat.mdp=`${this.dossier.numeroDossier}`;
+    
+
+    console.log(this.candidat);
+    console.log(this.dossier)
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
     .then((result:ActionStatus)=>this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat))
     .then((result:ActionStatus)=>{
-      this.popup_message="Creation du dossier de candidature..."
-      return this.inscriptionEtudiantService.saveEtudiantCandidature(this.dossier)
-    })
-    .then((result:ActionStatus)=>{
       this.popup_message="Enregistrement des fichiers de candidatures..."
-      return this.inscriptionEtudiantService.uploadFile(docs.map((doc)=>doc.file))
+      return Promise.all(this.dossier.documents.listDocument.map((doc)=>this.inscriptionEtudiantService.uploadFile(doc.files)))
     })
+    .then((result:ActionStatus[])=>{
+      this.popup_message="Creation du dossier de candidature..."
+      for(let i=0;i<result.length;i++)
+      {
+        this.dossier.documents.listDocument[i].files=result[i].result;        
+      }
+      return this.inscriptionEtudiantService.saveEtudiantCandidature(this.dossier)
+    })    
     .then((result:ActionStatus)=>{
       this.popup_message="Opération réussite. Rédirection vers l'espace étudiant...";
       this.router.navigateByUrl('/etudiant')
@@ -143,54 +152,57 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   {
   }
   validChangeSteppe(index)
+  {    
+    if(index==0) setTimeout(()=>this.informationPersonnelInscriptionComponent.submitedForm=true,0)
+    else if(index==1) setTimeout(()=>this.qualificationInscriptionComponent.submitedForm=true,0)
+    else if(index==2) setTimeout(()=>this.filiereFormationComponent.submitedForm=true,0)
+    setTimeout(()=>this.getAllData());
+  }
+
+  getAllData()
   {
-    this.candidat=new Etudiant();
     this.dossier=new DossierCandidature();
-    if(index==0)
-    {
-      this.informationPersonnelInscriptionComponent.submitedForm=true;
-      this.candidat.hydrate(
-        {
-          ...this.personnalDataFormGroup.value,
-          tel:this.personnalDataFormGroup.value.tel.internationalNumber?this.personnalDataFormGroup.value.tel.internationalNumber:"",
-          telContact:this.personnalDataFormGroup.value.telContact.internationalNumber?this.personnalDataFormGroup.value.telContact.internationalNumber:"",
-          villeResidenceActuelle:this.personnalDataFormGroup.value.villeresidence,
-          dateCreation:new Date().toISOString()
-        }
-      );
-      // console.log(this.candidat)
-    }
-    if(index==1) 
-    {
-      this.qualificationInscriptionComponent.submitedForm=true;
-      this.dossier.qualifications.bac=this.qualificationInscriptionComponent.getData()[0];
-      this.dossier.qualifications.bts=this.qualificationInscriptionComponent.getData()[1];
-      this.dossier.qualifications.license=this.qualificationInscriptionComponent.getData()[2];
-      this.dossier.qualifications.autre=this.qualificationInscriptionComponent.getData()[3];
-    }
-    if(index==2) 
-    {
-      this.filiereFormationComponent.submitedForm=true;
-      this.dossier.formations.premierChoix={
-        cycle:this.filiereFormationComponent.getData()[0].cycle.cycle,
-        filiere:this.filiereFormationComponent.getData()[0].filiere,
-        faculte:this.filiereFormationComponent.getData()[0].faculte.ab,
-        niveau:this.filiereFormationComponent.getData()[0].niveau
-      }
+    this.candidat=new Etudiant();
 
-      this.dossier.formations.secondChoix={
-        cycle:this.filiereFormationComponent.getData()[1].cycle.cycle,
-        filiere:this.filiereFormationComponent.getData()[1].filiere,
-        faculte:this.filiereFormationComponent.getData()[1].faculte.ab,
-        niveau:this.filiereFormationComponent.getData()[1].niveau
+    this.candidat.hydrate(
+      {
+        ...this.personnalDataFormGroup.value,
+        tel:this.personnalDataFormGroup.value.tel.internationalNumber?this.personnalDataFormGroup.value.tel.internationalNumber:"",
+        telContact:this.personnalDataFormGroup.value.telContact.internationalNumber?this.personnalDataFormGroup.value.telContact.internationalNumber:"",
+        villeResidenceActuelle:this.personnalDataFormGroup.value.villeresidence,
+        dateCreation:new Date().toISOString(),
+        mdp:`${this.dossier.numeroDossier}`
       }
-
-      this.dossier.formations.troisiemeChoix={
-        cycle:this.filiereFormationComponent.getData()[2].cycle.cycle,
-        filiere:this.filiereFormationComponent.getData()[2].filiere,
-        faculte:this.filiereFormationComponent.getData()[2].faculte.ab,
-        niveau:this.filiereFormationComponent.getData()[2].niveau
-      }
+    );
+  
+    this.dossier.qualifications.bac=this.qualificationInscriptionComponent.getData()[0];
+    this.dossier.qualifications.bts=this.qualificationInscriptionComponent.getData()[1];
+    this.dossier.qualifications.license=this.qualificationInscriptionComponent.getData()[2];
+    this.dossier.qualifications.autre=this.qualificationInscriptionComponent.getData()[3];
+  
+    this.dossier.formations.premierChoix={
+      cycle:this.filiereFormationComponent.getData()[0].cycle.cycle,
+      filiere:this.filiereFormationComponent.getData()[0].filiere,
+      faculte:this.filiereFormationComponent.getData()[0].faculte.ab,
+      niveau:this.filiereFormationComponent.getData()[0].niveau
     }
+
+    this.dossier.formations.secondChoix={
+      cycle:this.filiereFormationComponent.getData()[1].cycle.cycle,
+      filiere:this.filiereFormationComponent.getData()[1].filiere,
+      faculte:this.filiereFormationComponent.getData()[1].faculte.ab,
+      niveau:this.filiereFormationComponent.getData()[1].niveau
+    }
+
+    this.dossier.formations.troisiemeChoix={
+      cycle:this.filiereFormationComponent.getData()[2].cycle.cycle,
+      filiere:this.filiereFormationComponent.getData()[2].filiere,
+      faculte:this.filiereFormationComponent.getData()[2].faculte.ab,
+      niveau:this.filiereFormationComponent.getData()[2].niveau
+    }
+
+    console.log(this.formadmissionfinalComponent.getData())
+    this.dossier.documents.listDocument=this.formadmissionfinalComponent.getData();
+    this.cd.detectChanges();
   }
 }
