@@ -42,6 +42,7 @@ export class UserProfilService {
         this.userService.getUserById(userID)
         .then((result:ActionStatus)=>{
           this.setUser(result.result);
+          result.result=null;
           resolve(result);
         })
         .catch((error:ActionStatus)=>reject(error))

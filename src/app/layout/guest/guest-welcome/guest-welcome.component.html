@@ -3,30 +3,40 @@
         <!-- <h1 class="h3 mb-3"><strong>Liste des dossiers regetés</strong></h1>
         <hr style="color: green;"> -->
         <div class="row">
-            <div class="col-12 col-md-12 col-xxl-12 d-flex order-1 order-xxl-1">
-                <div class="card flex-fill w-100">
+            <div class="col-10 col-md-1 col-xxl-1 d-flex order-1 order-xxl-1"></div>
+            <div class="col-10 col-md-10 col-xxl-10 d-flex order-1 order-xxl-1" style="border-radius: 15px 15px 15px 15px !important;">
+                <div class="card flex-fill w-100" style="border-radius: 15px 15px 15px 15px !important;">
                     <div class="card">
                         <div class="jumbotron">
                             <h1 style='font-size: 3.5em'>Inscription au concours d'entrée à l'<a
                                     href="http://udm.aed-cm.org/" style="text-decoration: none;"> <span
                                         class="zf-green">UdM</span></a></h1>
                             <div class="zf-green">
-                                <h4>Prochaine session: Octobre 2021</h4>
+                                <h4>Première session: Août 2021</h4>
+                                <h4>Deuxième session: Septembre 2021</h4>
                             </div><br><br>
 
                             <div class='row'>
                                 <div class="col-md-8">
                                     <h2 style='color: grey;'>Soumettez votre dossier en trois étapes</h2>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6"  align="justify">
                                             <ol class="faq">
                                                 <li>Création d'un numéro de dossier <a routerLink="/inscription">Cliquer
                                                         ici</a></li>
                                                 <li>Paiement et validation des frais de concours</li>
                                                 <li>Soumission du dossier de candidature</li>
-                                            </ol>
+                                            </ol><br>
+                                            <h3>Dépôt de dossiers physique</h3>
+                                            <b>Yaoundé</b>   : Bureau de Liaison de /’UdM (Tsinga)  Tél : b91 14 49 48/691 14 48 84 Secrétariat de la Clinique Bastos (Nkol Eton) Tél. : 673 28 17 38/696 1118 22 <br>
+
+                                            <b>Douala </b>     : Centre de Santé Panafricain (Bonanjo)  Tél : 699 41 10 31 <br>
+                                            
+                                            <b>Bangangté </b>: Secrétariat de l’UdM (Banekane)  Tél : 243 02 51 41 / 691 14 49 03 <br>
+                                            
+                                            <b>Bafoussam </b>: Pharmacie du Secours (Tamdja)   Tél : 675 14 62 65/692 1J 65 95
                                         </div>
-                                        <div class="col-md-6" style="color: #707aaa;">
+                                        <div class="col-md-6" style="color: #707aaa;" align="justify">
                                             <br />
                                             En cas de problème bien vouloir nous contacter à l'adresse suivante:<br />
                                             Tel: 691144891 <br />
@@ -36,64 +46,34 @@
                                                 Médicale,
                                                 Pharmaceutique et Odontostomatologique du Cameroun
                                                 sont priés de bien vouloir <a
-                                                    href="http://www.concours-medecine.uninet.cm/">cliquer
+                                                    href="https://www.udesmontagnes.aed-cm.org/admission-sur-concours/" target="_black">cliquer
                                                     ici</a></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <form class="" method="POST" routerLink="/login">
-                                        <h4 class="form-signin-heading">Connectez vous maintenant</h4>
-
-                                        <div class="form-group">
-
-                                            <button type="button" name="login-btn" id='login-btn'
-                                                class="btn btn-primary btn-lg btn-block"
-                                                routerLink="/login">Connexion</button>
-
-
-                                        </div>
-                                    </form>
-                                    <p><span><a class="" routerLink="/inscription"> Cliquer ici pour créer un dossier de
-                                                candidature</a></span></p>
+                                <div class="col-md-1">
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Faculté des Sciences de la santé</h3>
+                                <div class="col-md-3">
+                                    <h4 class="form-signin-heading">Vous souhaitez participer au cocour? déposez votre
+                                        dossier maintenant</h4>
+                                    <div class="form-group">
+                                        <button type="button" name="btn" id='login-btn'
+                                            class="btn btn-primary btn-lg btn-block" routerLink="/inscription">Créer un
+                                            dossier</button>
                                     </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li> Médecine Humaine</li>
-                                            <li>Pharmacie</li>
-                                            <li>Chirurgie Dentaire</li>
-                                            <li>Médecine Vétérinaire</li>
-                                            <li>Agronomie</li>
-                                            <li>Biologie Médicale</li>
-                                            <li>Agroforesterie</li>
-                                            <li>Santé de la Reproduction</li>
-                                            <li>Imagerie Médicale</li>
-                                            <li>Kinésithérapie</li>
-                                            <li>Sciences Infirmières</li>
-                                        </ul>
-
-
-
-
+                                    <hr>
+                                    <h4 class="form-signin-heading">Vous avez déjà sousmis votre dossier? Connectez vous
+                                        maintenant</h4>
+                                    <div class="form-group">
+                                        <button type="button" name="btn" id='login-btn'
+                                            class="btn btn-primary btn-lg btn-block"
+                                            routerLink="/login">Connexion</button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Faculté des Sciences et de Technologies</h3>
+                                    <hr>
+                                    <h4 class="form-signin-heading">Vous êtes ancien étudiant? Inscription en ligne</h4>
+                                    <div class="form-group">
+                                        <a href="http://udmacademy.aed-cm.org/"><button type="button" name="btn" id='login-btn'
+                                            class="btn btn-primary btn-lg btn-block">Inscription</button></a>
                                     </div>
                                     <div class="panel-body">
                                         
@@ -111,34 +91,16 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div><br><br>
+                            <hr style="color: green;">
+                            <app-down-guest-welcome></app-down-guest-welcome>
 
-                            <div class="col-md-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Institut d’Etudes Africaines, des Sciences Sociales et
-                                            de Management
-                                        </h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        
-                                        <ul>
-                                            <li>Protection, Valorisation et Promotion du Patrimoine Culturel Africain
-                                            </li>
-                                            <li>Tourisme</li>
-                                            <li>Management</li>
-
-                                        </ul>
-                                        
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
                 </div>
             </div>
+            <div class="col-10 col-md-1 col-xxl-1 d-flex order-1 order-xxl-1"></div>
         </div>
     </div>
 </main>

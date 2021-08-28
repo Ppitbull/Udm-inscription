@@ -11,13 +11,11 @@ import { SharedModule } from 'src/app/shared/shared-module.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { LoginComponent } from './login/login.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [  
     InscriptionPageComponent, 
-    AcceuilComponent,
-    LoginComponent,
+    AcceuilComponent, LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +26,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatStepperModule,
     MatFormFieldModule,
     SharedModule,
-    MatProgressBarModule,
     ModalModule.forRoot()
   ]
 })

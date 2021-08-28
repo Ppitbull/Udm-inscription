@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DossierCandidature } from '../../entities/application-file';
 import { EntityID } from '../../entities/entityid';
 import { DbBranch } from '../../utils/enum/db-branch.enum';
-import { getBanchOfCandidature, getBranchOfCandidatures } from '../../utils/functions/db-branch.builder';
+import { getBanchOfCandidatureOfUser } from '../../utils/functions/db-branch.builder';
 import { ActionStatus, FireBaseApi } from '../../utils/services/firebase';
 import { LocalStorageService } from '../localstorage/localstorage.service';
 
@@ -36,22 +36,16 @@ export class EtudiantCandidatureService {
     return new Promise<ActionStatus>((resolve,reject)=>{
       let dossier=this.listCandidatures.getValue().find((dossier:DossierCandidature)=>dossier.etudiantID.toString()==userID.toString());
       let result=new ActionStatus();
-      // console.log("Dossier ",this.listCandidatures.getValue(),userID)      
+      console.log("Dossier ",this.listCandidatures.getValue(),userID)      
 
       if(dossier){  
         result.result=dossier;
         return resolve(result);
       }
-      this.firebaseApi
-      .fetchOnce(getBranchOfCandidatures())
-      .then((result:ActionStatus)=>{
-        let data=result.result;
+      this.firebaseApi.fetchOnce(getBanchOfCandidatureOfUser(userID))
+      .then((resultAction:ActionStatus)=>{
         let candidature:DossierCandidature=new DossierCandidature();
-        for(let key in data)
-        {
-          candidature.hydrate(data[key]);
-          if(candidature.etudiantID.toString()==userID.toString()) break;
-        } 
+        candidature.hydrate(resultAction.result);
         this.setCandidature([...this.listCandidatures.getValue(),candidature]);
         result.result=candidature;
         resolve(result)
@@ -67,7 +61,7 @@ export class EtudiantCandidatureService {
   saveEtudiantCandidature(candidature:DossierCandidature):Promise<ActionStatus>
   {
     return new Promise<ActionStatus>((resolve,reject)=>{
-      this.firebaseApi.set(getBanchOfCandidature(candidature.id),candidature.toString())
+      this.firebaseApi.set(getBanchOfCandidatureOfUser(candidature.etudiantID),candidature.toString())
       .then((result:ActionStatus)=>{
         this.setCandidature([candidature]);
         resolve(result);

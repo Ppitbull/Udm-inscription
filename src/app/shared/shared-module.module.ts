@@ -17,13 +17,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
-  declarations: [   
+  declarations: [
     FormationInscriptionComponent, 
     InfosPersoInscriptionComponent, 
     QualificationsInscriptionComponent, 
     FiliereFormationInscriptionComponent,
     FormAdminssionFinalComponent,
-    SimpleLoaderComponent
+    SimpleLoaderComponent,
   ],
   imports: [
     CommonModule,

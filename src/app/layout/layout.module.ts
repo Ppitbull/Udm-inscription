@@ -8,6 +8,8 @@ import { GuestFooterComponent } from './guest/guest-footer/guest-footer.componen
 import { GuestLayoutComponent } from './guest/guest-layout/guest-layout.component';
 import { GuestTopNavComponent } from './guest/guest-top-nav/guest-top-nav.component';
 import { PageContentComponent } from './page-content/page-content.component';
+import { DownGuestWelcomeComponent } from './guest/guest-welcome/down-guest-welcome/down-guest-welcome.component';
+import { GuestWelcomeComponent } from './guest/guest-welcome/guest-welcome.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { PageContentComponent } from './page-content/page-content.component';
     GuestFooterComponent,
     GuestLayoutComponent,
     GuestTopNavComponent,
-    PageContentComponent
+    PageContentComponent,
+    GuestWelcomeComponent,
+    DownGuestWelcomeComponent
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,13 @@ const routes: Routes = [
     path: '',
     component: GuestLayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'concours',
+        pathMatch: 'full',
+      },
       { path: '', component: GuestWelcomeComponent, pathMatch: 'full'},
+      { path: 'concours', component: GuestWelcomeComponent, pathMatch: 'full'},
       { path: 'inscription', component: InscriptionPageComponent, pathMatch: 'full'},
       { path: 'login', component: LoginComponent, pathMatch: 'full'},
     ]

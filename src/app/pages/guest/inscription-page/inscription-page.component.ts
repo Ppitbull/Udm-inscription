@@ -150,21 +150,12 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       this.userProfile.setUser(this.candidat);
       this.candidatureDossierService.setCandidature([this.dossier])
       // setTimeout(()=>window.location.href="/user/dahboard",200)
-      setTimeout(()=>{
-        this.hideModal();
-        this.router.navigate(["/user/dashboard"])
-      },200)
-    }).catch((error)=>{
-      this.popup_message=error.message;
-      setTimeout(()=>this.hideModal(),2000)
+      this.router.navigateByUrl('/user/dashboard')
     })
     
   }
   openModal() {
-    this.dialogRef = this.dialog.show(this.modalTemplateRef,{
-      backdrop: true,
-      ignoreBackdropClick: true
-    });
+    this.dialogRef = this.dialog.show(this.modalTemplateRef);
     this.popup_message="Creation du compte Etudiant....";
   }
   hideModal(){
