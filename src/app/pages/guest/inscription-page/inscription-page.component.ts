@@ -39,6 +39,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   @ViewChild("formadmissionfinal") formadmissionfinalComponent:FormAdminssionFinalComponent;
   @ViewChild("modalTemplate") modalTemplateRef: TemplateRef<any>;
   modalRef:BsModalRef;
+  dialogRef:BsModalRef;
   
   constructor(
     private _formBuilder: FormBuilder,
@@ -64,7 +65,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       nomContact:new FormControl("",[Validators.required,Validators.minLength(6)]),
       emailContact: new FormControl("",[Validators.required,Validators.pattern('^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,6}')]),
       telContact: new FormControl("",[Validators.required, Validators.minLength(5)]),
-      imgProfil:new FormControl("",[Validators.required])
+      imgProfil:new FormControl("",[Validators.required]),
+      sexe:new FormControl('',[Validators.required])
     });
 
     this.qualificationFormGroup = this._formBuilder.group({
@@ -121,8 +123,6 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     
 
     this.getAllData();
-    console.log(this.candidat);
-    console.log(this.dossier)
 
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
@@ -141,21 +141,27 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       {
         this.dossier.documents.listDocument[i].files=result[i].result;        
       }
+      this.dossier.etudiantID.setId(this.candidat.id.toString())
+
       return this.inscriptionEtudiantService.saveEtudiantCandidature(this.dossier)
     })    
     .then((result:ActionStatus)=>{
       this.popup_message="Opération réussite. Rédirection vers l'espace étudiant...";
       this.userProfile.setUser(this.candidat);
       this.candidatureDossierService.setCandidature([this.dossier])
+      // setTimeout(()=>window.location.href="/user/dahboard",200)
       this.router.navigateByUrl('/user/dashboard')
     })
     
   }
   openModal() {
-    const dialogRef = this.dialog.show(this.modalTemplateRef);
+    this.dialogRef = this.dialog.show(this.modalTemplateRef);
     this.popup_message="Creation du compte Etudiant....";
   }
-
+  hideModal(){
+    // this.dialog.hide()
+    this.dialogRef.hide()
+  }
   changeSteppe(event)
   {
   }
@@ -210,7 +216,6 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     }
 
     this.dossier.documents.listDocument=this.formadmissionfinalComponent.getData();
-    this.dossier.etudiantID.setId(this.candidat.id.toString())
     this.cd.detectChanges();
   }
 }

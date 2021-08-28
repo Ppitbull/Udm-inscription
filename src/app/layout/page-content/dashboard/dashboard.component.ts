@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/entities/accounts';
+import { DossierCandidature } from 'src/app/shared/entities/application-file';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
+import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
+import { DossierCandidatureState } from 'src/app/shared/utils/enum/dossier-candidature.enum';
+import { ActionStatus } from 'src/app/shared/utils/services/firebase';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +19,9 @@ export class DashboardComponent implements OnInit {
   ////// User
   etat: string = 'attente'; // Cette variable recois l'etat du dossier venant du service.
   comment: string = 'Aucune'; // Cette variable le commantaire (motif de l'erreur dans le dossier) venant du service service.
+
+  user:User=new User();
+  dossierCandidature:DossierCandidature=new DossierCandidature();
 
   attente: boolean = false;
   invalid: boolean = false;
@@ -31,12 +40,44 @@ export class DashboardComponent implements OnInit {
   allAdmis: number = 0;
 
 
-  constructor(private authService: AuthService) {
-    this.isAdmin = authService.isAdmin;
-    this.getEtat();
+  constructor(
+    private userProfilService:UserProfilService,
+    private dossierCandidatureService:EtudiantCandidatureService
+    ) {
+    
   }
 
   ngOnInit(): void {
+    this.userProfilService.currentUser.subscribe((user:User)=>{
+      if(user)
+      {
+        this.user=user;
+        this.isAdmin=user.isAdminAccount();
+        this.dossierCandidatureService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>{
+          if(!result.result) return;
+          this.dossierCandidature=result.result;
+          switch(this.dossierCandidature.state)
+          {
+            case DossierCandidatureState.WAITING:
+              this.etat="attente";
+              break;
+            case DossierCandidatureState.INVALID:
+              this.etat="invalid";
+              break;
+            case DossierCandidatureState.FAILD:
+              this.etat="recal";
+              break
+            case DossierCandidatureState.ACCEPTED:
+              this.etat="correct";
+              break;
+            case DossierCandidatureState.ADMITTED:
+              this.etat="admis"
+          }
+          this.getEtat();
+        });
+      }
+    })
+    
   }
 
   getEtat() {

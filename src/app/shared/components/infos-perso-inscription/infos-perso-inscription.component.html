@@ -134,6 +134,19 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
+                <label class="form-label">Votre genre</label>
+                <mat-select class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.sexe.errors }"
+                    formControlName="sexe" type="text" name="sexe" placeholder="Votre genre">
+                    <mat-option value="" selected>----veuillez choisir votre genre----</mat-option>
+                    <mat-option value="Femme">Femme</mat-option>
+                    <mat-option value="Homme">Homme</mat-option>
+                </mat-select>
+                <div *ngIf="submitedForm && form.controls.sexe.errors" class="invalid-feedback text-danger">
+                    <div *ngIf="form.controls.genre.sexe.required">Votre genre est obligatoire</div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6">
                 <label class="form-label">Nom d'une personne à contacter, si besoin</label>
                 <input matInput class="form-control form-control-lg"
                     [ngClass]="{ 'is-invalid': submitedForm && form.controls.nomContact.errors }"

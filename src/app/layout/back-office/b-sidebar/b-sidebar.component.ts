@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/entities/accounts';
+import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
 
 @Component({
   selector: 'app-b-sidebar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BSidebarComponent implements OnInit {
 
-  constructor() { }
+  user:User=new User();
+  constructor(
+    private userProfilService:UserProfilService
+  ) { }
 
   ngOnInit(): void {
+    this.userProfilService.currentUser.subscribe((user:User)=>{
+      if(user) this.user=user;
+    })
   }
 
 }

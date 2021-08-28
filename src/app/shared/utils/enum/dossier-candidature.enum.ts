@@ -4,5 +4,5 @@ export enum DossierCandidatureState
     INVALID="invalid",
     ACCEPTED="accepted",
     FAILD="faild",
-    
+    ADMITTED="admitted"
 }
