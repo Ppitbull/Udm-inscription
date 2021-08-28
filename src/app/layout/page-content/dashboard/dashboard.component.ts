@@ -42,9 +42,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private userProfilService:UserProfilService,
-    private dossierCandidatureService:EtudiantCandidatureService
-    ) {
-    
+    private dossierCandidatureService:EtudiantCandidatureService,
+    private authService: AuthService) {
+    this.isAdmin = authService.isAdminer;
+    this.getEtat();
   }
 
   ngOnInit(): void {

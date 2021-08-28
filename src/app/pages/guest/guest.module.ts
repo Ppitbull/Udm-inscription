@@ -9,10 +9,13 @@ import {MatStepperModule} from '@angular/material/stepper'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [
-    InscriptionPageComponent,
+  declarations: [  
+    InscriptionPageComponent, 
+    AcceuilComponent, LoginComponent,
   ],
   imports: [
     CommonModule,
