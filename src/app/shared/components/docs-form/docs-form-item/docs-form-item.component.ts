@@ -41,7 +41,7 @@ export class DocsFormItemComponent implements OnInit,OnDestroy {
         doc.lastModified = file.lastModified;
         doc.size = file.size;
         doc.type = file.type;
-        doc.data = fileReader.result;
+        doc.data = file;
         // console.log("File ",doc)
         this.files.push(doc);
       });

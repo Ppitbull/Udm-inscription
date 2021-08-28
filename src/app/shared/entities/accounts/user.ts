@@ -41,6 +41,10 @@ export class User extends Entity
         }
         return role;
     }
+    isAdminAccount()
+    {
+        return this.accountType==AccountType.PLATEFROM_ADMIN
+    }
 
     hydrate(entity: Record<string | number,any>):void
     {

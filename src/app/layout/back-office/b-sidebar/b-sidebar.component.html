@@ -30,25 +30,27 @@
         </a>
       </li>
 
-      <li class="sidebar-header" style="background-color: rgb(6, 59, 6);">
-        Administration
-      </li>
-      <li class="sidebar-item" style="color: white !important;">
-        <a data-bs-target="#lc" data-bs-toggle="collapse" class="sidebar-link collapsed">
-          <i class="fa fa-list" data-feather="briefcase"></i> <span class="align-middle" style="color: white !important;">Liste des candidats</span>
-        </a>
-        <ul id="lc" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
-          <li class="sidebar-item" routerLink="/user/d-list"><a class="sidebar-link">Tous les dossiers</a></li>
-          <li class="sidebar-item" routerLink="/user/d-accept"><a class="sidebar-link">Dossiers acceptés</a></li>
-          <li class="sidebar-item" routerLink="/user/d-refus"><a class="sidebar-link">Dossiers regétés</a></li>
-          <li class="sidebar-item" routerLink="/user/d-admis"><a class="sidebar-link">Candidats admis</a></li>
-        </ul>
-      </li>
-      <li class="sidebar-item">
-        <a class="sidebar-link">
-          <i class="fa fa-volume-up"></i> <span class="align-middle" style="color: white !important;">Diffuser une info</span>
-        </a>
-      </li>
+      <ng-container *ngIf="user.isAdminAccount()">
+        <li class="sidebar-header" style="background-color: rgb(6, 59, 6);">
+          Administration
+        </li>
+        <li class="sidebar-item" style="color: white !important;">
+          <a data-bs-target="#lc" data-bs-toggle="collapse" class="sidebar-link collapsed">
+            <i class="fa fa-list" data-feather="briefcase"></i> <span class="align-middle" style="color: white !important;">Liste des candidats</span>
+          </a>
+          <ul id="lc" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
+            <li class="sidebar-item" routerLink="/user/d-list"><a class="sidebar-link">Tous les dossiers</a></li>
+            <li class="sidebar-item" routerLink="/user/d-accept"><a class="sidebar-link">Dossiers acceptés</a></li>
+            <li class="sidebar-item" routerLink="/user/d-refus"><a class="sidebar-link">Dossiers regétés</a></li>
+            <li class="sidebar-item" routerLink="/user/d-admis"><a class="sidebar-link">Candidats admis</a></li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link">
+            <i class="fa fa-volume-up"></i> <span class="align-middle" style="color: white !important;">Diffuser une info</span>
+          </a>
+        </li>
+      </ng-container>
 
 
       <li class="sidebar-header" style="background-color: rgb(6, 59, 6);">

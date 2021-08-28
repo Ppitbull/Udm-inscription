@@ -37,7 +37,7 @@ export class DocumentDossierCandidature extends Entity
             else if(key=="listDocument") this.listDocument=entity[key].map((docs)=>{
                 return {
                     label:docs.label,
-                    files:docs.map((doc)=>{
+                    files:docs.files.map((doc)=>{
                         let file=new CustomFile();
                         file.hydrate(doc);
                         return file;

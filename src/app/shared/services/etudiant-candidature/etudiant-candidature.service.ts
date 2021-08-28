@@ -11,7 +11,7 @@ import { LocalStorageService } from '../localstorage/localstorage.service';
   providedIn: 'root'
 })
 export class EtudiantCandidatureService {
-  listCandidatures: BehaviorSubject<DossierCandidature[]> = new BehaviorSubject<DossierCandidature[]>(null);
+  listCandidatures: BehaviorSubject<DossierCandidature[]> = new BehaviorSubject<DossierCandidature[]>([]);
   constructor(
     private localStorageService:LocalStorageService,
     private firebaseApi:FireBaseApi
@@ -28,7 +28,7 @@ export class EtudiantCandidatureService {
 
   setCandidature(candidatures:DossierCandidature[])
   {
-    this.localStorageService.setData("user_profil",candidatures.map((candidature)=>candidature.toString()));
+    this.localStorageService.setData("dossier_candidature",candidatures.map((candidature)=>candidature.toString()));
   }
   
   getCandidatureOfCandidate(userID:EntityID):Promise<ActionStatus>
@@ -36,7 +36,9 @@ export class EtudiantCandidatureService {
     return new Promise<ActionStatus>((resolve,reject)=>{
       let dossier=this.listCandidatures.getValue().find((dossier:DossierCandidature)=>dossier.etudiantID.toString()==userID.toString());
       let result=new ActionStatus();
-      if(dossier){        
+      console.log("Dossier ",this.listCandidatures.getValue(),userID)      
+
+      if(dossier){  
         result.result=dossier;
         return resolve(result);
       }

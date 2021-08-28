@@ -19,9 +19,9 @@ export class LocalStorageService {
     this.router.events.subscribe((evt)=> {     
       if(evt instanceof NavigationEnd)
       {
-        if(localStorage.getItem("data_metou"))
+        if(localStorage.getItem("data_udm_inscription"))
         {
-          let dataObj:Boolean=JSON.parse(localStorage.getItem("data_metou"));
+          let dataObj:Boolean=JSON.parse(localStorage.getItem("data_udm_inscription"));
           if(dataObj)
           {
             for(let key in dataObj)
@@ -54,7 +54,7 @@ export class LocalStorageService {
     this.data.forEach((value:BehaviorSubject<any>,key:String)=>{
       dataObj[key.toString()]=value.getValue();
     });
-    localStorage.setItem("data_metou",JSON.stringify(dataObj));
+    localStorage.setItem("data_udm_inscription",JSON.stringify(dataObj));
   }
   clearData()
   {
