@@ -11,7 +11,9 @@ import { QualificationsInscriptionComponent } from 'src/app/shared/components/qu
 import { Etudiant } from 'src/app/shared/entities/accounts/etudiant';
 import { DossierCandidature } from 'src/app/shared/entities/application-file';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
+import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
 import { InscriptionEtudiantService } from 'src/app/shared/services/inscription-etudiant/inscription-etudiant.service';
+import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
 import { ActionStatus } from 'src/app/shared/utils/services/firebase';
 
 @Component({
@@ -43,7 +45,9 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     private inscriptionEtudiantService:InscriptionEtudiantService,
     private dialog:BsModalService,
     private router:Router,
-    private cd:ChangeDetectorRef
+    private cd:ChangeDetectorRef,
+    private userProfile:UserProfilService,
+    private candidatureDossierService:EtudiantCandidatureService
     ) {}
   
 
@@ -118,13 +122,13 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
 
     this.getAllData();
 
-    
-
-    console.log(this.candidat);
-    console.log(this.dossier)
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
-    .then((result:ActionStatus)=>this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat))
+    .then((result:ActionStatus)=>this.inscriptionEtudiantService.uploadFile([this.informationPersonnelInscriptionComponent.selectedImage]))
+    .then((result:ActionStatus)=>{
+      this.candidat.photoUrl=result.result[0].link;
+      return this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat)
+    })
     .then((result:ActionStatus)=>{
       this.popup_message="Enregistrement des fichiers de candidatures..."
       return Promise.all(this.dossier.documents.listDocument.map((doc)=>this.inscriptionEtudiantService.uploadFile(doc.files)))
@@ -139,7 +143,9 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     })    
     .then((result:ActionStatus)=>{
       this.popup_message="Opération réussite. Rédirection vers l'espace étudiant...";
-      this.router.navigateByUrl('/etudiant')
+      this.userProfile.setUser(this.candidat);
+      this.candidatureDossierService.setCandidature([this.dossier])
+      this.router.navigateByUrl('/user/dashboard')
     })
     
   }
