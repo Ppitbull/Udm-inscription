@@ -41,7 +41,10 @@ export class DossierCandidature extends Entity
         }
         return r;
     }
-
+    getFiliere()
+    {
+        this.formations.premierChoix.filiere
+    }
     static generateNumberDossier()
     {
         return Date.now();

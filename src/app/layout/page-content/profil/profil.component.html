@@ -8,10 +8,10 @@
             <div class="col-md-4 col-xl-3">
                 <div class="card mb-3">
                     <div class="card-body text-center">
-                        <img src="../../../../assets/img/no-user-image.png" alt="image"
-                            class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                        <h5 class="card-title mb-0">{{nomComplet}}</h5>
-                        <div class="text-muted mb-2">Classe solicitée</div>
+                        <img *ngIf="user.photoUrl==''" src="../../../../assets/img/no-user-image.png" alt="image" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                        <img *ngIf="user.photoUrl!=''" [src]="user.photoUrl" alt="image" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                        <h5 class="card-title mb-0">{{user.getFullName()}}</h5>
+                        <div class="text-muted mb-2">{{candidatureEtudiant.getFiliere()}} {{candidatureEtudiant.formations.premierChoix.niveau}}</div>
 
                         <div>
                             <a class="btn btn-info btn-sm">Dossier en attente de traitement</a>

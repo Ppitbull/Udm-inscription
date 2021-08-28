@@ -34,6 +34,7 @@ export class InputTypeNumberComponent implements OnInit, ControlValueAccessor,Af
 	CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.Cameroon];
+  selectedCountryISO=CountryISO.Cameroon;
 
   registerOnChangeFunction:(_:any)=>{};
   registerOnTouchedFunction:(_:any)=>{};

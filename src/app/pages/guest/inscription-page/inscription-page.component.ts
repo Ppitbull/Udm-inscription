@@ -121,6 +121,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     
 
     this.getAllData();
+    console.log(this.candidat);
+    console.log(this.dossier)
 
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
@@ -207,8 +209,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       niveau:this.filiereFormationComponent.getData()[2].niveau
     }
 
-    console.log(this.formadmissionfinalComponent.getData())
     this.dossier.documents.listDocument=this.formadmissionfinalComponent.getData();
+    this.dossier.etudiantID.setId(this.candidat.id.toString())
     this.cd.detectChanges();
   }
 }
