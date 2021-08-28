@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { EventService } from '../../utils/services/events/event.service';
+import { UserLocalStorageData } from './userlocalstorage.service';
+import { User } from '../../entities/accounts';
 
 @Injectable({
   providedIn:"root"
 })
 export class LocalStorageService {
-  data:Map<String,BehaviorSubject<any> >=new Map<String,BehaviorSubject<any> >();
+  data: Map < String, BehaviorSubject<any> >= new Map < String, BehaviorSubject<any> >();
+  dataUser: BehaviorSubject< UserLocalStorageData > = new BehaviorSubject<UserLocalStorageData>({isLoggedIn: false, user: new User()});
 
-  constructor(private router:Router,
-    private eventService:EventService) {
+  constructor(
+    private router: Router,
+    private eventService: EventService) {
     this.getUserDataWhenNavStart();
    }
 
