@@ -9,7 +9,12 @@ export const formations=[
                 filiere:[
                     "Architecture et Réalité Virtuelle",
                     "Génie Biomédical",
-                    "Génie Civil"
+                    "Génie Civil",
+                    "Génie Mécanique",
+                    "Informatique et Télécommunications (options : Informatique, Réseaux et Télécommunications, Sécurité de l’Information et Cybersécurité, Génie Logiciel)",
+                    "Ingénierie Financière et Actuariat",
+                    "Topographie et Géomatique",
+                    "Génie Electrique (optons : Electrotechnique, Informatique industrielle, Energie Renouvelables)"
                 ]
             },
             {
@@ -19,7 +24,19 @@ export const formations=[
                     "Agronomie (options: Production Animal et Production Végétale )",
                     "Biologie Médicale (Analyses de laboratoire)",
                     "Imagerie Médicale",
-                    "Kinésithérapie"
+                    "Kinésithérapie",
+                    "Santé de la Reproduction (sagefemme/accoucheur)",
+                    "Sciences Infirmières"
+                ]
+            },
+            {
+                faculte:"Institut d'Etudes Africaines",
+                ab:"IEA",
+                filiere:[
+                    "Droit, Comptabilité et Fiscalité",
+                    "Journalisme Multimédia et Communication Digitale",
+                    "Management et e-Commerce",
+                    "Valorisation du Patrimoine Culturel et Tourisme"
                 ]
             }
         ]
@@ -46,7 +63,13 @@ export const formations=[
                     "Agribusiness",
                     "Aquaculture",
                     "Biochimie-Hématologie-Immunologie",
-                    "Cytologie et Histologie Pathologique Humaines"
+                    "Cytologie et Histologie Pathologique Humaines",
+                    "Imagerie Médicale",
+                    "Microbiologie",
+                    "Production Animale",
+                    "Production Végétale",
+                    "Santé Publique",
+                    "Sciences Infirmières"
                 ]
             }
         ]
