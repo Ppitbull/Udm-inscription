@@ -25,22 +25,6 @@
     font-size: 18px;
     line-height: 20px;
 }
-.navbar-inverse {
-    background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
-    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-    background-repeat: repeat-x;
-    border-radius: 4px;
-    color:white;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #9d9d9d;
-}
-
 ul li
 {
     display: inline;
@@ -63,6 +47,7 @@ ul>li>a {
 ul>.active>a:hover {
     color: #fff;
     background-color: #080808;
+    border-radius: 15px;
 }
 
   

@@ -1,10 +1,22 @@
-<div class="col-md-8 col-xl-9">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title mb-0">Informations personnels</h3>
-        </div>
+<div class="col-md-12 col-xl-12">
+    <div class="card" style="border-radius: 15px;">
         <div class="card-body">
             <form>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <div class="row g-0 mt-1 text-center">
+                            <div class="col-10 col-md-10 col-lg-10 col-xl-10">
+                                <img src="../../../../assets/img/no-user-image.png"
+                                    class="img-thumbnail rounded me-2 mb-2" alt="Unsplash">
+                            </div> ID : {{id}}
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-4">
+                    </div>
+                </div>
+                <h3 class="card-title mb-0">Informations personnels</h3><br>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="nom">Nom</label>
@@ -18,20 +30,17 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="dateN">Date de naissance</label>
-                        <input type="date" class="form-control" id="dateN" placeholder="{{dateN}}"
-                            disabled>
+                        <input type="date" class="form-control" id="dateN" placeholder="{{dateN}}" disabled>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="lieuN">Lieu de naissance</label>
-                        <input type="text" class="form-control" id="lieuN" placeholder="{{lieuN}}"
-                            disabled>
+                        <input type="text" class="form-control" id="lieuN" placeholder="{{lieuN}}" disabled>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="villeR">Ville de résidence</label>
-                        <input type="text" class="form-control" id="villeR"
-                            placeholder="{{villeR}}" disabled>
+                        <input type="text" class="form-control" id="villeR" placeholder="{{villeR}}" disabled>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="nationnalite">Nationnalité</label>
@@ -46,8 +55,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="numTel">Numéro de téléphone</label>
-                        <input type="text" class="form-control" id="numTel" placeholder="{{numTel}}"
-                            disabled>
+                        <input type="text" class="form-control" id="numTel" placeholder="{{numTel}}" disabled>
                     </div>
                 </div>
                 <hr>
@@ -60,20 +68,17 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="emailAutre">Email de la personne</label>
-                        <input type="text" class="form-control" id="emailAutre"
-                            placeholder="{{emailAutre}}" disabled>
+                        <input type="text" class="form-control" id="emailAutre" placeholder="{{emailAutre}}" disabled>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="tel1Autre">Téléphone 1 de la personne</label>
-                        <input type="text" class="form-control" id="tel1Autre"
-                            placeholder="{{tel1Autre}}" disabled>
+                        <input type="text" class="form-control" id="tel1Autre" placeholder="{{tel1Autre}}" disabled>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="tel2Autre">Téléphone 2 de la personne</label>
-                        <input type="text" class="form-control" id="tel2Autre"
-                            placeholder="{{tel2Autre}}" disabled>
+                        <input type="text" class="form-control" id="tel2Autre" placeholder="{{tel2Autre}}" disabled>
                     </div>
                 </div>
                 <hr>
@@ -94,6 +99,26 @@
                     <div class="mb-3 col-md-3">
                         <label class="form-label" for="annee">Année</label>
                         <input type="number" class="form-control" id="annee" placeholder="{{annee}}" disabled>
+                    </div>
+                </div>
+                <hr>
+                <h3 class="card-title mb-0">Fichiers importés</h3><br>
+                <div class="row">
+                    <div class="mb-3 col-md-3">
+                        <label class="form-label" for="doc1">Doc 1</label>
+                        <input type="file" class="form-control" id="doc1" disabled>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label class="form-label" for="doc2">Doc 2</label>
+                        <input type="file" class="form-control" id="doc2" disabled>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label class="form-label" for="doc3">Doc 3</label>
+                        <input type="file" class="form-control" id="doc3" disabled>
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        <label class="form-label" for="doc4">Doc 4</label>
+                        <input type="file" class="form-control" id="doc4" disabled>
                     </div>
                 </div>
                 <hr>
@@ -153,9 +178,93 @@
                     </div>
                 </div>
                 <hr><br><br>
-                <button type="submit" class="btn btn-primary" disabled>Modifier</button>
+                <div *ngIf='attente'>
+                    <div class="row" *ngIf="!midle">
+                        <div class="mb-3 col-md-3">
+                            <button type="button" class="btn btn-danger" (click)="midleChange()">Renvoyer</button>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-success"
+                                (click)="valid();largeModal.hide()">Valider</button>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="midle">
+                        <div class="mb-3 col-md-5">Mentionner le motif du retour du dossier. <br>
+                            <textarea style="border-radius: 5px; border-color: rgb(17, 83, 17);"></textarea>
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-warning"
+                                (click)="ivalid();largeModal.hide()">Retourner</button>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-success"
+                                (click)="valid();largeModal.hide()">Valider</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf='correct'>
+                    <div class="row">
+                        <div class="mb-3 col-md-3">
+                            <button type="submit" class="btn btn-secondary"
+                                (click)="lost();largeModal.hide()">Recaler</button>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-secondary"
+                                (click)="win();largeModal.hide()">Admettre</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf='admis'>
+                    <div class="row">
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-secondary" (click)="largeModal.hide()">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf='recal'>
+                    <div class="row">
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-secondary" (click)="largeModal.hide()">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf='invalid'>
+                    <div class="row">
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-3">
+                        </div>
+                        <div class="mb-3 col-md-4">
+                        </div>
+                        <div class="mb-3 col-md-2">
+                            <button type="submit" class="btn btn-success"
+                                (click)="wait();largeModal.hide()">Soumettre</button>
+                        </div>
+                    </div>
+                </div>
             </form>
-
         </div>
     </div>
 </div>

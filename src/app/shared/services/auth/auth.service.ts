@@ -15,8 +15,9 @@ import { LocalStorageService } from '../localstorage/localstorage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,6 +41,7 @@ export class AuthService {
     // this.localStorageService.clearData();
     // this.toastr.success('You have been successfully logged out!');
     this.router.navigate(['login']);
+    localStorage.clear();
   }
 
   /**
@@ -71,6 +73,10 @@ export class AuthService {
     return new Promise((resolve, reject) =>  {
       this.firebaseApi.signInApi(email,password)
       .then((result:ActionStatus)=>{
+        if (email == "admin@gmail.com") {
+          localStorage.setItem('isAdmin', 'true');
+          this.isAdmin = true;
+        }
         let userID:EntityID=new EntityID();
         userID.setId(result.result.user.uid)
         result.result=userID;

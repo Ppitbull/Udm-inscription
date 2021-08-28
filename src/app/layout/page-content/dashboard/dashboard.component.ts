@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
 
   ////// User
   etat: string = 'attente'; // Cette variable recois l'etat du dossier venant du service.
@@ -19,6 +20,9 @@ export class DashboardComponent implements OnInit {
   recal: boolean = false;
   admis: boolean = false;
 
+  email: string = 'user@gmail.com';
+  pass: string = 'YaN47NS5UHJAN';
+
   ////// Admin
   allAttente: number = 0;
   allInvalid: number = 0;
@@ -27,7 +31,8 @@ export class DashboardComponent implements OnInit {
   allAdmis: number = 0;
 
 
-  constructor() { 
+  constructor(private authService: AuthService) {
+    this.isAdmin = authService.isAdmin;
     this.getEtat();
   }
 
