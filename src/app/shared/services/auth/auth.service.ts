@@ -7,8 +7,6 @@ import { EntityID } from '../../entities/entityid';
 import { EventService } from '../../utils/services/events/event.service';
 import { FireBaseApi, ActionStatus } from '../../utils/services/firebase';
 import { LocalStorageService } from '../localstorage/localstorage.service';
-// import { UserLocalStorageData, UserlocalstorageService } from '../localstorage/userlocalstorage.service';
-import { UserLocalStorageData, UserlocalstorageService } from '../localstorage/userlocalstorage.service';
 
 
 
@@ -18,51 +16,29 @@ import { UserLocalStorageData, UserlocalstorageService } from '../localstorage/u
 export class AuthService {
 
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  isAdminer: boolean = false;
-  currentUser: User = new User();
-  currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(this.currentUser);
 
   constructor(
     private router: Router,
-    // private api: ApiService,
-    // private toastr: ToastrService,
-    // private user: UserService,
     private localStorageService: LocalStorageService,
     private firebaseApi: FireBaseApi,
     private eventService: EventService
   ) {
-    this.localStorageService.dataUser.subscribe((userData: UserLocalStorageData) => {
-      // console.log("userData ",userData)
-      this.isLoggedIn.next(userData.isLoggedIn);
-      this.currentUser = userData.user;
-      this.ifAdminer(this.currentUser.email);
-      this.emitUserData();
+    this.localStorageService.getSubjectByKey("auth_data").subscribe((userData:any) => {
+      if(userData) this.isLoggedIn.next(userData.isLoggedIn);
     });
 
-    // this.registResult = false;
-    // this.loginResult = false;
 
   }
-
-  // tslint:disable-next-line:typedef
-  ifAdminer(email: String) {
-    if (email == 'admin@gmail.com') {
-      this.isAdminer = true;
-    }
-  }
-
-  // tslint:disable-next-line:typedef
-  emitUserData() {
-    this.currentUserSubject.next(this.currentUser);
+  setAuth(logged:{isLoggedIn:boolean})
+  {
+    this.localStorageService.setData("auth_data",logged);
   }
 
   /*
    * logOut function is used to sign out .
    */
-  // tslint:disable-next-line:typedef
   logOut() {
-    // this.localStorageService.clearData();
-    // this.toastr.success('You have been successfully logged out!');
+    this.setAuth({isLoggedIn:false})
     this.router.navigate(['login']);
     localStorage.clear();
   }
@@ -96,13 +72,10 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.firebaseApi.signInApi(email, password)
         .then((result: ActionStatus) => {
-          if (email == "admin@gmail.com") {
-            localStorage.setItem('isAdmin', 'true');
-            this.isAdminer = true;
-          }
           let userID: EntityID = new EntityID();
           userID.setId(result.result.user.uid)
           result.result = userID;
+          this.setAuth({isLoggedIn:true})
           resolve(result);
         })
         .catch((error: ActionStatus) => {
