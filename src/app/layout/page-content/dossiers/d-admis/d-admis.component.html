@@ -1,18 +1,926 @@
-<div class="row mb-2 mb-xl-3">
-    <div class="col-auto d-none d-sm-block">
-        <h3><strong>Lisye des candidats admis</strong></h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 col-md-12 col-xxl-12 d-flex order-1 order-xxl-1">
-        <div class="card flex-fill w-100">
-            <div class="card-header">
+<main class="content">
+    <div class="container-fluid p-0">
 
-                <h5 class="card-title mb-0"></h5>
+        <h1 class="h3 mb-3"><strong>Lisye des candidats admis</strong></h1>
+        <hr style="color: green;">
+
+        <div class="row">
+            <div class="col-md-3 col-xl-2">
+
+                <div class="card">
+                    <div class="list-group list-group-flush" role="tablist">
+                        <div class="card-header" style="background-color: #2b3947;">
+                            <h3 class="card-title mb-0" style="color: white;"><b> I S S T </b></h3>
+                        </div>
+                        <a class="list-group-item list-group-item-action active" data-bs-toggle="list"
+                            href="#irt" role="tab">
+                            I R T
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#gc" role="tab">
+                            G C
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#gm" role="tab">
+                            G M
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#gbm" role="tab">
+                            G B M
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#srt" role="tab">
+                            S R T
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#gl" role="tab">
+                            G L
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#ifa" role="tab">
+                            I F A
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#tg" role="tab">
+                            T G
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#arv" role="tab">
+                            A R V
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#ge" role="tab">
+                            G E
+                        </a>
+                        <div class="card-header" style="background-color: #2b3947;">
+                            <h5 class="card-title mb-0" style="color: white;"><b> I S S S</b></h5>
+                        </div>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#mg" role="tab">
+                            Médecine
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#pm" role="tab">
+                            Pharmacie
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#cd" role="tab">
+                            C D
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#smsb" role="tab">
+                            S M S B
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#sav" role="tab">
+                            S A V
+                        </a>
+                        <div class="card-header" style="background-color: #2b3947;">
+                            <h5 class="card-title mb-0" style="color: white;"><b> I E A / S S M</b></h5>
+                        </div>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#ea" role="tab">
+                            E A
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list"
+                            href="#pct" role="tab">
+                            P C T
+                        </a>
+                    </div>
+
+                </div>
             </div>
-            <div class="card-body px-4">
-                <div id="world_map" style="height:350px;"></div>
+
+            <div class="col-md-9 col-xl-10">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="irt" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">subg-successrmatique, Réseaux et Télécommunications </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Nono Brice Charles</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Fonkou Ndé Armand</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Gabon</td>
+                                        <td class="d-none d-xl-table-cell">armand@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Talla Fopa Jonas</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">jonas@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Minkame Malibou Abakar</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Tchad</td>
+                                        <td class="d-none d-xl-table-cell">abakar@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Etoundi Etoundi Rigobert</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">rigobert@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Azombo Medjo'o Ludovic</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">ludovic@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="gc" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Génie Civil </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="gm" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Génie Mécanique </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="gbm" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Génie Biomédical </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="srt" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Sécurité de l’subg-successrmation, Réseaux et Cybercriminalité </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Nono Brice Charles</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Fonkou Ndé Armand</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Gabon</td>
+                                        <td class="d-none d-xl-table-cell">armand@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Talla Fopa Jonas</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">jonas@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Minkame Malibou Abakar</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Tchad</td>
+                                        <td class="d-none d-xl-table-cell">abakar@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Etoundi Etoundi Rigobert</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">rigobert@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Azombo Medjo'o Ludovic</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">ludovic@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="gl" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Génie Logiciel </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Etoundi Etoundi Rigobert</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">rigobert@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Azombo Medjo'o Ludovic</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">ludovic@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="ifa" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Ingénierie Financière et Actuaire</h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="mg" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Médecine Générale </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Etoundi Etoundi Rigobert</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">rigobert@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Azombo Medjo'o Ludovic</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">ludovic@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="pm" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Pharmacie </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="smsb" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Sciences Médico-Sanitaires et Biomédicales </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="sav" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Sciences Agronomiques et Vétérinaires </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="cd" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Chirurgie Dentaire </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-toggle="modal" (click)="largeModal.show()">
+                                        <td></td>
+                                        <td>Etoundi Etoundi Rigobert</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">rigobert@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Azombo Medjo'o Ludovic</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">ludovic@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ngoufo Douanla Emmerick</td>
+                                        <td class="d-none d-xl-table-cell">3er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">brice@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Magne Kamdem Miranda</td>
+                                        <td class="d-none d-xl-table-cell">1er année</td>
+                                        <td class="d-none d-xl-table-cell">Cameroun</td>
+                                        <td class="d-none d-xl-table-cell">miranda@gmail.com</td>
+                                        <td><span class="badge bg-success">Admis</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="ea" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Études Africaines</h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="pct" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Patrimoine Culturel et Tourisme </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="ge" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Génie Electrique </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="arv" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Architecture et Réalité Virtuelle </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="tg" role="tabpanel">
+
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h3 class="card-title mb-0">Topographie et Géomatique </h3>
+                            </div>
+                            <form class="d-none d-sm-inline-block">
+                                <div class="input-group input-group-navbar">
+                                    <input type="text" class="form-control" placeholder="Rechercher…" aria-label="Search">
+                                    <button class="btn" type="button">
+                                        <i class="align-middle" data-feather="search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table table-hover my-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nom complet</th>
+                                        <th class="d-none d-xl-table-cell">Niveau</th>
+                                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                                        <th class="d-none d-md-table-cell">E-mail</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Aucun candidats</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
+</main>
+
+
+<div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="background-color: rgb(192, 206, 188) !important;">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <app-dossier></app-dossier>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

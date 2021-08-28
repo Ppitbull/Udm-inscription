@@ -11,6 +11,9 @@ import {MatTableModule} from '@angular/material/table';
 import { FiliereFormationInscriptionComponent } from './components/filiere-formation-inscription/filiere-formation-inscription.component';
 import { FormAdminssionFinalComponent } from './components/form-adminssion-final/form-adminssion-final.component';
 import { InputTypeNumberModule } from './components/input-type-number/input-type-number.module';
+import { DocsFormModule } from './components/docs-form/docs-form.module';
+import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-loader.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -19,7 +22,8 @@ import { InputTypeNumberModule } from './components/input-type-number/input-type
     InfosPersoInscriptionComponent, 
     QualificationsInscriptionComponent, 
     FiliereFormationInscriptionComponent,
-    FormAdminssionFinalComponent
+    FormAdminssionFinalComponent,
+    SimpleLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { InputTypeNumberModule } from './components/input-type-number/input-type
     MatProgressBarModule,
     MatSelectModule,
     MatTableModule,
-    InputTypeNumberModule
+    InputTypeNumberModule,
+    DocsFormModule,
+    ModalModule.forRoot()
   ],
   exports:[
     FormationInscriptionComponent,
@@ -38,7 +44,8 @@ import { InputTypeNumberModule } from './components/input-type-number/input-type
     QualificationsInscriptionComponent,
     FiliereFormationInscriptionComponent,
     FormAdminssionFinalComponent,
-    InputTypeNumberModule
+    InputTypeNumberModule,
+    SimpleLoaderComponent
   ]
 })
 export class SharedModule { }

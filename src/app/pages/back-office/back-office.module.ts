@@ -17,6 +17,10 @@ import { DAcceptComponent } from 'src/app/layout/page-content/dossiers/d-accept/
 import { DAdmisComponent } from 'src/app/layout/page-content/dossiers/d-admis/d-admis.component';
 import { DListComponent } from 'src/app/layout/page-content/dossiers/d-list/d-list.component';
 import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-refus.component';
+import { ActualiteComponent } from 'src/app/layout/page-content/actualite/actualite.component';
+import { DossierComponent } from 'src/app/layout/page-content/dossiers/dossier.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-
     DAcceptComponent,
     DAdmisComponent,
     DListComponent,
-    DRefusComponent
+    DRefusComponent,
+    ActualiteComponent,
+    DossierComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +45,9 @@ import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-
     LayoutModule,
     MatStepperModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ]
 })
 export class BackOfficeModule { }

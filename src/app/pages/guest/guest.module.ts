@@ -8,8 +8,8 @@ import { GuestRoutingModule } from './guest-routing.module';
 import {MatStepperModule} from '@angular/material/stepper'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared-module.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [  
@@ -25,7 +25,7 @@ import {MatCardModule} from '@angular/material/card';
     MatStepperModule,
     MatFormFieldModule,
     SharedModule,
-    MatCardModule
+    ModalModule.forRoot()
   ]
 })
 export class GuestModule { }

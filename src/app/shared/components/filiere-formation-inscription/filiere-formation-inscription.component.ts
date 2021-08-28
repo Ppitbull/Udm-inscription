@@ -2,7 +2,7 @@ import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core
 import { FormGroup } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 import { MatTableDataSource } from '@angular/material/table';
-import { formations as formationsList, niveau as niveauList} from '../../utils/formation.const';
+import { formations as formationsList, niveau as niveauList} from '../../utils/constante/formation.const';
 
 @Component({
   selector: 'app-filiere-formation-inscription',
@@ -28,28 +28,28 @@ export class FiliereFormationInscriptionComponent implements OnInit {
   dataSource = new MatTableDataSource([
     {
       choix:"1er",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     },
     {
       choix:"2e",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     },
     {
       choix:"3e",
-      cycle:"",
-      faculte:"",
+      cycle:"" || {cycle:""},
+      faculte:"" || {ab:""},
       filiere:"",
       niveau:""
     }
   ])
   constructor() { }
-
+  
   ngOnInit(): void {
   }
   changeFaculteData(event)

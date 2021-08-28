@@ -1,5 +1,6 @@
 <nav id="sidebar" class="sidebar">
-  <div class="sidebar-content js-simplebar" style="background-color: #33691e !important;">
+  <div class="sidebar-content js-simplebar" style="background-color: #33691e !important; background-image: url(../../../../assets/img/sidebar-2.jpg) !important; "> 
+    <!-- background-image: url(../../../../assets/img/sidebar-4.jpg) !important; -->
     <a class="sidebar-brand" href="index.html">
       <img src="../../../../assets/img/udm_logo.jpg" class="img-fluid rounded me-1" alt="logo"/> <span
         class="text-dark"></span>
@@ -10,62 +11,57 @@
         Pages
       </li> -->
       <hr style="color: white;">
+
+      <li class="sidebar-item">
+        <a class="sidebar-link" routerLink="/user/dashboard">
+          <i class="fa fa-dashboard"></i><span class="align-middle" style="color: white !important;">Tableau de bord</span>
+        </a>
+      </li>
+      
       <li class="sidebar-item">
         <a class="sidebar-link" routerLink="/user/profil">
-          <i class="fa fa-user"></i>  <span class="align-middle">Profile</span>
+          <i class="fa fa-user"></i> <span class="align-middle" style="color: white !important;">Profile</span>
         </a>
       </li>
-
-      <li class="sidebar-item active">
-        <a class="sidebar-link" routerLink="/user/dashboard">
-          <i class="fa fa-dashboard"></i><span class="align-middle">Tableau de bord</span>
-        </a>
-      </li>
-
 
       <li class="sidebar-item">
         <a class="sidebar-link" routerLink="/user/notes">
-          <i class="fa fa-align-left" data-feather="settings"></i> <span class="align-middle">Notes</span>
+          <i class="fa fa-align-left" data-feather="settings"></i> <span class="align-middle" style="color: white !important;">Notes</span>
         </a>
       </li>
-<!-- 
-      <li class="sidebar-item">
-        <a data-bs-toggle="collapse" class="sidebar-link collapsed">
-          <i class="align-middle" data-feather="users"></i> <span class="align-middle">Etablissements</span>
-        </a>
-        <ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-          <li class="sidebar-item"><a class="sidebar-link" href="#">Faculté des Sciences de la Santé</a></li>
-          <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-        </ul>
-      </li> -->
 
-      <li class="sidebar-header">
+      <li class="sidebar-header" style="background-color: rgb(6, 59, 6);">
         Administration
       </li>
-      <li class="sidebar-item">
+      <li class="sidebar-item" style="color: white !important;">
         <a data-bs-target="#lc" data-bs-toggle="collapse" class="sidebar-link collapsed">
-          <i class="fa fa-list" data-feather="briefcase"></i> <span class="align-middle">Liste des candidats</span>
+          <i class="fa fa-list" data-feather="briefcase"></i> <span class="align-middle" style="color: white !important;">Liste des candidats</span>
         </a>
         <ul id="lc" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
-          <li class="sidebar-item" routerLink="/user/d-list"><a class="sidebar-link" >Tous les dossiers</a></li>
-          <li class="sidebar-item" routerLink="/user/d-accept"><a class="sidebar-link" >Dossiers acceptés</a></li>
-          <li class="sidebar-item" routerLink="/user/d-refus"><a class="sidebar-link" >Dossiers regétés</a></li>
-          <li class="sidebar-item" routerLink="/user/d-admis"><a class="sidebar-link" >Candidats admis</a></li>
+          <li class="sidebar-item" routerLink="/user/d-list"><a class="sidebar-link">Tous les dossiers</a></li>
+          <li class="sidebar-item" routerLink="/user/d-accept"><a class="sidebar-link">Dossiers acceptés</a></li>
+          <li class="sidebar-item" routerLink="/user/d-refus"><a class="sidebar-link">Dossiers regétés</a></li>
+          <li class="sidebar-item" routerLink="/user/d-admis"><a class="sidebar-link">Candidats admis</a></li>
         </ul>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link">
+          <i class="fa fa-volume-up"></i> <span class="align-middle" style="color: white !important;">Diffuser une info</span>
+        </a>
       </li>
 
 
-      <li class="sidebar-header">
+      <li class="sidebar-header" style="background-color: rgb(6, 59, 6);">
         Découvrez
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" routerLink="/user/actualite">
-          <i class="fa fa-info-circle" data-feather="settings"></i> <span class="align-middle">Actualité</span>
+          <i class="fa fa-info-circle" data-feather="settings"></i> <span class="align-middle" style="color: white !important;">Actualité</span>
         </a>
       </li>
-      <li class="sidebar-item">
+      <li class="sidebar-item" style="color: white !important;">
         <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
-          <i class="fa fa-columns" data-feather="briefcase"></i> <span class="align-middle">Etablissements</span>
+          <i class="fa fa-columns" data-feather="briefcase"></i> <span class="align-middle" style="color: white !important;">Etablissements</span>
         </a>
         <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
           <li class="sidebar-item"><a class="sidebar-link" >Faculté des Sciences de la Santé</a></li>
@@ -73,9 +69,9 @@
           <li class="sidebar-item"><a class="sidebar-link" >Institut d’Etudes Africaines, des Sciences Sociales et de Management</a></li>
         </ul>
       </li>
-      <li class="sidebar-item">
+      <li class="sidebar-item" style="color: white !important;">
         <a data-bs-target="#ad" data-bs-toggle="collapse" class="sidebar-link collapsed">
-          <i class="fa fa-wpforms" data-feather="briefcase"></i> <span class="align-middle">Admission</span>
+          <i class="fa fa-wpforms" data-feather="briefcase"></i> <span class="align-middle" style="color: white !important;">Admission</span>
         </a>
         <ul id="ad" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar" style="background-color: rgb(27, 77, 27);">
           <li class="sidebar-item"><a class="sidebar-link" >Concours national</a></li>
@@ -94,7 +90,7 @@
           Souhaitez vous prendre plus de renseignements ?
         </div>
         <div class="d-grid">
-          <a href="#" target="_blank" class="btn btn-primary">Contacter</a>
+          <a href="#" target="_blank" class="btn btn-primary" style="background-color: #3b7ddd !important;">Contacter</a>
         </div>
       </div>
     </div>

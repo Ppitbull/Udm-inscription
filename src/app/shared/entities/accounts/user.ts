@@ -13,10 +13,10 @@ export class User extends Entity
     tel:String="";
     accountType:AccountType;
     dateCreation:String="";
-    dateNaissance:String="";
-    lieuxNaissance:String="";
+    dateNaiss:String="";
+    lieuxNaiss:String="";
     villeResidenceActuelle:String="";
-    nationnalite:String="";
+    nationalite:String="";
 
     getPrintableName()
     {

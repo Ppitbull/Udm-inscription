@@ -1,22 +1,45 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="img-profil text-center">
+        <div class="row justify-content-center ml-5">
+            <div class="col-10 col-md-4">
+                <div class="text-center"><br>
+                    <div class="row g-0 mt-1">
+                        <div class="col-8 col-md-8 col-lg-8 col-xl-8">
+                            <img [src]="imgSrc" (click)="fileUploader.click()"
+                                class="img-thumbnail rounded me-2 mb-2" />
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;">
+                    <input type="file" name="imageUrl" id="imageUrl" ngModel accept="image/*" class="form-control ml-4"
+                        #fileUploader formControlName="imgProfil" (change)="showPreview($event)">
+                </div>
+            </div>
+        </div>Sélectionner une mage portrait 4x4.
+    </div><br><br>
+
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
                 <label class="form-label">Nom</label>
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.nom.errors }" formControlName="nom" type="text" name="nom" placeholder="Votre Nom" />
-                <div *ngIf="submitedForm && form.controls.nom.invalid"
-                    class="invalid-feedback text-danger">
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.nom.errors }" formControlName="nom"
+                    type="text" name="nom" placeholder="Votre Nom" />
+                <div *ngIf="submitedForm && form.controls.nom.invalid" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.nom.errors.required">Votre nom est obligatoire</div>
-                    <div *ngIf="form.controls.nom.errors.minlength">La taile de votre nom doit avoir au minimum 2 charactéres</div>
+                    <div *ngIf="form.controls.nom.errors.minlength">La taile de votre nom doit avoir au minimum 2
+                        charactéres</div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
                 <label class="form-label">Prenom</label>
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.prenom.errors }" formControlName="prenom" type="text" name="prenom_admin" placeholder="Votre Prenom" />
-                <div *ngIf="submitedForm && form.controls.prenom.invalid"
-                    class="invalid-feedback text-danger">
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.prenom.errors }" formControlName="prenom"
+                    type="text" name="prenom_admin" placeholder="Votre Prenom" />
+                <div *ngIf="submitedForm && form.controls.prenom.invalid" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.prenom.errors.required">Votre prenom est obligatoire</div>
-                    <div *ngIf="form.controls.prenom.errors.minlength">Votre nom doit avoire au minimum 6 charactéres</div>
+                    <div *ngIf="form.controls.prenom.errors.minlength">Votre nom doit avoire au minimum 6 charactéres
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,21 +47,26 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
-                <label class="form-label">Date de naissance</label> 
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.dateNaiss.errors }" formControlName="dateNaiss" type="date" name="dateNaiss" placeholder="Votre date de naissance" />
+                <label class="form-label">Date de naissance</label>
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.dateNaiss.errors }"
+                    formControlName="dateNaiss" type="date" name="dateNaiss" placeholder="Votre date de naissance" />
                 <div *ngIf="submitedForm && form.controls.dateNaiss.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.dateNaiss.errors.required">Votre date de naissance est obligatoire</div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
-                <label class="form-label">Lieu exact de naissance</label> 
-                <mat-select class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.lieuxNaissance.errors }" formControlName="lieuxNaissance" type="text" name="lieuxNaissance" placeholder="Votre lieux de naissance" >
+                <label class="form-label">Lieu exact de naissance</label>
+                <mat-select class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.lieuxNaiss.errors }"
+                    formControlName="lieuxNaiss" type="text" name="lieuxNaiss" placeholder="Votre lieux de naissance">
                     <mat-option value="" selected>----veuillez choisir votre lieux de naissance----</mat-option>
                     <mat-option *ngFor="let ville of villeList" [value]="ville">{{ville}}</mat-option>
                 </mat-select>
-                <div *ngIf="submitedForm && form.controls.lieuxNaissance.errors" class="invalid-feedback text-danger">
-                    <div *ngIf="form.controls.lieuxNaissance.errors.required">Votre lieux de naissance est obligatoire</div>
-                    <div *ngIf="form.controls.lieuxNaissance.errors.minlength">Votre lieux de naissance doit avoire au minimum 2 charactéres</div>
+                <div *ngIf="submitedForm && form.controls.lieuxNaiss.errors" class="invalid-feedback text-danger">
+                    <div *ngIf="form.controls.lieuxNaiss.errors.required">Votre lieux de naissance est obligatoire</div>
+                    <div *ngIf="form.controls.lieuxNaiss.errors.minlength">Votre lieux de naissance doit avoire au
+                        minimum 2 charactéres</div>
                 </div>
             </div>
         </div>
@@ -46,24 +74,31 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
-                <label class="form-label">Nationnalité</label> 
-                <mat-select class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.nationalite.errors }" formControlName="nationalite" type="text" name="nationalite" placeholder="Votre nationalité">
-                    <mat-option value="" selected>----veuillez choisir votre nationnalité----</mat-option>
+                <label class="form-label">Nationalité</label>
+                <mat-select class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.nationalite.errors }"
+                    formControlName="nationalite" type="text" name="nationalite" placeholder="Votre nationalité">
+                    <mat-option value="" selected>----veuillez choisir votre nationalité----</mat-option>
                     <mat-option *ngFor="let pays of paysList" [value]="pays">{{pays}}</mat-option>
                 </mat-select>
                 <div *ngIf="submitedForm && form.controls.nationalite.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.nationalite.errors.required">Votre nationalité est obligatoire</div>
-                    <div *ngIf="form.controls.nationalite.errors.minlength">Votre nationalité doit avoire au minimum 2 charactéres</div>
+                    <div *ngIf="form.controls.nationalite.errors.minlength">Votre nationalité doit avoire au minimum 2
+                        charactéres</div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
-                <label class="form-label">Ville de résidence actuelle</label> 
-                <mat-select class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.villeresidence.errors }" formControlName="villeresidence" type="text" name="villeresidence" placeholder="Votre ville résidentielle actuelle" >
+                <label class="form-label">Ville de résidence actuelle</label>
+                <mat-select class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.villeresidence.errors }"
+                    formControlName="villeresidence" type="text" name="villeresidence"
+                    placeholder="Votre ville résidentielle actuelle">
                     <mat-option value="" selected>----veuillez choisir votre ville de résidence----</mat-option>
                     <mat-option *ngFor="let ville of villeList" [value]="ville">{{ville}}</mat-option>
                 </mat-select>
                 <div *ngIf="submitedForm && form.controls.villeresidence.errors" class="invalid-feedback text-danger">
-                    <div *ngIf="form.controls.villeresidence.errors.required">Votre ville résidentielle est obligatoire</div>
+                    <div *ngIf="form.controls.villeresidence.errors.required">Votre ville résidentielle est obligatoire
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,34 +106,27 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
-                <label class="form-label">Email</label> 
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.email.errors }" formControlName="email" type="email" name="email" placeholder="Votre Email" />
+                <label class="form-label">Email</label>
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.email.errors }" formControlName="email"
+                    type="email" name="email" placeholder="Votre Email" />
                 <div *ngIf="submitedForm && form.controls.email.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.email.errors.required">Votre email est obligatoire</div>
-                    <div *ngIf="form.controls.email.errors.pattern">Votre email doit respecter le format demandé <br> Example: vous@example.com</div>
+                    <div *ngIf="form.controls.email.errors.pattern">Votre email doit respecter le format demandé <br>
+                        Example: vous@example.com</div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
                 <label class="form-label">Tél</label>
                 <!-- <input class="" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel_admin.errors }"/> -->
-                <app-input-type-number formControlName="tel" [cssClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}"></app-input-type-number>
+                <app-input-type-number formControlName="tel"
+                    [cssClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}">
+                </app-input-type-number>
                 <!-- <input matInput type="tel" placeholder="Votre numéro de téléphone" formControlName="tel" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true, 'form-control-lg':true}" />                                     -->
-                <div *ngIf="submitedForm && form.controls.tel.errors"
-                    class="invalid-feedback text-danger">
+                <div *ngIf="submitedForm && form.controls.tel.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.tel.errors.required">Votre numéro de téléphone est obligatoire</div>
-                    <div *ngIf="form.controls.tel.errors.pattern">Votre numéro de téléphone doit respecter le format demandé <br> Example: +237 698 29 53 68</div>
-                </div>
-            </div>
-        </div>
-    </div>   
-    <div class="mb-3">
-        <div class="row">
-            <div class="col-10 col-md-6">
-                <label class="form-label">Nom d'une personne à contacter, si besoin</label> 
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.nomContat.errors }" formControlName="nomContat" type="text" name="nomContat" placeholder="Nom d'un contact au besoin" />
-                <div *ngIf="submitedForm && form.controls.nomContat.errors" class="invalid-feedback text-danger">
-                    <div *ngIf="form.controls.nomContat.errors.required">Le nom d'un contact est obligatoire</div>
-                    <div *ngIf="form.controls.nomContat.errors.minlength">Le nom d'un contact doit avoire au minimum 2 charactéres</div>
+                    <div *ngIf="form.controls.tel.errors.pattern">Votre numéro de téléphone doit respecter le format
+                        demandé <br> Example: +237 698 29 53 68</div>
                 </div>
             </div>
         </div>
@@ -106,25 +134,47 @@
     <div class="mb-3">
         <div class="row">
             <div class="col-10 col-md-6">
-                <label class="form-label">Email du contact</label> 
-                <input matInput class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitedForm && form.controls.emailContact.errors }" formControlName="emailContact" type="email" name="email" placeholder="Email" />
+                <label class="form-label">Nom d'une personne à contacter, si besoin</label>
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.nomContact.errors }"
+                    formControlName="nomContact" type="text" name="nomContact"
+                    placeholder="Nom d'un contact au besoin" />
+                <div *ngIf="submitedForm && form.controls.nomContact.errors" class="invalid-feedback text-danger">
+                    <div *ngIf="form.controls.nomContact.errors.required">Le nom d'un contact est obligatoire</div>
+                    <div *ngIf="form.controls.nomContact.errors.minlength">Le nom d'un contact doit avoire au minimum 2
+                        charactéres</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-10 col-md-6">
+                <label class="form-label">Email du contact</label>
+                <input matInput class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitedForm && form.controls.emailContact.errors }"
+                    formControlName="emailContact" type="email" name="email" placeholder="Email" />
                 <div *ngIf="submitedForm && form.controls.emailContact.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.emailContact.errors.required">L'email du contact est obligatoire</div>
-                    <div *ngIf="form.controls.emailContact.errors.pattern">L'email du contact doit respecter le format demandé <br> Example: contact@example.com</div>
+                    <div *ngIf="form.controls.emailContact.errors.pattern">L'email du contact doit respecter le format
+                        demandé <br> Example: contact@example.com</div>
                 </div>
             </div>
             <div class="col-10 col-md-6">
                 <label class="form-label">Tél du contact</label>
                 <!-- <input class="" [ngClass]="{ 'is-invalid': submitedForm && form.controls.tel_admin.errors }"/> -->
-                <app-input-type-number formControlName="telContact" [cssClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}"></app-input-type-number>
+                <app-input-type-number formControlName="telContact"
+                    [cssClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}">
+                </app-input-type-number>
                 <!-- <input matInput type="tel" placeholder="Téléphone" formControlName="telContact" [ngClass]="{ 'is-invalid': submitedForm && form.controls.telContact.errors ,'form-control':true, 'form-control-lg':true}" />                                     -->
-                <div *ngIf="submitedForm && form.controls.telContact.errors"
-                    class="invalid-feedback text-danger">
-                    <div *ngIf="form.controls.telContact.errors.required">Le numéro de téléphone de votre contact est obligatoire</div>
-                    <div *ngIf="form.controls.telContact.errors.pattern">Le numéro de téléphone de votre contact doit respecter le format demandé <br> Example: +237 698 29 53 68</div>
+                <div *ngIf="submitedForm && form.controls.telContact.errors" class="invalid-feedback text-danger">
+                    <div *ngIf="form.controls.telContact.errors.required">Le numéro de téléphone de votre contact est
+                        obligatoire</div>
+                    <div *ngIf="form.controls.telContact.errors.pattern">Le numéro de téléphone de votre contact doit
+                        respecter le format demandé <br> Example: +237 698 29 53 68</div>
                 </div>
             </div>
         </div>
     </div>
-   
+
 </form>
