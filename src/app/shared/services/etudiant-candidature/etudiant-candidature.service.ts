@@ -42,18 +42,16 @@ export class EtudiantCandidatureService {
         result.result=dossier;
         return resolve(result);
       }
-      this.firebaseApi.getFirebaseDatabase()
-      .ref(getBranchOfCandidatures())
-      .orderByChild("etudiantID")
-      .equalTo(userID.toString())
-      .once('value',(snapshot)=>{
-        let data=snapshot.val();
-        if(!data) return;
+      this.firebaseApi
+      .fetchOnce(getBranchOfCandidatures())
+      .then((result:ActionStatus)=>{
+        let data=result.result;
         let candidature:DossierCandidature=new DossierCandidature();
-        for(let key in data.data)
+        for(let key in data)
         {
           candidature.hydrate(data[key]);
-        }     
+          if(candidature.etudiantID.toString()==userID.toString()) break;
+        } 
         this.setCandidature([...this.listCandidatures.getValue(),candidature]);
         result.result=candidature;
         resolve(result)
