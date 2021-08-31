@@ -70,6 +70,7 @@
  </div>
 
  <ng-template #modalTemplate>        
-  <app-simple-loader [text]="popup_message"></app-simple-loader>
+  <app-simple-loader *ngIf="upload_step!=true" [text]="popup_message"></app-simple-loader>
+  <app-simple-loader *ngIf="upload_step==true" mode="determinate" [percent]="upload_value" [text]="popup_message" ></app-simple-loader>
 </ng-template>
   

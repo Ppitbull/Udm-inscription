@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewC
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {  MatStep, MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { takeLast } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FiliereFormationInscriptionComponent } from 'src/app/shared/components/filiere-formation-inscription/filiere-formation-inscription.component';
 import { FormAdminssionFinalComponent } from 'src/app/shared/components/form-adminssion-final/form-adminssion-final.component';
@@ -11,6 +12,7 @@ import { QualificationsInscriptionComponent } from 'src/app/shared/components/qu
 import { Etudiant } from 'src/app/shared/entities/accounts/etudiant';
 import { DossierCandidature } from 'src/app/shared/entities/application-file';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
 import { InscriptionEtudiantService } from 'src/app/shared/services/inscription-etudiant/inscription-etudiant.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
@@ -31,6 +33,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   submitedForm:boolean=false;
   canSubmitedForm:boolean=false;
   popup_message:string="";
+  upload_step:boolean=false;
+  upload_value=0;
 
   @ViewChild("stepper") stepper:MatStepper;
   @ViewChild("informationPersonnelInscriptionComponent") informationPersonnelInscriptionComponent:InfosPersoInscriptionComponent;
@@ -48,7 +52,8 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     private router:Router,
     private cd:ChangeDetectorRef,
     private userProfile:UserProfilService,
-    private candidatureDossierService:EtudiantCandidatureService
+    private candidatureDossierService:EtudiantCandidatureService,
+    private authService:AuthService
     ) {}
   
 
@@ -123,23 +128,59 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     
 
     this.getAllData();
-
+    let mapFile:Map<string,CustomFile[]>=new Map<string,CustomFile[]>();
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
+    .then((result:ActionStatus)=> this.authService.authLogin(this.candidat.email.toString(),this.candidat.mdp.toString()))
     .then((result:ActionStatus)=>this.inscriptionEtudiantService.uploadFile([this.informationPersonnelInscriptionComponent.selectedImage]))
     .then((result:ActionStatus)=>{
-      this.candidat.photoUrl=result.result[0].link;
+      this.candidat.photoUrl=result.result[0].link || "";
       return this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat)
     })
     .then((result:ActionStatus)=>{
-      this.popup_message="Enregistrement des fichiers de candidatures..."
-      return Promise.all(this.dossier.documents.listDocument.map((doc)=>this.inscriptionEtudiantService.uploadFile(doc.files)))
+      this.upload_step=true;
+      this.popup_message="Enregistrement des fichiers de candidatures..."      
+      let subjects=this.dossier.documents.listDocument.map((doc)=>{
+        mapFile.set(doc.label.toString(),doc.files);
+        return this.inscriptionEtudiantService.uploadFileWithProgression(doc.files)
+      })
+      subjects.forEach((subject=>{
+        subject.subscribe({
+          next:(value)=>{
+            if(value.apiCode==ActionStatus.UPLOAD_RUNNING)
+            {
+              this.popup_message=`Enregistrement des fichiers de candidatures (${value.result.file}:${value.result.percent}%)`
+              this.upload_value=value.result.percent || 0
+            }
+            if(value.apiCode==ActionStatus.SUCCESS)
+            {
+              subject.pipe(takeLast(1)).subscribe((value)=>{
+                let found=false;
+                for(let key of Array.from(mapFile.keys()))
+                {
+                  for(let file of mapFile.get(key))
+                  {
+                    if(file.name==value.result.file)
+                    {
+                      found=true;
+                      break;
+                    }
+                  }
+                  if(found) break;
+                }
+              })
+            }
+          }
+        })
+      }))
+      return Promise.all(subjects.map((subject)=>subject.toPromise()))
     })
     .then((result:ActionStatus[])=>{
+      this.upload_step=false;
       this.popup_message="Creation du dossier de candidature..."
-      for(let i=0;i<result.length;i++)
+      for(let i=0; i<this.dossier.documents.listDocument.length; i++)
       {
-        this.dossier.documents.listDocument[i].files=result[i].result;        
+        if(mapFile.has(this.dossier.documents.listDocument[i].label.toString())) this.dossier.documents.listDocument[i].files=mapFile.get(this.dossier.documents.listDocument[i].label.toString())
       }
       this.dossier.etudiantID.setId(this.candidat.id.toString())
 
@@ -157,6 +198,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     }).catch((error)=>{
       this.popup_message=error.message;
       setTimeout(()=>this.hideModal(),2000)
+      console.log(error)
     })
     
   }

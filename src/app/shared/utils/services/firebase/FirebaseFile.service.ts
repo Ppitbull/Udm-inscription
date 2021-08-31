@@ -51,7 +51,7 @@ export class FirebaseFile {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL)=>{
           file.link=downloadURL;
           result.apiCode=ActionStatus.SUCCESS;
-          result.result=file;
+          result.result=100;
           subject.next(result);
           subject.complete()
         })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { Etudiant } from '../../entities/accounts/etudiant';
 import { DossierCandidature } from '../../entities/application-file';
 import { CustomFile } from '../../entities/custom-file';
@@ -36,7 +36,25 @@ export class InscriptionEtudiantService {
   {
     return this.candidatureService.saveEtudiantCandidature(candidature);
   }
-
+  uploadFileWithProgression(files:CustomFile[]):BehaviorSubject<ActionStatus>
+  {
+    let result:ActionStatus=new ActionStatus();
+    result.result={
+      file:"",
+      percent:0
+    }
+    let subject:BehaviorSubject<ActionStatus>=new BehaviorSubject<ActionStatus>(result)
+    files.forEach((file:CustomFile)=>this.firebaseApiFile.uploadFile(file).subscribe({
+      next:(value)=> {
+        result.apiCode=value.apiCode,
+        result.result.file=file.name,
+        result.result.percent=result.result,
+        subject.next(result);
+      },
+      complete:()=>subject.complete()
+    }))
+    return subject;
+  }
   uploadFile(files:CustomFile[]):Promise<ActionStatus>
   {
     return new Promise<ActionStatus>((resolve,reject)=>{

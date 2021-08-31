@@ -9,6 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class SimpleLoaderComponent implements OnInit {
 
   @Input() text:string="";
+  @Input() mode:String="indeterminate"
+  @Input() percent:number=0;
   constructor() { }
 
   ngOnInit(): void {

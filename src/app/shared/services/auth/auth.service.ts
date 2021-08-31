@@ -1,5 +1,4 @@
-import { Injectable, ɵConsole } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../../entities/accounts';
@@ -19,7 +18,6 @@ export class AuthService {
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private router: Router,
     private localStorageService: LocalStorageService,
     private firebaseApi: FireBaseApi,
     private eventService: EventService,
@@ -41,7 +39,7 @@ export class AuthService {
    */
   logOut() {
     this.setAuth({isLoggedIn:false})
-    this.router.navigate(['login']);
+    // this.router.navigate(['login']);
     this.note.showNotification('succes', 'Vous avez été déconnecté!');
     localStorage.clear();
   }
