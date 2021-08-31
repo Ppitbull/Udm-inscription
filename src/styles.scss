@@ -10,9 +10,10 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-main {
-    flex: 1 0 auto;
-  }
+main 
+{
+  flex: 1 0 auto;
+}
 
 
 // /* Importing Bootstrap SCSS file. */
@@ -20,3 +21,15 @@ main {
 
 // /* Importing Datepicker SCSS file. */
 // @import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+::ng-deep .mat-progress-bar-fill::after,
+::ng-deep .mat-progress-bar,
+::ng-deep .mat-progress-bar-buffer
+{
+  background-color: green ;
+}
+
+::ng-deep .mat-progress-bar-buffer 
+{
+  background: green;
+}

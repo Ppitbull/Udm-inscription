@@ -34,6 +34,7 @@ export class LoginService {
       })
       .then((result:ActionStatus)=>{
         let user:User=result.result;
+        console.log(user)
         //chargement des commentaires associé a une candidature
         if(user.accountType==AccountType.ETUDIANT) return this.dossierCandidatureService.getCandidatureOfCandidate(currentUserID);
         else return Promise.resolve(new ActionStatus())     
