@@ -21,6 +21,7 @@ import { ActualiteComponent } from 'src/app/layout/page-content/actualite/actual
 import { DossierComponent } from 'src/app/layout/page-content/dossiers/dossier.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ManageAdminComponent } from 'src/app/layout/page-content/manage-admin/manage-admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     DListComponent,
     DRefusComponent,
     ActualiteComponent,
-    DossierComponent
+    DossierComponent,
+    ManageAdminComponent
   ],
   imports: [
     CommonModule,

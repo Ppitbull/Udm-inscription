@@ -130,6 +130,10 @@
               "devServerTarget": "udm-inscription:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
