@@ -17,6 +17,7 @@ import { ActualiteComponent } from 'src/app/layout/page-content/actualite/actual
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ListCandidatureComponent } from './list-candidature/list-candidature.component';
+import { ManageAdminComponent } from 'src/app/layout/page-content/manage-admin/manage-admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ListCandidatureComponent } from './list-candidature/list-candidature.co
     DashboardComponent,
     ProfilComponent,
     ActualiteComponent,
-    ListCandidatureComponent
+    ListCandidatureComponent,
+    ManageAdminComponent
   ],
   imports: [
     CommonModule,

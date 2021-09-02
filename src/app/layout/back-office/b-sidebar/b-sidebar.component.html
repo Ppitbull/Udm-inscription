@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar">
   <div class="sidebar-content js-simplebar" style="background-color: #33691e !important; background-image: url(../../../../assets/img/sidebar-2.jpg) !important; "> 
     <!-- background-image: url(../../../../assets/img/sidebar-4.jpg) !important; -->
-    <a class="sidebar-brand" href="index.html">
+    <a class="sidebar-brand" routerLink="/user/dashboard" style="border-radius: 15px;">
       <img src="../../../../assets/img/udm_logo.jpg" class="img-fluid rounded me-1" alt="logo"/> <span
         class="text-dark"></span>
     </a>
@@ -52,6 +52,11 @@
             <i class="fa fa-volume-up"></i> <span class="align-middle" style="color: white !important;">Diffuser une info</span>
           </a>
         </li>
+        <li class="sidebar-item" routerLink="/user/manage-admin">
+          <a class="sidebar-link">
+            <i class="fa fa-users"></i> <span class="align-middle" style="color: white !important;">Gestion Admins</span>
+          </a>
+        </li>
       </ng-container>
 
 
@@ -94,7 +99,7 @@
           Souhaitez vous prendre plus de renseignements ?
         </div>
         <div class="d-grid">
-          <a href="#" target="_blank" class="btn btn-primary" style="background-color: #3b7ddd !important;">Contacter</a>
+          <a class="btn btn-primary" style="background-color: #3b7ddd !important;">Contacter</a>
         </div>
       </div>
     </div>

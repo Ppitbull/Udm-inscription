@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-
 declare var $: any;
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class NotificationService {
-    refresh: number = 1;
+export class NotificationsService {
 
-    refreshFonct() {
-        if (this.refresh == 1) {
-            window.location.reload();
-            this.refresh = 0;
-        }
+    refresh = 1;
+
+    constructor() {
+
     }
 
     showNotification(typMsg, message, time?) {
@@ -25,7 +22,7 @@ export class NotificationService {
         let messages: string;
         const type = ['', 'info', 'success', 'warning', 'danger'];
 
-        if (typMsg == 'success') {
+        if (typMsg == 'warning') {
             $.notify({
                 icon: 'fa fa-exclamation-triangle',
                 message: '<b>Important: </b><br /> ' + message,
@@ -37,14 +34,16 @@ export class NotificationService {
                         from: from,
                         align: align
                     },
-                    template:
-                    '<div class="alert alert-success alert-dismissible" role="alert">'+
-                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+
-                        '<div class="alert-message">'+
-                            '<strong>Hello there!</strong> A simple success alert—check it out!'+
-                        '</div>'+
-                    '</div>'
-                    
+                    template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+                        '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
+                        '<i class="fa fa-exclamation-triangle" data-notify="icon"></i> ' +
+                        '<span data-notify="title">{1}</span> ' +
+                        '<span data-notify="message">{2}</span>' +
+                        '<div class="progress" data-notify="progressbar">' +
+                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                        '</div>' +
+                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                        '</div>'
                 });
         }
 
@@ -123,5 +122,12 @@ export class NotificationService {
                 });
         }
 
+    }
+
+    refreshFonct() {
+        if (this.refresh == 1) {
+            window.location.reload();
+            this.refresh = 0;
+        }
     }
 }

@@ -2,7 +2,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { NotificationService } from '../notification/notification.service';
+import { NotificationsService } from '../notification/notification.service';
 
 @Injectable()
 export class AdminerGuard implements CanActivate {
@@ -10,7 +10,7 @@ export class AdminerGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private notif: NotificationService) { }
+    private notif: NotificationsService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,

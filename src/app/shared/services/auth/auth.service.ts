@@ -6,7 +6,7 @@ import { EntityID } from '../../entities/entityid';
 import { EventService } from '../../utils/services/events/event.service';
 import { FireBaseApi, ActionStatus } from '../../utils/services/firebase';
 import { LocalStorageService } from '../localstorage/localstorage.service';
-import { NotificationService } from '../notification/notification.service';
+import { NotificationsService } from '../notification/notification.service';
 
 
 
@@ -21,7 +21,7 @@ export class AuthService {
     private localStorageService: LocalStorageService,
     private firebaseApi: FireBaseApi,
     private eventService: EventService,
-    private note: NotificationService
+    private note: NotificationsService
   ) {
     this.localStorageService.getSubjectByKey("auth_data").subscribe((userData:any) => {
       if(userData) this.isLoggedIn.next(userData.isLoggedIn);

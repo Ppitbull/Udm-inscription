@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BLayoutComponent } from './layout/back-office/b-layout/b-layout.component';
+import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { AuthGuard } from './shared/services/guard';
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/back-office/back-office.module').then(m => m.BackOfficeModule),
     canActivate: [AuthGuard],
     
+  },
+  {
+    path: 'file',
+    component: FileUploadComponent
   },
 ];
 
