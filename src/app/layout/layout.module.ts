@@ -25,7 +25,7 @@ import { GuestWelcomeComponent } from './guest/guest-welcome/guest-welcome.compo
     CommonModule,
     RouterModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [
 

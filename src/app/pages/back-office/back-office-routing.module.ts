@@ -47,6 +47,15 @@ const routes: Routes = [
         }
       },
       { 
+        path: 'd-wait', 
+        component: ListCandidatureComponent, 
+        pathMatch: 'full',
+        data:{
+          title:"Liste de tous les dossiers en attente",
+          docType:DossierCandidatureState.WAITING
+        }
+      },
+      { 
         path: 'd-refus', 
         component: ListCandidatureComponent, 
         pathMatch: 'full',

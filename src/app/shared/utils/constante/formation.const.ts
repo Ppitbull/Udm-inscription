@@ -104,7 +104,7 @@ export const listFiliere=[
         faculte:"FST",
         filieres:[            
             {
-                filiere:"Informatique réseau et tInformatique et Télécommunications (option  Informatique, Réseaux et Télécommunications)",
+                filiere:"Informatique et Télécommunications (option  Informatique, Réseaux et Télécommunications)",
                 ab:"I R T"
             },
             {

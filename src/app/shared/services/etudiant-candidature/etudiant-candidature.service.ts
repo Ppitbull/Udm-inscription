@@ -128,6 +128,7 @@ export class EtudiantCandidatureService {
   }
   getCandidaturesListByTypeByFaculte(type:DossierCandidatureState,faculte:string):DossierCandidature[]
   {
+    // console.log(Array.from(this.listCandidatures.getValue().values()))
     return Array.from(this.listCandidatures.getValue().values()).filter((dossier:DossierCandidature)=> dossier.state==type && dossier.getFaculte()==faculte)
   }
   getCandidaturesListByTypeByFiliere(type:DossierCandidatureState | string,faculte:string,filiere:String):DossierCandidature[]
@@ -136,7 +137,6 @@ export class EtudiantCandidatureService {
     if(type=="all") return Array.from(this.listCandidatures.getValue().values()).filter((dossier:DossierCandidature)=> dossier.getFaculte()==faculte && dossier.getFiliere()==filiere)
     return Array.from(this.listCandidatures.getValue().values()).filter((dossier:DossierCandidature)=> dossier.state==type && dossier.getFaculte()==faculte && dossier.getFiliere()==filiere)
   }
-
   changeCandidatureState(candidatureID:EntityID, userID:EntityID,state:DossierCandidatureState):Promise<ActionStatus>
   {
     return new Promise<ActionStatus>((resolve,reject)=>{

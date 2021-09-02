@@ -2,9 +2,9 @@
     <div class="list-group list-group-flush" role="tablist">
         <ng-containt *ngFor="let etab of mapListFormation">
             <div class="card-header"  style="background-color: #2b3947;">
-                <h3 class="card-title mb-0" style="color: white;"><b> {{etab.etab}} </b></h3>
+                <h3 class="card-title mb-0" style="color: white;"><b> {{etab.etab}} ( {{getNumberOfCandidatureByStateByFaculte(etab.faculte)}} )</b></h3>
             </div>
-            <a *ngFor="let filiere of etab.filieres" [title]="filiere.filiere" (click)="clickForFiliere($event,etab.etab,etab.faculte,filiere)" class="list-group-item list-group-item-action" href="#{{filiere.ab}}" data-bs-toggle="list"  role="tab"> {{filiere.ab}} </a>
+            <a *ngFor="let filiere of etab.filieres" [title]="filiere.filiere" (click)="clickForFiliere($event,etab.etab,etab.faculte,filiere)" class="list-group-item list-group-item-action" href="#{{filiere.ab}}" data-bs-toggle="list"  role="tab"> {{filiere.ab}} ( {{getNumberOfCandidatureByStateByFiliere(etab.faculte,filiere.filiere)}} ) </a>
         </ng-containt>
                
         

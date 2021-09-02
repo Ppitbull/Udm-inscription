@@ -1,5 +1,7 @@
 export enum AccountType
 {
     PLATEFROM_ADMIN="plateform_admin",
-    ETUDIANT="etudiant"
+    ETUDIANT="etudiant",
+    RH="rh",
+
 }

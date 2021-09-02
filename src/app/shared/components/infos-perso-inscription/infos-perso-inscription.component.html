@@ -38,7 +38,7 @@
                     type="text" name="prenom_admin" placeholder="Votre Prenom" />
                 <div *ngIf="submitedForm && form.controls.prenom.invalid" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.prenom.errors.required">Votre prenom est obligatoire</div>
-                    <div *ngIf="form.controls.prenom.errors.minlength">Votre nom doit avoire au minimum 6 charactéres
+                    <div *ngIf="form.controls.prenom.errors.minlength">Votre nom doit avoire au minimum 2 charactéres
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 <div *ngIf="submitedForm && form.controls.tel.errors" class="invalid-feedback text-danger">
                     <div *ngIf="form.controls.tel.errors.required">Votre numéro de téléphone est obligatoire</div>
                     <div *ngIf="form.controls.tel.errors.pattern">Votre numéro de téléphone doit respecter le format
-                        demandé <br> Example: +237 698 29 53 68</div>
+                        demandé <br> Example: 698 29 53 68</div>
                 </div>
             </div>
         </div>
@@ -184,7 +184,7 @@
                     <div *ngIf="form.controls.telContact.errors.required">Le numéro de téléphone de votre contact est
                         obligatoire</div>
                     <div *ngIf="form.controls.telContact.errors.pattern">Le numéro de téléphone de votre contact doit
-                        respecter le format demandé <br> Example: +237 698 29 53 68</div>
+                        respecter le format demandé <br> Example: 698 29 53 68</div>
                 </div>
             </div>
         </div>

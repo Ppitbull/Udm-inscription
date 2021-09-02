@@ -60,7 +60,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.personnalDataFormGroup = this._formBuilder.group({
       nom:new FormControl("",[Validators.required,Validators.minLength(2)]),
-      prenom:new FormControl("",[Validators.required,Validators.minLength(6)]),
+      prenom:new FormControl("",[Validators.required,Validators.minLength(2)]),
       dateNaiss:new FormControl("",[Validators.required]),
       lieuxNaiss:new FormControl("",[Validators.required,Validators.minLength(2)]),
       nationalite:new FormControl("",[Validators.required,Validators.minLength(2)]),

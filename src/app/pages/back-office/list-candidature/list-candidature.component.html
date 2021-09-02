@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-md-3 col-xl-2">
-                <app-left-formation-list (selectedFiliere)="showDataBySelectedFiliere($event)"></app-left-formation-list>
+                <app-left-formation-list [type]="type" (selectedFiliere)="showDataBySelectedFiliere($event)"></app-left-formation-list>
             </div>
             <div class="col-md-9 col-xl-10">
                 <app-table-etudiant-list *ngIf="hasSelectedElement==true" [data]="dataFiliere" [textFiliere]="labelSelectedFiliere"></app-table-etudiant-list>                

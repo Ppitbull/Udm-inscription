@@ -6,48 +6,77 @@
 
         <div class="row">
             <div class="col-md-12 col-xl-4">
-                <div class="card mb-3">
-                    <div class="card-header text-center">
-                        <h3 class="card-title mb-0">Nouveau</h3>
-                    </div>
-                    <div class="card-body text-center">
-                        <img src="../../../../assets/img/no-user-image.png" alt="image" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                        <br><br><div class="mb-12 col-md-12 text-left">
-                            <label class="form-label" for="firstName">Nom</label>
-                            <input type="text" class="form-control" id="firstName" placeholder=""
-                              ><br>
+                <form [formGroup]="form" (ngSubmit)="addAccount()">
+                    <div class="card mb-3">
+                        <div class="card-header text-center">
+                            <h3 class="card-title mb-0">Nouveau</h3>
                         </div>
-                        <div class="mb-12 col-md-12 text-left">
-                            <label class="form-label" for="lastName">Prénom</label>
-                            <input type="text" class="form-control" id="lastName" placeholder=""
-                              ><br>
-                        </div>
-                        <div class="mb-12 col-md-12 text-left">
-                            <label class="form-label" for="tel">Téléphone</label>
-                            <input type="text" class="form-control" id="tel" placeholder=""
-                              ><br>
-                        </div>
-                        <div class="mb-12 col-md-12 text-left">
-                            <label class="form-label" for="email">E-mail</label>
-                            <input type="text" class="form-control" id="email" placeholder=""
-                              ><br>
-                        </div>
-                        <div class="mb-12 col-md-12 text-left">
-                            <label class="form-label" for="pass">Mot de passe</label>
-                            <input type="text" class="form-control" id="pass" placeholder=""
-                              ><br>
-                        </div>
-                        <div class="mb-12 col-md-12 text-right">
-                            <input type="button" value="Ajouter" style="color: white; background-color: rgb(15, 134, 15);"
-                              ><br>
-                        </div>
+                        <div class="card-body text-center">
+                            <img src="../../../../assets/img/no-user-image.png" alt="image" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                            <br><br><div class="mb-12 col-md-12 text-left">
+                                <label class="form-label" for="firstName">Nom</label>
+                                <input  [ngClass]="{ 'is-invalid': submitedForm && form.controls.nom.errors }" formControlName="nom" matInput type="text" class="form-control" id="firstName" placeholder=""
+                                >
+                                <div *ngIf="submitedForm && form.controls.nom.invalid" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.nom.errors.required">Le nom est obligatoire</div>
+                                    <div *ngIf="form.controls.nom.errors.minlength">La taile du nom doit avoir au minimum 2
+                                        charactéres</div>
+                                </div><br>
+                            </div>
+                            <div class="mb-12 col-md-12 text-left">
+                                <label class="form-label" for="lastName">Prénom</label>
+                                <input  [ngClass]="{ 'is-invalid': submitedForm && form.controls.prenom.errors }" formControlName="prenom" matInput type="text" class="form-control" id="lastName" placeholder=""
+                                >
+                                <div *ngIf="submitedForm && form.controls.prenom.invalid" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.prenom.errors.required">Le prenom est obligatoire</div>
+                                    <div *ngIf="form.controls.prenom.errors.minlength">La taile du prenom doit avoir au minimum 2
+                                        charactéres</div>
+                                </div><br>
+                            </div>
+                            <div class="mb-12 col-md-12 text-left">
+                                <label class="form-label" for="tel">Téléphone</label>
+                                <app-input-type-number formControlName="tel"
+                                    [cssClass]="{ 'is-invalid': submitedForm && form.controls.tel.errors ,'form-control':true}">
+                                </app-input-type-number>                                
+                                <div *ngIf="submitedForm && form.controls.tel.errors" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.tel.errors.required">Le numéro de téléphone est obligatoire</div>
+                                    <div *ngIf="form.controls.tel.errors.pattern">Le numéro de téléphone doit respecter le format
+                                        demandé <br> Example: 698 29 53 68</div>
+                                </div><br>
+                            </div>
+                            <div class="mb-12 col-md-12 text-left">
+                                <label class="form-label" for="email">E-mail</label>
+                                <input  [ngClass]="{ 'is-invalid': submitedForm && form.controls.email.errors }" formControlName="email" matInput type="text" class="form-control" id="email" placeholder=""
+                                >
+                                <div *ngIf="submitedForm && form.controls.email.errors" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.email.errors.required">L'email est obligatoire</div>
+                                    <div *ngIf="form.controls.email.errors.pattern">L'email doit respecter le format
+                                        demandé <br> Example: contact@example.com</div>
+                                </div><br>
+                            </div>
+                            <div class="mb-12 col-md-12 text-left">
+                                <label class="form-label" for="pass">Mot de passe</label>
+                                <input  [ngClass]="{ 'is-invalid': submitedForm && form.controls.mdp.errors }" formControlName="mdp" matInput type="text" class="form-control" id="pass" placeholder=""
+                                >
+                                <div *ngIf="submitedForm && form.controls.mdp.invalid" class="invalid-feedback text-danger">
+                                    <div *ngIf="form.controls.mdp.errors.required">Le mot de passe est obligatoire</div>
+                                    <div *ngIf="form.controls.mdp.errors.minlength">Le mot de passe doit avoir au minimum 8
+                                        charactéres</div>
+                                </div><br>
+                            </div>
+                            <div *ngIf="waitResponse==false" class="mb-12 col-md-12 text-right">
+                                <input type="submit" value="Ajouter" class="btn"  style="color: white; background-color: rgb(15, 134, 15);"
+                                >
+                            </div>
+                            <app-simple-loader *ngIf="waitResponse==true" text="Veuillez patienter..."></app-simple-loader>
 
-                        <div>
+                            <div>
+                            </div>
                         </div>
+                        <hr class="my-0" />
+                        <hr class="my-0" />
                     </div>
-                    <hr class="my-0" />
-                    <hr class="my-0" />
-                </div>
+                </form>
             </div>
             <div class="col-md-12 col-xl-8">
                 <div class="card">
@@ -58,7 +87,7 @@
                         <table class="table table-hover my-0">
                             <thead>
                                 <tr>
-                                    <th>statut</th>
+                                    <th>#</th>
                                     <th>Nom</th>
                                     <th class="d-none d-xl-table-cell">Téléphone</th>
                                     <th class="d-none d-xl-table-cell">E-mail</th>
@@ -67,24 +96,30 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="badge bg-success">Actif</span></td>
-                                    <td>Nono Brice Charles</td>
-                                    <td class="d-none d-xl-table-cell">691 558 889</td>
-                                    <td class="d-none d-xl-table-cell">brice@gmail.com</td>
-                                    <td class="d-none d-xl-table-cell">************</td>
-                                    <td><button class="badge bg-danger">Désactiver</button></td>
+                            <tbody *ngIf="dataLoaded==true">
+                               <ng-container *ngIf="adminList.length!=0">
+                                <tr *ngFor="let user of adminList; let i=index">
+                                    <td><span>{{i+1}}</span></td>
+                                    <td>{{user.getFullName()}}</td>
+                                    <td class="d-none d-xl-table-cell">{{user.tel}}</td>
+                                    <td class="d-none d-xl-table-cell">{{user.email}}</td>
+                                    <td class="d-none d-xl-table-cell">******</td>
                                     <td><i class="fa fa-trash" style="color: red;"></i></td>
                                 </tr>
+                               </ng-container>
+                               <ng-container *ngIf="adminList.length==0">
+                                   <tr>
+                                       <td colspan="7">
+                                           <div class="row justify-content-center">
+                                               <div class="col-4">Aucune données a afficher</div>
+                                           </div>
+                                       </td>
+                                   </tr>
+                               </ng-container>
+                            </tbody>
+                            <tbody *ngIf="dataLoaded==false">
                                 <tr>
-                                    <td><span class="badge bg-danger">Désactivé</span></td>
-                                    <td>Nono Brice Charles</td>
-                                    <td class="d-none d-xl-table-cell">691 558 889</td>
-                                    <td class="d-none d-xl-table-cell">brice@gmail.com</td>
-                                    <td class="d-none d-xl-table-cell">************</td>
-                                    <td><button class="badge bg-success">Activer</button></td>
-                                    <td><i class="fa fa-trash" style="color: red;"></i></td>
+                                    <td colspan="7"><app-simple-loader text="Chargement de la liste"></app-simple-loader></td>
                                 </tr>
                             </tbody>
                         </table>
