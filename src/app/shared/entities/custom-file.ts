@@ -8,4 +8,9 @@ export class CustomFile extends Entity
     type:string="";
     data:any="";
     link:String="";
+    getExtention()
+    {
+        if(this.name.split(".").length==0) return "";
+        return this.name.split(".")[this.name.split(".").length-1]
+    }
 }

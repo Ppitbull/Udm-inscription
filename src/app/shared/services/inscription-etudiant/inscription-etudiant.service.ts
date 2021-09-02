@@ -36,7 +36,7 @@ export class InscriptionEtudiantService {
   {
     return this.candidatureService.saveEtudiantCandidature(candidature);
   }
-  uploadFileWithProgression(files:CustomFile[]):BehaviorSubject<ActionStatus>
+  uploadFileWithProgression(dir:string,files:CustomFile[]):BehaviorSubject<ActionStatus>
   {
     let result:ActionStatus=new ActionStatus();
     result.result={
@@ -44,7 +44,7 @@ export class InscriptionEtudiantService {
       percent:0
     }
     let subject:BehaviorSubject<ActionStatus>=new BehaviorSubject<ActionStatus>(result)
-    files.forEach((file:CustomFile)=>this.firebaseApiFile.uploadFile(file).subscribe({
+    files.forEach((file:CustomFile)=>this.firebaseApiFile.uploadFile(dir,file).subscribe({
       next:(value)=> {
         result.apiCode=value.apiCode,
         result.result.file=file.name,
@@ -55,11 +55,11 @@ export class InscriptionEtudiantService {
     }))
     return subject;
   }
-  uploadFile(files:CustomFile[]):Promise<ActionStatus>
+  uploadFile(dir:string,files:CustomFile[]):Promise<ActionStatus>
   {
     return new Promise<ActionStatus>((resolve,reject)=>{
       let fLink:CustomFile[]=[];
-      forkJoin(files.map((file:CustomFile)=>this.firebaseApiFile.uploadFile(file))).subscribe({
+      forkJoin(files.map((file:CustomFile)=>this.firebaseApiFile.uploadFile(dir,file))).subscribe({
         next:(value)=> fLink=value.map((result:ActionStatus)=>result.result),
         complete:()=>{
           let result:ActionStatus=new ActionStatus();

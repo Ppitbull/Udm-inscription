@@ -157,59 +157,68 @@
 
                     </div>
                     <div class="card-body" *ngIf="isAdmin">
-                        <div class="row">
-                            <div class="col-md-4" routerLink="/user/d-list">
-                                <div class="card bg-light py-2 py-md-3 border">
-                                    <div class="card-head text-center" style="color: rgb(14, 80, 161);">
-                                        <h3 style="color: rgb(16, 72, 140) !important;"><b> Dossiers en attente </b></h3><i class="fa fa-file fa-3x ml-2"></i>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <b style="color: rgb(14, 80, 161) !important;"> {{allAttente}} </b>
-                                    </div>
+                        <ng-container *ngIf="hasLoadedAdminData!=true">
+                            <div class="row justify-content-center">
+                                <div class="col-9">
+                                    <app-simple-loader text="Chargement des données administrateurs"></app-simple-loader>
                                 </div>
                             </div>
-                            <div class="col-md-4" routerLink="/user/d-accept">
-                                <div class="card bg-light py-2 py-md-3 border">
-                                    <div class="card-head text-center" style="color: black;">
-                                        <h3 style="color: black !important;"><b> Dossiers correct </b></h3><i class="fa fa-file fa-3x ml-2"></i>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <b style="color: black !important;">{{allCorrect}} </b>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card bg-light py-2 py-md-3 border">
-                                    <div class="card-head text-center" style="color: rgb(179, 123, 19);">
-                                        <h3 style="color: orange !important;"><b> Dossiers Invalide </b></h3><i class="fa fa-file fa-3x ml-2"></i>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <b style="color: orange !important;">{{allInvalid}} </b>
+                        </ng-container>
+                        <ng-container *ngIf="hasLoadedAdminData==true" >
+                            <div class="row">
+                                <div class="col-md-4" routerLink="/user/d-list" >
+                                    <div class="card bg-light py-2 py-md-3 border">
+                                        <div class="card-head text-center" style="color: rgb(14, 80, 161);">
+                                            <h3 style="color: rgb(16, 72, 140) !important;"><b> Dossiers en attente </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <b style="color: rgb(14, 80, 161) !important;"> {{allAttente}} </b>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4" routerLink="/user/d-admis">
-                                <div class="card bg-light py-2 py-md-3 border">
-                                    <div class="card-head text-center" style="color: green;">
-                                        <h3 style="color: green !important;"><b> Candidats admis </b></h3><i class="fa fa-file fa-3x ml-2"></i>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <b style="color: green !important;">{{allAdmis}} </b>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" routerLink="/user/d-refus">
-                                <div class="card bg-light py-2 py-md-3 border">
-                                    <div class="card-head text-center" style="color: rgb(160, 42, 42);">
-                                        <h3 style="color: red !important;"><b> Candidats recalés </b></h3><i class="fa fa-file fa-3x ml-2"></i>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <b style="color: red !important;">{{allRecal}} </b>
+                                <div class="col-md-4" routerLink="/user/d-accept">
+                                    <div class="card bg-light py-2 py-md-3 border">
+                                        <div class="card-head text-center" style="color: black;">
+                                            <h3 style="color: black !important;"><b> Dossiers correct </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <b style="color: black !important;">{{allCorrect}} </b>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4" routerLink="/user/d-invalid">
+                                    <div class="card bg-light py-2 py-md-3 border">
+                                        <div class="card-head text-center" style="color: rgb(179, 123, 19);">
+                                            <h3 style="color: orange !important;"><b> Dossiers Invalide </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <b style="color: orange !important;">{{allInvalid}} </b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" routerLink="/user/d-admis">
+                                    <div class="card bg-light py-2 py-md-3 border">
+                                        <div class="card-head text-center" style="color: green;">
+                                            <h3 style="color: green !important;"><b> Candidats admis </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <b style="color: green !important;">{{allAdmis}} </b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" routerLink="/user/d-refus">
+                                    <div class="card bg-light py-2 py-md-3 border">
+                                        <div class="card-head text-center" style="color: rgb(160, 42, 42);">
+                                            <h3 style="color: red !important;"><b> Candidats recalés </b></h3><i class="fa fa-file fa-3x ml-2"></i>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <b style="color: red !important;">{{allRecal}} </b>
+                                        </div>
+                                    </div>
+                                </div>
+    
                             </div>
-
-                        </div>
+                        </ng-container>
 
                         <!-- <div class="row">
                             <div class="col-md-12 text-center">
@@ -226,4 +235,20 @@
             </div>
         </div>
     </div>
+
+
+    <div bsModal #modalRef #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content" style="background-color: rgb(192, 206, 188) !important;">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- <app-dossier [modalRef]="modalRef" (endRequest)="endRequest()" [candidat]="selectedData.candidat" [candidature]="selectedData.candidature"></app-dossier> -->
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
 </main>

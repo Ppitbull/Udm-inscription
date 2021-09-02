@@ -26,3 +26,8 @@ export function getBranchOfCandidatures():string
     return `${getBranchOfUserData()}/${DbBranch.candidatures}`
 }
 
+export function getBranchCommentaireCandidatures(candidatureID:EntityID):string
+{
+    return `${getBranchOfCandidatures()}/${candidatureID.toString()}/${DbBranch.candidature_comment}`
+}
+

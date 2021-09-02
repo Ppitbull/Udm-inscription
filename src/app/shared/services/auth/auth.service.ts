@@ -39,7 +39,8 @@ export class AuthService {
    */
   logOut() {
     this.setAuth({isLoggedIn:false})
-    // this.router.navigate(['login']);
+    // ;
+    this.firebaseApi.signOutApi();
     this.note.showNotification('succes', 'Vous avez été déconnecté!');
     localStorage.clear();
   }

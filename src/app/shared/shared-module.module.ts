@@ -14,6 +14,10 @@ import { InputTypeNumberModule } from './components/input-type-number/input-type
 import { DocsFormModule } from './components/docs-form/docs-form.module';
 import { SimpleLoaderComponent } from './components/loader/simple-loader/simple-loader.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LeftFormationListComponent } from './components/left-formation-list/left-formation-list.component';
+import { TableEtudiantListComponent } from './components/table-etudiant-list/table-etudiant-list.component';
+import { ModalCandidatureComponent } from './components/modal-candidature/modal-candidature.component';
+import { DossierComponent } from './components/dossiers/dossier.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     QualificationsInscriptionComponent, 
     FiliereFormationInscriptionComponent,
     FormAdminssionFinalComponent,
-    SimpleLoaderComponent
+    SimpleLoaderComponent,
+    LeftFormationListComponent,
+    TableEtudiantListComponent,
+    ModalCandidatureComponent,
+    DossierComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +53,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FiliereFormationInscriptionComponent,
     FormAdminssionFinalComponent,
     InputTypeNumberModule,
-    SimpleLoaderComponent
+    SimpleLoaderComponent,
+    LeftFormationListComponent,
+    TableEtudiantListComponent,
+
   ]
 })
 export class SharedModule { }

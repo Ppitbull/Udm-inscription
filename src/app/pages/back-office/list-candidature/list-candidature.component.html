@@ -1,0 +1,27 @@
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3"><strong>{{title}}</strong></h1>
+        
+        <hr style="color: green;">
+
+        <div class="row">
+            <div class="col-md-3 col-xl-2">
+                <app-left-formation-list (selectedFiliere)="showDataBySelectedFiliere($event)"></app-left-formation-list>
+            </div>
+            <div class="col-md-9 col-xl-10">
+                <app-table-etudiant-list *ngIf="hasSelectedElement==true" [data]="dataFiliere" [textFiliere]="labelSelectedFiliere"></app-table-etudiant-list>                
+                <div class="tab-content" *ngIf="hasSelectedElement!=true">
+                    <div class="fade show">
+                        <div class="card">
+                            <div class="card-header">        
+                                <h3 class="card-title mb-0 text-center">Selectionnez une filiere </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</main>
+

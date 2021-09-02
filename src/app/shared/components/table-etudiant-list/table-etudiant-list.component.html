@@ -1,0 +1,75 @@
+<div class="tab-content">
+    <div class="fade show">
+        <div class="card">
+            <div class="card-header">        
+                <h3 class="card-title mb-0">{{textFiliere}} </h3>
+            </div>
+            <form class="d-none d-sm-inline-block">
+                <div class="input-group input-group-navbar">
+                    <input type="text" class="form-control" placeholder="Rechercher…"
+                        aria-label="Search">
+                    <button class="btn" type="button">
+                        <i class="align-middle" data-feather="search"></i>
+                    </button>
+                </div>
+            </form>
+            <table class="table table-hover my-0">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom complet</th>
+                        <th class="d-none d-xl-table-cell">Niveau</th>
+                        <th class="d-none d-xl-table-cell">Nationnalité</th>
+                        <th class="d-none d-md-table-cell">E-mail</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="dataHasLoaded==true">
+                    <tr *ngIf="candidatsInfosList.length==0">
+                        <td colspan="6">
+                            <div class="row justify-content-center">
+                                <div class="col-12 text-center">
+                                  <span>Aucun candidats</span>
+                                </div>
+                              </div> 
+                        </td>
+                    </tr>
+                    <ng-container *ngIf="candidatsInfosList.length!=0">
+                        <tr *ngFor="let can of candidatsInfosList" (click)="choiceCandidat(can)">
+                            <td></td>
+                            <td class="d-none d-xl-table-cell">{{can.candidat.getFullName()}}</td>
+                            <td class="d-none d-xl-table-cell">{{can.candidature.getNiveau()}}</td>
+                            <td class="d-none d-xl-table-cell">{{can.candidat.nationalite}}</td>
+                            <td class="d-none d-xl-table-cell">{{can.candidat.email}}</td>
+                            <td><span class="badge {{getBackgroundState(can.candidature.state)}}">{{getSignificantTextOfState(can.candidature.state)}}</span></td>
+                        </tr>
+                    </ng-container>                   
+                    
+                </tbody>
+                <tbody *ngIf="dataHasLoaded!=true">
+                    <tr>
+                        <td colspan="6">
+                            <app-simple-loader text="Chargement de données"></app-simple-loader>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- <ng-template > -->
+    <div bsModal #modalRef #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content" style="background-color: rgb(192, 206, 188) !important;">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <app-dossier [modalRef]="modalRef" (endRequest)="endRequest()" [candidat]="selectedData.candidat" [candidature]="selectedData.candidature"></app-dossier>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+<!-- </ng-template> -->
+

@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       this.color="red";
       this.responseText=error.message;
       this.waitResponse=false;
+      console.log(error)
     })
   }
 

@@ -43,8 +43,15 @@ export class DossierCandidature extends Entity
     }
     getFiliere()
     {
-        console.log(this.formations.premierChoix.filiere)
         return this.formations.premierChoix.filiere
+    }
+    getFaculte()
+    {
+        return this.formations.premierChoix.faculte
+    }
+    getNiveau()
+    {
+        return this.formations.premierChoix.niveau
     }
     static generateNumberDossier()
     {

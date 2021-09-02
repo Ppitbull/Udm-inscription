@@ -7,4 +7,5 @@ import { BehaviorSubject } from 'rxjs';
 export class EventService {
   loginEvent = new BehaviorSubject<boolean>(false);
   loadedDataFromLocalStorage = new BehaviorSubject<boolean>(false);
+  loadedDataFromApi = new BehaviorSubject<boolean>(false);
 }

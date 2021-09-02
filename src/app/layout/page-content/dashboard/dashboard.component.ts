@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/entities/accounts';
 import { DossierCandidature } from 'src/app/shared/entities/application-file';
+import { CommentNotification } from 'src/app/shared/entities/notification/commentaire';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { CommentairesService } from 'src/app/shared/services/commentaires/commentaires.service';
 import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
+import { LoaderAdminDataService } from 'src/app/shared/services/loader-admin-data/loader-admin-data.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
+import { AccountType } from 'src/app/shared/utils/enum';
 import { DossierCandidatureState } from 'src/app/shared/utils/enum/dossier-candidature.enum';
+import { EventService } from 'src/app/shared/utils/services/events/event.service';
 import { ActionStatus } from 'src/app/shared/utils/services/firebase';
 
 @Component({
@@ -39,14 +45,26 @@ export class DashboardComponent implements OnInit {
   allRecal: number = 0;
   allAdmis: number = 0;
 
+  commentaire:CommentNotification=new CommentNotification();
+
+
+
+  hasLoadedAdminData:boolean=false;
 
   constructor(
     private userProfilService:UserProfilService,
-    private dossierCandidatureService:EtudiantCandidatureService) {
+    private dossierCandidatureService:EtudiantCandidatureService,
+    private eventService:EventService,
+    private notificationService:NotificationService,
+    private commentService:CommentairesService,
+    private loaderAdminDataService:LoaderAdminDataService) {
     this.getEtat();
   }
 
   ngOnInit(): void {
+    this.eventService.loadedDataFromApi.subscribe((isLoaded)=>{
+      this.hasLoadedAdminData=isLoaded;
+    })
     this.userProfilService.currentUser.subscribe((user:User)=>{
       if(user)
       {
@@ -54,34 +72,64 @@ export class DashboardComponent implements OnInit {
         this.isAdmin=user.isAdminAccount();
         this.email=user.email.toString();
         this.pass=user.mdp.toString();
-        this.dossierCandidatureService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>{
-          if(!result.result) return;
-          this.dossierCandidature=result.result;
-          switch(this.dossierCandidature.state)
-          {
-            case DossierCandidatureState.WAITING:
-              this.etat="attente";
-              break;
-            case DossierCandidatureState.INVALID:
-              this.etat="invalid";
-              break;
-            case DossierCandidatureState.FAILD:
-              this.etat="recal";
-              break
-            case DossierCandidatureState.ACCEPTED:
-              this.etat="correct";
-              break;
-            case DossierCandidatureState.ADMITTED:
-              this.etat="admis"
-          }
-          this.getEtat();
-        });
+        if(this.user.accountType==AccountType.ETUDIANT && !this.hasLoadedAdminData)
+        {
+          this.dossierCandidatureService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>{
+            if(!result.result) return;
+            this.dossierCandidature=result.result;
+            switch(this.dossierCandidature.state)
+            {
+              case DossierCandidatureState.WAITING:
+                this.etat="attente";
+                break;
+              case DossierCandidatureState.INVALID:
+                this.etat="invalid";
+                break;
+              case DossierCandidatureState.FAILD:
+                this.etat="recal";
+                break
+              case DossierCandidatureState.ACCEPTED:
+                this.etat="correct";
+                break;
+              case DossierCandidatureState.ADMITTED:
+                this.etat="admis"
+            }
+            this.getEtat();
+          });
+        }
+        this.commentService.comment.subscribe((comm)=>{
+          this.commentaire=comm;
+          this.comment=this.commentaire.content
+        })
+      }
+
+      if(this.user.accountType==AccountType.PLATEFROM_ADMIN)
+      {
+        if(!this.hasLoadedAdminData)
+        {
+          this.loaderAdminDataService
+          .loadAllData()
+          .then((action:ActionStatus)=>{
+            // this.notificationService.showNotification('info',"Chargement des données terminé");
+            this.hasLoadedAdminData=true
+            this.allAttente=this.dossierCandidatureService.getCandidaturesListByType(DossierCandidatureState.WAITING).length;
+            this.allAdmis=this.dossierCandidatureService.getCandidaturesListByType(DossierCandidatureState.ADMITTED).length;
+            this.allCorrect=this.dossierCandidatureService.getCandidaturesListByType(DossierCandidatureState.ACCEPTED).length;
+            this.allInvalid=this.dossierCandidatureService.getCandidaturesListByType(DossierCandidatureState.INVALID).length;
+            this.allRecal=this.dossierCandidatureService.getCandidaturesListByType(DossierCandidatureState.FAILD).length;
+          })
+          .catch((error:ActionStatus)=>{
+            // this.notificationService.showNotification('danger',"Erreur de chargement des données");
+            console.log(error)
+          })
+        }
       }
     })
     
   }
 
   getEtat() {
+    
     if (this.etat == 'attente'){
       this.attente = true;
       this.invalid = false;

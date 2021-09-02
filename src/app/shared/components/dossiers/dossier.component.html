@@ -8,7 +8,7 @@
                     <div class="mb-3 col-md-4">
                         <div class="row g-0 mt-1 text-center">
                             <div class="col-10 col-md-10 col-lg-10 col-xl-10">
-                                <img src="../../../../assets/img/no-user-image.png"
+                                <img [src]="imgUrl"
                                     class="img-thumbnail rounded me-2 mb-2" alt="image">
                             </div> ID : {{id}}
                         </div>
@@ -30,11 +30,11 @@
                 <div class="row">
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="dateN">Date de naissance</label>
-                        <input type="date" class="form-control" id="dateN" placeholder="{{dateN}}" disabled>
+                        <input type="date" [value]="dateN" class="form-control" id="dateN" placeholder="{{dateN}}" disabled>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="lieuN">Lieu de naissance</label>
-                        <input type="text" class="form-control" id="lieuN" placeholder="{{lieuN}}" disabled>
+                        <input type="text"  class="form-control" id="lieuN" placeholder="{{lieuN}}" disabled>
                     </div>
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="nomAutre">Personne à contacter si besoin</label>
                         <input type="text" class="form-control" id="nomAutre"
-                            placeholder="Nom de la personne à contacter en cas de besoin" disabled>
+                            [placeholder]="nomAutre" disabled>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label" for="emailAutre">Email de la personne</label>
@@ -85,7 +85,7 @@
                 <h3 class="card-title mb-0">Qualifications</h3><br><br>
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                        <label class="form-label" for="diplome">Diplmome</label>
+                        <label class="form-label" for="diplome">Diplome</label>
                         <input type="text" class="form-control" placeholder='{{diplome}}' id="diplome" disabled>
                     </div>
                     <div class="mb-3 col-md-3">
@@ -178,92 +178,97 @@
                     </div>
                 </div>
                 <hr><br><br>
-                <div *ngIf='attente'>
-                    <div class="row" *ngIf="!midle">
-                        <div class="mb-3 col-md-3">
-                            <button type="button" class="btn btn-danger" (click)="midleChange()">Renvoyer</button>
+                <ng-container *ngIf="waitResponse==false">
+                    <div *ngIf='attente'>
+                        <div class="row" *ngIf="!midle">
+                            <div class="mb-3 col-md-3">
+                                <button type="button" class="btn btn-danger" (click)="midleChange()">Renvoyer</button>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-success"
+                                    (click)="valid()">Valider</button>
+                            </div>
                         </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-4">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-success"
-                                (click)="valid();largeModal.hide()">Valider</button>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="midle">
-                        <div class="mb-3 col-md-5">Mentionner le motif du retour du dossier. <br>
-                            <textarea style="border-radius: 5px; border-color: rgb(17, 83, 17);"></textarea>
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-warning"
-                                (click)="ivalid();largeModal.hide()">Retourner</button>
-                        </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-success"
-                                (click)="valid();largeModal.hide()">Valider</button>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf='correct'>
-                    <div class="row">
-                        <div class="mb-3 col-md-3">
-                            <button type="submit" class="btn btn-secondary"
-                                (click)="lost();largeModal.hide()">Recaler</button>
-                        </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-4">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-secondary"
-                                (click)="win();largeModal.hide()">Admettre</button>
+                        <div class="row" *ngIf="midle">
+                            <div class="mb-3 col-md-5">Mentionner le motif du retour du dossier. <br>
+                                <textarea [formControl]="formControlMessage" style="border-radius: 5px; border-color: rgb(17, 83, 17);"></textarea>
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-warning"
+                                    (click)="return();">Retourner</button>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-success"
+                                    (click)="valid()">Valider</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div *ngIf='admis'>
-                    <div class="row">
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-4">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-secondary" (click)="largeModal.hide()">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf='recal'>
-                    <div class="row">
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-4">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-secondary" (click)="largeModal.hide()">Fermer</button>
+                    <div *ngIf='correct'>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <button type="submit" class="btn btn-secondary"
+                                    (click)="lost()">Recaler</button>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-secondary"
+                                    (click)="win()">Admettre</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div *ngIf='invalid'>
-                    <div class="row">
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-3">
-                        </div>
-                        <div class="mb-3 col-md-4">
-                        </div>
-                        <div class="mb-3 col-md-2">
-                            <button type="submit" class="btn btn-success"
-                                (click)="wait();largeModal.hide()">Soumettre</button>
+                    <div *ngIf='admis'>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div *ngIf='recal'>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf='invalid'>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                            </div>
+                            <div class="mb-3 col-md-2">
+                                <button type="submit" class="btn btn-success"
+                                    (click)="wait()">Soumettre</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="waitResponse==true">
+                    <app-simple-loader text="Veuillez patienter"></app-simple-loader>
+                </ng-container>
             </form>
         </div>
     </div>

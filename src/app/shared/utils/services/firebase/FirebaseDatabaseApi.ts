@@ -251,18 +251,25 @@ export class FirebaseDataBaseApi {
   handleApiError(result: ActionStatus) {
     switch (result.apiCode) {
       case FireBaseConstant.AUTH_WRONG_PASSWORD:
-        result.message = 'Incorrect email or password';
+      case FireBaseConstant.AUTH_USER_NOT_FOUND:
+        // result.message = 'Incorrect email or password';
+        result.message="Email ou mot de passe incorrect";
         break;
       case FireBaseConstant.AUTH_WEAK_PASSWORD:
-        result.message = 'Password must have at least 6 characters'
+        // result.message = 'Password must have at least 6 characters'
+        result.message="Le mot de passe doit avoir au moins 6 carractéres"
         break;
       case FireBaseConstant.AUTH_EMAIL_ALREADY_USE:
-        result.message = 'Email already used by another user';
+        // result.message = 'Email already used by another user';
+        result.message="Email déjà utilisé"
         break;
       case FireBaseConstant.NET_NETWORK_FAIL:
-        result.message = 'Offline. Please check your network connectivity';
+        // result.message = 'Offline. Please check your network connectivity';
+          result.message="Hors ligne. Veuillez vérifier votre connection réseau"
+          break
       case FireBaseConstant.DESACTIVED_ACCOUNT:
-        result.message="Account Disabled. Contacted the administrator for a reactivation"
+        // result.message="Account Disabled. Contacted the administrator for a reactivation"
+        result.message="Compte désactivé. Contactez l'administrateur"
         break;
     };
   }

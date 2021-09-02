@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { CustomFile } from 'src/app/shared/entities/custom-file';
+import { EntityID } from 'src/app/shared/entities/entityid';
 import { ActionStatus } from '.';
 import { FireBaseConstant } from './firebase-constant';
 import { FirebaseDataBaseApi } from './FirebaseDatabaseApi';
@@ -14,14 +15,14 @@ export class FirebaseFile {
   constructor(private firebaseDatabaseApi:FirebaseDataBaseApi) {
     this.db=this.firebaseDatabaseApi.getFirebaseFile().ref();
    }
-  uploadFile(file:CustomFile):BehaviorSubject<ActionStatus>
+  uploadFile(repos:string,file:CustomFile):BehaviorSubject<ActionStatus>
   {
     let result:ActionStatus=new ActionStatus();
     result.result=0;
 
     let subject:BehaviorSubject<ActionStatus>=new BehaviorSubject<ActionStatus>(result);
 
-    let uploadTask=this.db.child(file.name).put(file.data,{
+    let uploadTask=this.db.child(`${repos}/${(new EntityID()).toString()}.${file.getExtention()}`).put(file.data,{
       contentType:file.type
     })
     

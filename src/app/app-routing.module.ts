@@ -12,11 +12,12 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./pages/back-office/back-office.module').then(m => m.BackOfficeModule),
     canActivate: [AuthGuard],
+    
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

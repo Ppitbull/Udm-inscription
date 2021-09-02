@@ -14,7 +14,7 @@
   </div>
  <div class="row">
      <div class="col-12">
-        <mat-horizontal-stepper linear (selectionChange)="changeSteppe($event)"   #stepper>
+        <mat-horizontal-stepper  (selectionChange)="changeSteppe($event)"   #stepper>
             <mat-step #stepInformationPersonnel [stepControl]="personnalDataFormGroup" editable>
                 <ng-template matStepLabel>Etat civil</ng-template>
                 <div class="content">

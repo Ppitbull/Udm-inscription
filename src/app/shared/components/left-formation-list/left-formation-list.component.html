@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="list-group list-group-flush" role="tablist">
+        <ng-containt *ngFor="let etab of mapListFormation">
+            <div class="card-header"  style="background-color: #2b3947;">
+                <h3 class="card-title mb-0" style="color: white;"><b> {{etab.etab}} </b></h3>
+            </div>
+            <a *ngFor="let filiere of etab.filieres" [title]="filiere.filiere" (click)="clickForFiliere($event,etab.etab,etab.faculte,filiere)" class="list-group-item list-group-item-action" href="#{{filiere.ab}}" data-bs-toggle="list"  role="tab"> {{filiere.ab}} </a>
+        </ng-containt>
+               
+        
+        <!-- <div class="card-header" style="background-color: #2b3947;">
+            <h5 class="card-title mb-0" style="color: white;"><b> I S S S</b></h5>
+        </div>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#mg" role="tab">
+            Médecine
+        </a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#pm" role="tab">
+            Pharmacie
+        </a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#cd" role="tab">
+            C D
+        </a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#smsb" role="tab">
+            S M S B
+        </a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#sav" role="tab">
+            S A V
+        </a>
+        <div class="card-header" style="background-color: #2b3947;">
+            <h5 class="card-title mb-0" style="color: white;"><b> I E A / S S M</b></h5>
+        </div>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#ea" role="tab">
+            E A
+        </a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#pct" role="tab">
+            P C T
+        </a> -->
+    </div>
+
+</div>

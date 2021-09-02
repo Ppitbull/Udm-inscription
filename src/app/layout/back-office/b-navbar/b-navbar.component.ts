@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/entities/accounts';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
@@ -12,7 +13,8 @@ export class BNavbarComponent implements OnInit {
   user:User=new User();
   constructor(
     private authService: AuthService,
-    private userProfil:UserProfilService
+    private userProfil:UserProfilService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,7 @@ export class BNavbarComponent implements OnInit {
 
   logOut(){
     this.authService.logOut();
+    this.router.navigate(['login'])
   }
 
 }

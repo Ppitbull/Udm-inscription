@@ -132,7 +132,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     this.openModal()
     this.inscriptionEtudiantService.createEtudiantAccount(this.candidat)
     .then((result:ActionStatus)=> this.authService.authLogin(this.candidat.email.toString(),this.candidat.mdp.toString()))
-    .then((result:ActionStatus)=>this.inscriptionEtudiantService.uploadFile([this.informationPersonnelInscriptionComponent.selectedImage]))
+    .then((result:ActionStatus)=>this.inscriptionEtudiantService.uploadFile("photo_url",[this.informationPersonnelInscriptionComponent.selectedImage]))
     .then((result:ActionStatus)=>{
       this.candidat.photoUrl=result.result[0].link || "";
       return this.inscriptionEtudiantService.saveEtudiantAccount(this.candidat)
@@ -142,7 +142,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
       this.popup_message="Enregistrement des fichiers de candidatures..."      
       let subjects=this.dossier.documents.listDocument.map((doc)=>{
         mapFile.set(doc.label.toString(),doc.files);
-        return this.inscriptionEtudiantService.uploadFileWithProgression(doc.files)
+        return this.inscriptionEtudiantService.uploadFileWithProgression(`candidature/${this.candidat.id}`,doc.files)
       })
       subjects.forEach((subject=>{
         subject.subscribe({
@@ -189,7 +189,9 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
     .then((result:ActionStatus)=>{
       this.popup_message="Opération réussite. Rédirection vers l'espace étudiant...";
       this.userProfile.setUser(this.candidat);
-      this.candidatureDossierService.setCandidature([this.dossier])
+      let map=new Map();
+      map.set(this.dossier.etudiantID.toString(),this.dossier);
+      this.candidatureDossierService.setCandidature(map)
       // setTimeout(()=>window.location.href="/user/dahboard",200)
       setTimeout(()=>{
         this.hideModal();

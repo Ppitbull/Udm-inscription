@@ -1,6 +1,7 @@
 export enum FireBaseConstant {
   AUTH_WRONG_PASSWORD = 'auth/wrong-password',
   AUTH_EMAIL_ALREADY_USE = 'auth/email-already-in-use',
+  AUTH_USER_NOT_FOUND='auth/user-not-found',
   AUTH_WEAK_PASSWORD = 'auth/weak-password',
   NET_NETWORK_FAIL = 'auth/network-request-failed',
   STORAGE_OBJECT_NOT_FOUND = 'storage/object-not-found',

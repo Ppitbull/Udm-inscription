@@ -13,14 +13,10 @@ import { BNavbarComponent } from 'src/app/layout/back-office/b-navbar/b-navbar.c
 import { BSidebarComponent } from 'src/app/layout/back-office/b-sidebar/b-sidebar.component';
 import { DashboardComponent } from 'src/app/layout/page-content/dashboard/dashboard.component';
 import { ProfilComponent } from 'src/app/layout/page-content/profil/profil.component';
-import { DAcceptComponent } from 'src/app/layout/page-content/dossiers/d-accept/d-accept.component';
-import { DAdmisComponent } from 'src/app/layout/page-content/dossiers/d-admis/d-admis.component';
-import { DListComponent } from 'src/app/layout/page-content/dossiers/d-list/d-list.component';
-import { DRefusComponent } from 'src/app/layout/page-content/dossiers/d-refus/d-refus.component';
 import { ActualiteComponent } from 'src/app/layout/page-content/actualite/actualite.component';
-import { DossierComponent } from 'src/app/layout/page-content/dossiers/dossier.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ListCandidatureComponent } from './list-candidature/list-candidature.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +26,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     BSidebarComponent,
     DashboardComponent,
     ProfilComponent,
-    DAcceptComponent,
-    DAdmisComponent,
-    DListComponent,
-    DRefusComponent,
     ActualiteComponent,
-    DossierComponent
+    ListCandidatureComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +35,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     ReactiveFormsModule,
     BackOfficeRoutingModule,
     LayoutModule,
+    SharedModule,
     MatStepperModule,
     MatFormFieldModule,
     SharedModule,

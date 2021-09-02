@@ -8,6 +8,8 @@ import { FireBaseApi, ActionStatus } from '../../utils/services/firebase';
 import { User } from '../../entities/accounts';
 import { AccountType } from '../../utils/enum';
 import { EtudiantCandidatureService } from '../etudiant-candidature/etudiant-candidature.service';
+import { EventService } from '../../utils/services/events/event.service';
+import { CommentairesService } from '../commentaires/commentaires.service';
 
 
 @Injectable({
@@ -20,7 +22,9 @@ export class LoginService {
     private firebaseApi:FireBaseApi,
     private userProfil:UserProfilService,
     private etudiantService:EtudiantsService,
-    private dossierCandidatureService:EtudiantCandidatureService
+    private commentService:CommentairesService,
+    private dossierCandidatureService:EtudiantCandidatureService,
+    private eventService:EventService
   ) { }
 
   loginUser(email:string,password:string):Promise<ActionStatus>
@@ -36,11 +40,18 @@ export class LoginService {
         let user:User=result.result;
         console.log(user)
         //chargement des commentaires associé a une candidature
-        if(user.accountType==AccountType.ETUDIANT) return this.dossierCandidatureService.getCandidatureOfCandidate(currentUserID);
-        else return Promise.resolve(new ActionStatus())     
+        if(user.accountType==AccountType.ETUDIANT) return Promise.all([this.dossierCandidatureService.getCandidatureOfCandidate(currentUserID),this.commentService.getComment()]);
+        else return Promise.all([Promise.resolve(new ActionStatus()) ])    
       })
-      .then((result:ActionStatus)=>resolve(new ActionStatus()))
-      .catch((error:ActionStatus)=>reject(error))
+      .then((result:ActionStatus[])=>
+      {
+        this.eventService.loginEvent.next(true);
+        resolve(new ActionStatus())
+      })
+      .catch((error:ActionStatus)=>{
+        this.firebaseApi.handleApiError(error);
+        reject(error)
+      })
     })
   }
 }
