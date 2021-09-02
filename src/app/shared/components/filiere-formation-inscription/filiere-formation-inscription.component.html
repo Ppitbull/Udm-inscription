@@ -14,13 +14,13 @@
 					<ng-container *ngIf="element.choix=='1er'">
 						<mat-select [ngClass]="{ 'is-invalid': submitedForm && form.controls.cycle.errors }" formControlName="cycle" [ngModelOptions]="{standalone: true}"  [(value)]="element.cycle" #cycleSelected [id]="element.choix" (selectionChange)="changeFaculteData($event)" class="form-control custom-form-length" name="nom" >
 							<mat-option value="">---Selectionner le cycle---</mat-option>
-							<mat-option *ngFor="let formation of listFormation" [value]="formation" >{{formation.nom}}</mat-option>
+							<mat-option [title]="formation.nom" *ngFor="let formation of listFormation" [value]="formation" >{{formation.nom}}</mat-option>
 						</mat-select>
 					</ng-container>
 					<ng-container *ngIf="element.choix!='1er'">
 						<mat-select [(value)]="element.cycle" #cycleSelected [id]="element.choix" (selectionChange)="changeFaculteData($event)" class="form-control custom-form-length" name="nom" >
 							<mat-option value="">---Selectionner le cycle---</mat-option>
-							<mat-option *ngFor="let formation of listFormation" [value]="formation" >{{formation.nom}}</mat-option>
+							<mat-option [title]="formation.nom" *ngFor="let formation of listFormation" [value]="formation" >{{formation.nom}}</mat-option>
 						</mat-select>
 					</ng-container>	
 
@@ -35,19 +35,19 @@
 					<ng-container *ngIf="element.choix=='1er'">
 						<mat-select [ngClass]="{ 'is-invalid': submitedForm && form.controls.premierFaculte.errors }" formControlName="premierFaculte" [ngModelOptions]="{standalone: true}" [(value)]="element.faculte" [id]="element.choix" (selectionChange)="changeFiliereData($event)" class="form-control custom-form-length" name="nom" >
 							<mat-option value="">---Selectionner la faculté---</mat-option>
-							<mat-option *ngFor="let faculte of afaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+							<mat-option [title]="faculte.faculte" *ngFor="let faculte of afaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
 						</mat-select>
 					</ng-container>
 					<ng-container *ngIf="element.choix=='2e'">
 						<mat-select [(value)]="element.faculte" [id]="element.choix" (selectionChange)="changeFiliereData($event)" class="form-control custom-form-length" name="nom" >
 							<mat-option value="">---Selectionner la faculté---</mat-option>
-							<mat-option *ngFor="let faculte of bfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+							<mat-option [title]="faculte.faculte" *ngFor="let faculte of bfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
 						</mat-select>
 					</ng-container>
 					<ng-container *ngIf="element.choix=='3e'">
 						<mat-select [(value)]="element.faculte" [id]="element.choix" (selectionChange)="changeFiliereData($event)" class="form-control custom-form-length" name="nom" >
 							<mat-option value="">---Selectionner la faculté---</mat-option>
-							<mat-option *ngFor="let faculte of cfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
+							<mat-option [title]="faculte.faculte" *ngFor="let faculte of cfaculteList" [value]="faculte">{{faculte.faculte}} ( {{faculte.ab}})</mat-option>
 						</mat-select>
 					</ng-container>					
 				</mat-cell>
@@ -60,19 +60,19 @@
 					<ng-container *ngIf="element.choix=='1er'">
 						<mat-select [ngClass]="{ 'is-invalid': submitedForm && form.controls.premierFilere.errors }" formControlName="premierFilere" [ngModelOptions]="{standalone: true}" [(value)]="element.filiere" class="form-control custom-form-length" type="text" name="nom" >
 							<mat-option value="" >---Selectionner la filière---</mat-option>  
-							<mat-option *ngFor="let filiere of afiliereList" [value]="filiere">{{filiere}}</mat-option>
+							<mat-option [title]="filiere" *ngFor="let filiere of afiliereList" [value]="filiere">{{filiere}}</mat-option>
 						</mat-select>
 					</ng-container>
 					<ng-container *ngIf="element.choix=='2e'">
 						<mat-select [(value)]="element.filiere" class="form-control custom-form-length" type="text" name="nom" >
 							<mat-option value="" >---Selectionner la filière---</mat-option>  
-							<mat-option *ngFor="let filiere of bfiliereList" [value]="filiere">{{filiere}}</mat-option>
+							<mat-option [title]="filiere" *ngFor="let filiere of bfiliereList" [value]="filiere">{{filiere}}</mat-option>
 						</mat-select>
 					</ng-container>
 					<ng-container *ngIf="element.choix=='3e'">
 						<mat-select [(value)]="element.filiere" class="form-control custom-form-length" type="text" name="nom" >
 							<mat-option value="" >---Selectionner la filière---</mat-option>  
-							<mat-option *ngFor="let filiere of cfiliereList" [value]="filiere">{{filiere}}</mat-option>
+							<mat-option [title]="filiere" *ngFor="let filiere of cfiliereList" [value]="filiere">{{filiere}}</mat-option>
 						</mat-select>
 					</ng-container>					
 				</mat-cell>

@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { CommentairesService } from 'src/app/shared/services/commentaires/commentaires.service';
 import { EtudiantCandidatureService } from 'src/app/shared/services/etudiant-candidature/etudiant-candidature.service';
 import { LoaderAdminDataService } from 'src/app/shared/services/loader-admin-data/loader-admin-data.service';
-import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import { NotificationsService } from 'src/app/shared/services/notification/notification.service';
 import { UserProfilService } from 'src/app/shared/services/user-profil/user-profil.service';
 import { AccountType } from 'src/app/shared/utils/enum';
 import { DossierCandidatureState } from 'src/app/shared/utils/enum/dossier-candidature.enum';
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
     private userProfilService:UserProfilService,
     private dossierCandidatureService:EtudiantCandidatureService,
     private eventService:EventService,
-    private notificationService:NotificationService,
+    private notificationService:NotificationsService,
     private commentService:CommentairesService,
     private loaderAdminDataService:LoaderAdminDataService) {
     this.getEtat();

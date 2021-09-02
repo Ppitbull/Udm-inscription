@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
@@ -10,16 +10,8 @@ import { FireBaseConstant } from './firebase-constant'
   providedIn: 'root'
 })
 export class FirebaseDataBaseApi {
-
-  static firebaseConfig: any = {
-    apiKey: "AIzaSyCewAAAU1DwfZdoz44iLHwbHj7wlL2FSM0",
-    authDomain: "udm-inscription.firebaseapp.com",
-    projectId: "udm-inscription",
-    storageBucket: "udm-inscription.appspot.com",
-    messagingSenderId: "858214994197",
-    appId: "1:858214994197:web:ef0ddb7cba242eaa86591c",
-    measurementId: "G-JELPVPNT34"
-  };
+  static firebaseConfig: any = {};
+  
 
   debug: boolean = false;
   offlineMode: boolean = false;
@@ -27,6 +19,32 @@ export class FirebaseDataBaseApi {
 
   constructor() {
 
+    if (isDevMode()) {
+      console.log("Dev Mode")
+      FirebaseDataBaseApi.firebaseConfig= {
+        apiKey: "AIzaSyA-y3v-5G60iDXZ54ZVD7MvkUM1-j8QXKM",
+        authDomain: "udm-inscription-test-db.firebaseapp.com",
+        projectId: "udm-inscription-test-db",
+        storageBucket: "udm-inscription-test-db.appspot.com",
+        messagingSenderId: "874618326460",
+        appId: "1:874618326460:web:b1e911f1688cfb7e27efb9",
+        measurementId: "G-Y8CT85KKRJ"
+      };
+    }
+    else
+    {
+      console.log("prod mode")
+      FirebaseDataBaseApi.firebaseConfig= {
+        apiKey: "AIzaSyCewAAAU1DwfZdoz44iLHwbHj7wlL2FSM0",
+        authDomain: "udm-inscription.firebaseapp.com",
+        projectId: "udm-inscription",
+        storageBucket: "udm-inscription.appspot.com",
+        messagingSenderId: "858214994197",
+        appId: "1:858214994197:web:ef0ddb7cba242eaa86591c",
+        measurementId: "G-JELPVPNT34"
+        };
+    }
+  
     // Initialize Firebase
     firebase.initializeApp(FirebaseDataBaseApi.firebaseConfig);
     // firebase.analytics();

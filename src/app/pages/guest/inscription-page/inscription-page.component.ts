@@ -163,6 +163,7 @@ export class InscriptionPageComponent implements OnInit,AfterViewInit {
                     if(file.name==value.result.file)
                     {
                       found=true;
+                      file.link=value.result.url;
                       break;
                     }
                   }

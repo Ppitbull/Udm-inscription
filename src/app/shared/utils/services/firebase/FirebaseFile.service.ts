@@ -29,17 +29,15 @@ export class FirebaseFile {
     uploadTask.on(firebase.default.storage.TaskEvent.STATE_CHANGED,
       (snapshot)=>
       {
-        let percent=(snapshot.bytesTransferred/snapshot.totalBytes) *100;
+        result.result=Math.trunc((snapshot.bytesTransferred/snapshot.totalBytes) *100);
         switch(snapshot.state)
         {
           case firebase.default.storage.TaskState.PAUSED:
-            result.apiCode=ActionStatus.UPLOAD_PAUSED;
-            result.result=percent;
+            result.apiCode=ActionStatus.UPLOAD_PAUSED;            
             subject.next(result);
             break;
           case firebase.default.storage.TaskState.RUNNING:
             result.apiCode=ActionStatus.UPLOAD_RUNNING;
-            result.result=percent;
             subject.next(result)
             break;
         }
@@ -52,7 +50,7 @@ export class FirebaseFile {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL)=>{
           file.link=downloadURL;
           result.apiCode=ActionStatus.SUCCESS;
-          result.result=100;
+          result.result=file;
           subject.next(result);
           subject.complete()
         })

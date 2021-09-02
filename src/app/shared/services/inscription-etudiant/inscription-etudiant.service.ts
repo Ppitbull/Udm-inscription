@@ -41,14 +41,20 @@ export class InscriptionEtudiantService {
     let result:ActionStatus=new ActionStatus();
     result.result={
       file:"",
-      percent:0
+      percent:0,
+      url:""
     }
     let subject:BehaviorSubject<ActionStatus>=new BehaviorSubject<ActionStatus>(result)
     files.forEach((file:CustomFile)=>this.firebaseApiFile.uploadFile(dir,file).subscribe({
       next:(value)=> {
-        result.apiCode=value.apiCode,
-        result.result.file=file.name,
-        result.result.percent=result.result,
+        result.apiCode=value.apiCode;
+        result.result.file=file.name;        
+        if(value.apiCode==ActionStatus.SUCCESS) 
+        {
+          result.result.url=value.result.link;
+          result.result.percent=100;
+        }
+        else result.result.percent=value.result;
         subject.next(result);
       },
       complete:()=>subject.complete()
