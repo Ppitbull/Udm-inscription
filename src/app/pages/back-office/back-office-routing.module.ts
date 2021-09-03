@@ -19,13 +19,13 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       { path: 'manage-admin', component: ManageAdminComponent, pathMatch: 'full'},
       { path: 'profil', component: ProfilComponent, pathMatch: 'full'},
-      { 
-        path: 'd-accept', 
+      {
+        path: 'd-accept',
         component: ListCandidatureComponent,
         pathMatch: 'full',
-        data:{
-          title:"Liste des dossiers acceptés",
-          docType:DossierCandidatureState.ACCEPTED
+        data: {
+          title: 'Liste des dossiers acceptés',
+          docType: DossierCandidatureState.ACCEPTED
         }
       },
       { 

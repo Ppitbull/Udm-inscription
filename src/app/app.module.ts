@@ -14,7 +14,7 @@ import { UploadFormComponent } from './shared/components/file-upload/upload-form
 import { HttpClientModule } from '@angular/common/http';
 import { UploaderComponent } from './shared/components/file-upload/uploader/uploader.component';
 import { UploadTaskComponent } from './shared/components/file-upload/upload-task/upload-task.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NotificationsService } from './shared/services/notification/notification.service';
 
@@ -37,6 +37,7 @@ import { NotificationsService } from './shared/services/notification/notificatio
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    FormsModule,
 
   ],
   providers: [

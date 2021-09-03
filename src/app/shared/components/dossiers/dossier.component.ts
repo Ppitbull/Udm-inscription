@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Observable } from 'rxjs';
 import { Etudiant } from '../../entities/accounts/etudiant';
 import { DossierCandidature } from '../../entities/application-file';
 import { CommentNotification } from '../../entities/notification/commentaire';
@@ -65,7 +66,9 @@ export class DossierComponent implements OnInit,OnChanges {
   correct: boolean = false;
   recal: boolean = false;
   admis: boolean = false;
-  imgUrl:String=""
+  imgUrl:String="";
+  fichierAEnvoyer: File;
+
   constructor(
     private candidatureService:EtudiantCandidatureService,
     private commentaireService:CommentairesService,
@@ -78,7 +81,6 @@ export class DossierComponent implements OnInit,OnChanges {
     console.log(changes)
     if(changes.candidat && changes.candidature) this.switchData();
   }
-
   switchData()
   {
     this.id = this.candidature.numeroDossier.toString();

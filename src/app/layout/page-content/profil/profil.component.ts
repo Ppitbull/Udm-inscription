@@ -13,6 +13,7 @@ import { ActionStatus } from 'src/app/shared/utils/services/firebase';
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
+  isAdmin: boolean = false;
   nom: string = 'Nom';
   prenom: string = 'Utilisateur';
   nomComplet: string = this.nom + ' ' + this.prenom;
@@ -42,7 +43,7 @@ export class ProfilComponent implements OnInit {
   niveau1: number;
   niveau2: number;
   niveau3: number;
-
+  dossierInvalid: boolean = false;
   user:any=new User();
   candidatureEtudiant:DossierCandidature=new DossierCandidature();
   textStatuDossier="Dossier en attente de traitement";
@@ -53,7 +54,21 @@ export class ProfilComponent implements OnInit {
     private candidatureEtudiantService:EtudiantCandidatureService
   ) { }
 
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        let headers = new Headers();
+        /** In Angular 5, including the header Content-Type can invalidate your request */
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+    }
+}
   ngOnInit(): void {
+    this.isAdmin=this.user.isAdminAccount();
+    console.log("is admin1: ", this.isAdmin);
     this.userProfileService.currentUser.subscribe((user)=>{
       if(user) this.user=user;
       this.candidatureEtudiantService.getCandidatureOfCandidate(user.id).then((result:ActionStatus)=>
@@ -69,6 +84,7 @@ export class ProfilComponent implements OnInit {
             case DossierCandidatureState.INVALID:
               this.textStatuDossier="Dossier invalide";
               this.color="orange";
+              this.dossierInvalid = true;
               break;
             case DossierCandidatureState.FAILD:
               this.textStatuDossier="Dossier rejecté";

@@ -36,9 +36,18 @@
               "src/assets/css/app.css",
               "src/styles.scss",
               "./node_modules/font-awesome/css/font-awesome.css"
+              // "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              // "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              // "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              // "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              // "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "src/assets/js/app.js"
+              "src/assets/js/app.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "src/assets/js/materialize.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -103,7 +112,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js"]
           }
         },
         "lint": {

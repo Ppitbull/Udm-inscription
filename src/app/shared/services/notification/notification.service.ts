@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 declare var $: any;
 
 @Injectable({
@@ -12,7 +13,7 @@ export class NotificationsService {
 
     }
 
-    showNotification(typMsg, message, time?) {
+    showNotification(typMsg, message, time?, iconImg?) {
         if (!time) {
             time = 4000;
         }
@@ -23,9 +24,13 @@ export class NotificationsService {
         const type = ['', 'info', 'success', 'warning', 'danger'];
 
         if (typMsg == 'warning') {
+            if (!iconImg) {
+                iconImg = '<img src="../../../../assets/img/warning_icon.jpeg" class="img" alt="image" /> ';
+            }
+            console.log('warning note');
             $.notify({
                 icon: 'fa fa-exclamation-triangle',
-                message: '<b>Important: </b><br /> ' + message,
+                message: iconImg + message,
 
             }, {
                     type: type[3],
@@ -34,9 +39,8 @@ export class NotificationsService {
                         from: from,
                         align: align
                     },
-                    template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+                    template: '<div data-notify="container" style="border-radius: 15px 15px 15px 15px;" class="col-xl-3 col-lg-3 col-11 col-sm-3 col-md-3 alert alert-{0} alert-with-icon" role="alert">' +
                         '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
-                        '<i class="fa fa-exclamation-triangle" data-notify="icon"></i> ' +
                         '<span data-notify="title">{1}</span> ' +
                         '<span data-notify="message">{2}</span>' +
                         '<div class="progress" data-notify="progressbar">' +
@@ -48,9 +52,13 @@ export class NotificationsService {
         }
 
         else if (typMsg == 'info') {
+            if (!iconImg) {
+                iconImg = '<img src="../../../../assets/img/info_icon.jpeg" class="img" alt="image" /> ';
+            }
+            console.log('info note');
             $.notify({
                 icon: 'notifications',
-                message: '<b>Info !</b><br />Ongoing treatment.',
+                message: iconImg + message,
 
             }, {
                     type: type[1],
@@ -59,9 +67,8 @@ export class NotificationsService {
                         from: from,
                         align: align
                     },
-                    template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+                    template: '<div data-notify="container" style="border-radius: 15px 15px 15px 15px;" class="col-xl-3 col-lg-3 col-11 col-sm-3 col-md-3 alert alert-{0} alert-with-icon" role="alert">' +
                         '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
-                        '<i class="material-icons" data-notify="icon">notifications</i> ' +
                         '<span data-notify="title">{1}</span> ' +
                         '<span data-notify="message">{2}</span>' +
                         '<div class="progress" data-notify="progressbar">' +
@@ -73,9 +80,13 @@ export class NotificationsService {
         }
 
         else if (typMsg == 'danger') {
+            if (!iconImg) {
+                iconImg = '<img src="../../../../assets/img/danger_icon.png" class="img" alt="image" /> ';
+            }
+            console.log('danger note');
             $.notify({
                 icon: 'pe-7s-close-circle',
-                message: '<b>Désole ! </b><br /> ' + message,
+                message: iconImg + message,
 
             }, {
                     type: type[4],
@@ -84,7 +95,7 @@ export class NotificationsService {
                         from: from,
                         align: align
                     },
-                    template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+                    template: '<div data-notify="container" style="border-radius: 15px 15px 15px 15px;" class="col-xl-3 col-lg-3 col-11 col-sm-3 col-md-3 alert alert-{0} alert-with-icon" role="alert">' +
                         '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
                         '<i class="pe-7s-close-circle" data-notify="icon"></i> ' +
                         '<span data-notify="title">{1}</span> ' +
@@ -98,9 +109,13 @@ export class NotificationsService {
         }
 
         else if (typMsg == 'success') {
+            if (!iconImg) {
+                iconImg = '<img src="../../../../assets/img/good_icon.png" class="img" alt="image" /> ';
+            }
+            console.log('success note');
             $.notify({
                 icon: 'fa fa-good',
-                message: '<b>succes ! </b><br /> ' + message,
+                message: iconImg + message,
 
             }, {
                     type: type[2],
@@ -109,11 +124,10 @@ export class NotificationsService {
                         from: from,
                         align: align
                     },
-                    template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+                    template: '<div data-notify="container" style="border-radius: 15px 15px 15px 15px;" class="col-xl-3 col-lg-3 col-11 col-sm-3 col-md-3 alert alert-{0} alert-with-icon" role="alert">' +
                         '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
-                        '<i class="fa fa-good" data-notify="icon"></i> ' +
-                        '<span data-notify="title">{1}</span> ' +
-                        '<span data-notify="message">{2}</span>' +
+                        '<span data-notify="title" text-center>{1}</span> ' +
+                        '<span data-notify="message" text-center>{2}</span>' +
                         '<div class="progress" data-notify="progressbar">' +
                         '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
                         '</div>' +

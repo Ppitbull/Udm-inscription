@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/shared/services/auth/login.service';
 import { NotificationsService } from 'src/app/shared/services/notification/notification.service';
 import { ActionStatus } from 'src/app/shared/utils/services/firebase';
+import { User } from 'src/app/shared/entities/accounts';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { ActionStatus } from 'src/app/shared/utils/services/firebase';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  user: any = new User();
 
   form: FormGroup;
   submitedForm: boolean = false;
@@ -42,15 +44,16 @@ export class LoginComponent implements OnInit {
         this.waitResponse = false;
         this.color = 'green';
         this.responseText = 'Authentification réussi. Redirection vers l\'espace membre...';
-        // this.note.showNotification('success', 'Bienvenu');
-        this.router.navigateByUrl('/user/dashboard')
+        this.router.navigateByUrl('/user/dashboard');
+        this.note.showNotification('success', ' ' + this.user.getFullName() + ' Bienvenu dans votre espace membre !', 1000, '<img src="../../../../assets/img/welcome_icon.jpeg" class="img" alt="image" />');
 
       })
       .catch((error: ActionStatus) => {
+        this.note.showNotification('danger', 'Email ou mot de passe incorrect', 1000);
         this.color = 'red';
         this.responseText = error.message;
         this.waitResponse = false;
-      })
+      });
   }
 
 }

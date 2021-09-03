@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsService } from 'src/app/shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-guest-welcome',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestWelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private note: NotificationsService) { }
 
   ngOnInit(): void {
+  }
+
+  showNotification(){
+    this.note.showNotification('success', 'teste de message', 5000);
   }
 
 }
